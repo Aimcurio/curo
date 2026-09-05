@@ -49,7 +49,7 @@ def check_required_files(errors: list[str]) -> None:
 
 
 def check_json_schemas(errors: list[str]) -> None:
-    for path in sorted((ROOT / "schemas").glob("*.schema.json")):
+    for path in sorted(ROOT.glob("*/*.schema.json")):
         try:
             json.loads(path.read_text(encoding="utf-8"))
         except (OSError, json.JSONDecodeError) as exc:
