@@ -1,0 +1,22 @@
+record_type: observability_run_record
+run_id: RUN-EXAMPLE-001
+recorded_at: '2026-09-05T00:00:00Z'
+project_id: example-project
+workflow_id: example-workflow
+role: harness
+preferred_component: null
+required_component: null
+actual_component: example-component@1.0.0
+fallback_allowed: false
+fallback_used: false
+fallback_reason: null
+provenance_source: HARNESS_CLI
+status: PASS
+evidence_locators:
+  - provenance/RUN-EXAMPLE-001.json
+evidence_manifest: replay/RUN-EXAMPLE-001.yaml
+files_changed: []
+blockers: []
+status_transition_authorized: true
+authorizing_evidence: provenance/RUN-EXAMPLE-001.json
+next_authorized_action: NONE

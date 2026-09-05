@@ -34,6 +34,7 @@ This project is organized for both human reading and machine processing. The can
 - `replay/` - manifests for rerun and verification
 - `docs/` - narrative reference material
 - `templates/` - reusable project initialization templates
+- `scripts/` - dependency-free integrity and promotion checks
 
 ## How to use
 

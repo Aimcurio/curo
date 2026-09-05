@@ -3,7 +3,7 @@
 This folder defines Curo's observability layer for reconstructing workflow
 state without reconstructing it from chat history.
 
-The design is adapted from the observed `E:\observe hitl` pattern, especially
+The design is informed by the upstream `observe-hitl` pattern, especially
 its separation between a human-readable ledger and authoritative machine
 evidence. Curo's version is workflow-neutral and does not copy project-specific
 names, paths, or decisions.
@@ -15,6 +15,8 @@ names, paths, or decisions.
 - [`run-index-template.md`](run-index-template.md) - compact index of governed runs.
 - [`run-record.schema.json`](run-record.schema.json) - machine contract for a run record.
 - [`run-event.schema.json`](run-event.schema.json) - machine contract for an observed runtime event.
+- [`sample-run-record.yaml`](sample-run-record.yaml) - valid populated run-record example.
+- [`sample-run-event.json`](sample-run-event.json) - valid populated event example.
 
 ## Separation rule
 

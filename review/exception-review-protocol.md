@@ -55,6 +55,13 @@ cycles. The default is three model revision cycles and two repetitions of the
 same unresolved finding. Escalate after the limit rather than relaying another
 individual correction through the requester.
 
+Once a finding is confirmed, correct it in the current revision, rerun the
+relevant validation, and do not carry the same finding forward as unresolved.
+If the correction cannot be performed because of unavailable permissions,
+missing tools, inaccessible files, service outage, quota, or another external
+constraint, record the exact blocker and notify the requester instead of
+pretending the finding was resolved.
+
 Agreement means the requirements, ownership, evidence, and tests converge. It
 does not require uniform reviewer preference.
 

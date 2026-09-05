@@ -2,6 +2,10 @@
 
 This folder defines machine-readable contracts for evidence and replay artifacts.
 
+Schemas are centralized here when they define a cross-folder machine contract.
+Some colocated schemas remain beside their observability contracts because the
+runtime record and event templates are maintained as one operational unit.
+
 ## Files
 
 - [`provenance-record.schema.json`](provenance-record.schema.json) - schema for harness-owned execution evidence.
@@ -9,6 +13,7 @@ This folder defines machine-readable contracts for evidence and replay artifacts
 - [`project-kickoff.schema.json`](project-kickoff.schema.json) - schema for completed project kickoff briefs.
 - [`review-findings.schema.json`](review-findings.schema.json) - batched review findings and correction classification.
 - [`hitl-packet.schema.json`](hitl-packet.schema.json) - consolidated human decision escalation.
+- Colocated observability schemas: [`../observability/run-record.schema.json`](../observability/run-record.schema.json) and [`../observability/run-event.schema.json`](../observability/run-event.schema.json).
 
 ## Change rule
 

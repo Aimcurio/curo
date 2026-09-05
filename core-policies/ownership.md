@@ -11,6 +11,7 @@ Every important fact, state transition, and check result must have a declared ow
 - Validation: deterministic validator where feasible
 - Evidence: harness
 - Provenance: harness
+- Observability records and events: harness or designated writer
 - Pending decisions: human or authorized caller
 
 ## Constraints
@@ -18,4 +19,3 @@ Every important fact, state transition, and check result must have a declared ow
 - A model may propose a record, but it may not authoritatively write the record if it did not directly observe or verify it.
 - Unknown provenance remains unknown until established by the harness.
 - A record is not valid just because a model produced it.
-

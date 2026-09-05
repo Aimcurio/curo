@@ -6,7 +6,7 @@ artifacts:
     path: docs/operating-standard.md
     source: conversation:6a9c0aab-cc98-83e8-9a95-2fea63283d6e
     type: standard
-    version: 1.6.0
+    version: 1.7.0
     owner: human_or_authorized_caller
     status: active
     updated_at: 2026-09-05
@@ -119,6 +119,24 @@ artifacts:
     status: active
     updated_at: 2026-09-05
     authoritative: false
+  - id: observability-run-record-sample
+    path: observability/sample-run-record.yaml
+    source: observability/run-record.schema.json
+    type: example
+    version: 1.0.0
+    owner: harness
+    status: active
+    updated_at: 2026-09-05
+    authoritative: false
+  - id: observability-run-event-sample
+    path: observability/sample-run-event.json
+    source: observability/run-event.schema.json
+    type: example
+    version: 1.0.0
+    owner: harness
+    status: active
+    updated_at: 2026-09-05
+    authoritative: false
   - id: replay-manifest-template
     path: replay/replay-manifest-template.yaml
     source: schemas/replay-manifest.schema.json
@@ -157,7 +175,7 @@ artifacts:
     authoritative: true
   - id: observability-contract
     path: observability/observability-contract.md
-    source: E:/observe hitl/BREAKFAST-GOVERNANCE.md
+    source: upstream:observe-hitl/BREAKFAST-GOVERNANCE.md
     type: contract
     version: 1.0.0
     owner: harness
@@ -166,7 +184,7 @@ artifacts:
     authoritative: true
   - id: observability-run-record-template
     path: observability/run-record-template.md
-    source: E:/observe hitl/BREAKFAST-RUN-RECORD-TEMPLATE-v0.2.md
+    source: upstream:observe-hitl/BREAKFAST-RUN-RECORD-TEMPLATE-v0.2.md
     type: template
     version: 1.0.0
     owner: harness
@@ -175,7 +193,7 @@ artifacts:
     authoritative: true
   - id: observability-run-index-template
     path: observability/run-index-template.md
-    source: E:/observe hitl/RUN-INDEX.md
+    source: upstream:observe-hitl/RUN-INDEX.md
     type: template
     version: 1.0.0
     owner: harness

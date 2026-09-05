@@ -1,6 +1,6 @@
 # Model-Agnostic AI Systems Operating Standard
 
-Document version: 1.6.0
+Document version: 1.7.0
 Updated: 2026-09-05  
 Status: Canonical
 
@@ -36,6 +36,7 @@ This standard applies to:
 - validation
 - provenance
 - replay
+- observability
 - registry maintenance
 - adapter boundaries
 - anti-pattern management
@@ -188,6 +189,7 @@ required evidence remains unresolved.
 | Provenance | Harness |
 | Evidence persistence | Harness |
 | Replay manifests | Harness |
+| Observability records and events | Harness / designated writer |
 | Capability measurements | Evaluation pipeline |
 | Pending decisions | Human / authorized caller |
 

@@ -72,6 +72,8 @@ Before promoting a Curo revision, run [`../scripts/validate_curo.py`](../scripts
 | [`replay/`](../replay/README.md) | Reproducibility and rerun manifests | Harness-produced manifests |
 | [`docs/`](README.md) | Narrative standard and navigation | This index and canonical standard |
 | [`templates/`](../templates/README.md) | Reusable project kickoff templates | Template files |
+| [`review/`](../review/README.md) | Event-triggered exception review and HITL packets | Review protocol and schemas |
+| [`scripts/`](../scripts/README.md) | Dependency-free package integrity checks | Validation scripts |
 
 ## Change routing
 

@@ -178,7 +178,7 @@ The requester must approve:
 Use this brief with the following instruction:
 
 ```text
-Use the Curo operating standard at E:/curo as the governing reference.
+Use the Curo operating standard at the configured Curo root as the governing reference.
 First convert this brief into an ownership table, canonical contracts,
 implementation phases, validation gates, and an evidence/replay plan.
 Do not begin implementation until REQUIRED decisions are resolved or

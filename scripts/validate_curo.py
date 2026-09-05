@@ -91,6 +91,37 @@ def check_standard_headings(errors: list[str]) -> None:
         fail(errors, f"duplicate standard heading: {heading}")
 
 
+def check_version_sync(errors: list[str]) -> None:
+    project = (ROOT / "project.yaml").read_text(encoding="utf-8")
+    standard = (ROOT / "docs/operating-standard.md").read_text(encoding="utf-8")
+    replay = (ROOT / "replay/replay-manifest-template.yaml").read_text(encoding="utf-8")
+    registry = (ROOT / "registry/registry.yaml").read_text(encoding="utf-8")
+
+    project_match = re.search(r"^version:\s*(\S+)", project, re.MULTILINE)
+    standard_match = re.search(r"^Document version:\s*(\S+)", standard, re.MULTILINE)
+    replay_match = re.search(r"^version:\s*(\S+)", replay, re.MULTILINE)
+    registry_block = re.search(
+        r"^  - id: operating-standard\n(.*?)(?=^  - id: |\Z)",
+        registry,
+        re.MULTILINE | re.DOTALL,
+    )
+    registry_match = (
+        re.search(r"^    version:\s*(\S+)", registry_block.group(1), re.MULTILINE)
+        if registry_block
+        else None
+    )
+    matches = {
+        "project.yaml": project_match.group(1) if project_match else None,
+        "docs/operating-standard.md": standard_match.group(1) if standard_match else None,
+        "replay/replay-manifest-template.yaml": replay_match.group(1) if replay_match else None,
+        "registry operating-standard": registry_match.group(1) if registry_match else None,
+    }
+    if None in matches.values():
+        fail(errors, f"version metadata missing: {matches}")
+    elif len(set(matches.values())) != 1:
+        fail(errors, f"version metadata out of sync: {matches}")
+
+
 def check_sentinels(errors: list[str]) -> None:
     standard = (ROOT / "docs/operating-standard.md").read_text(encoding="utf-8")
     sample = (ROOT / "provenance/sample-provenance-record.yaml").read_text(encoding="utf-8")
@@ -113,6 +144,7 @@ def main() -> int:
     check_json_schemas(errors)
     check_registry(errors)
     check_standard_headings(errors)
+    check_version_sync(errors)
     check_sentinels(errors)
     check_schema_links(errors)
 

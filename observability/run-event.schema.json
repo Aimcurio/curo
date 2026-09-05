@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://example.local/schemas/observability-run-event.schema.json",
+  "$id": "https://curo.local/schemas/observability-run-event.schema.json",
   "title": "CuroObservabilityRunEvent",
   "type": "object",
   "additionalProperties": false,
