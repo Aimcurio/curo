@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.local/schemas/replay-manifest.schema.json",
+  "title": "ReplayManifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "manifest_type",
+    "artifact_id",
+    "version",
+    "inputs",
+    "expected_checks",
+    "provenance"
+  ],
+  "properties": {
+    "manifest_type": {
+      "const": "replay_manifest"
+    },
+    "artifact_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "inputs": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "expected_checks": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "provenance": {
+      "$ref": "provenance-record.schema.json"
+    }
+  }
+}

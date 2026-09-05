@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.local/schemas/observability-run-record.schema.json",
+  "title": "CuroObservabilityRunRecord",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["record_type", "run_id", "recorded_at", "project_id", "workflow_id", "role", "status", "provenance_source", "evidence_locators", "next_authorized_action"],
+  "properties": {
+    "record_type": { "const": "observability_run_record" },
+    "run_id": { "type": "string", "minLength": 1 },
+    "recorded_at": { "type": "string", "format": "date-time" },
+    "project_id": { "type": "string", "minLength": 1 },
+    "workflow_id": { "type": "string", "minLength": 1 },
+    "role": { "type": "string", "minLength": 1 },
+    "preferred_component": { "type": ["string", "null"] },
+    "required_component": { "type": ["string", "null"] },
+    "actual_component": { "type": ["string", "null"] },
+    "fallback_allowed": { "type": ["boolean", "null"] },
+    "fallback_used": { "type": ["boolean", "null"] },
+    "fallback_reason": { "type": ["string", "null"] },
+    "provenance_source": { "enum": ["HARNESS_API", "HARNESS_CLI", "UI_OBSERVATION", "MODEL_SELF_REPORT", "UNAVAILABLE"] },
+    "status": { "enum": ["CREATED", "RUNNING", "COMPLETE", "PASS", "FAIL", "BLOCKED", "PARTIAL", "CANCELLED", "TIMED_OUT", "IMPLEMENTED", "CLEAR", "MATERIAL_FINDINGS", "DEFERRED", "NOT_STARTED", "NOT_AUTHORIZED", "FROZEN", "UNKNOWN"] },
+    "evidence_locators": { "type": "array", "items": { "type": "string" } },
+    "evidence_manifest": { "type": ["string", "null"] },
+    "files_changed": { "type": "array", "items": { "type": "string" } },
+    "blockers": { "type": "array", "items": { "type": "string" } },
+    "status_transition_authorized": { "type": ["boolean", "null"] },
+    "authorizing_evidence": { "type": ["string", "null"] },
+    "next_authorized_action": { "type": "string", "minLength": 1 }
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.local/schemas/provenance-record.schema.json",
+  "title": "ProvenanceRecord",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "record_type",
+    "artifact_id",
+    "input_hash",
+    "output_hash",
+    "validator_result",
+    "owner",
+    "created_at"
+  ],
+  "properties": {
+    "record_type": {
+      "const": "provenance_record"
+    },
+    "artifact_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "input_hash": {
+      "type": "string",
+      "minLength": 1
+    },
+    "output_hash": {
+      "type": "string",
+      "minLength": 1
+    },
+    "validator_result": {
+      "type": "string",
+      "minLength": 1
+    },
+    "owner": {
+      "type": "string",
+      "enum": ["harness"]
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "source_conversation_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "source_note": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  }
+}
+

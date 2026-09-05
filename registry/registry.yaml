@@ -1,0 +1,202 @@
+registry_version: 4
+owner: harness
+updated_at: 2026-09-05
+artifacts:
+  - id: operating-standard
+    path: docs/operating-standard.md
+    source: conversation:6a9c0aab-cc98-83e8-9a95-2fea63283d6e
+    type: standard
+    version: 1.5.0
+    owner: human_or_authorized_caller
+    status: active
+    updated_at: 2026-09-05
+    authoritative: true
+  - id: addendum-a
+    path: docs/addendum-a.md
+    source: conversation:6a9c0aab-cc98-83e8-9a95-2fea63283d6e
+    type: addendum
+    version: 1.0.0
+    owner: human_or_authorized_caller
+    status: active
+    updated_at: 2026-09-05
+    authoritative: true
+  - id: gaps-and-roadmap
+    path: docs/gaps-and-roadmap.md
+    source: project_review
+    type: roadmap
+    version: 1.0.0
+    owner: harness
+    status: active
+    updated_at: 2026-09-05
+    authoritative: true
+  - id: ownership-policy
+    path: core-policies/ownership.md
+    source: docs/operating-standard.md
+    type: policy
+    version: 1.0.0
+    owner: harness
+    status: active
+    updated_at: 2026-09-05
+    authoritative: true
+  - id: precedence-policy
+    path: core-policies/precedence.md
+    source: docs/operating-standard.md
+    type: policy
+    version: 1.0.0
+    owner: harness
+    status: active
+    updated_at: 2026-09-05
+    authoritative: true
+  - id: validation-policy
+    path: core-policies/validation.md
+    source: docs/operating-standard.md
+    type: policy
+    version: 1.0.0
+    owner: harness
+    status: active
+    updated_at: 2026-09-05
+    authoritative: true
+  - id: project-kickoff-schema
+    path: schemas/project-kickoff.schema.json
+    source: templates/project-kickoff.yaml
+    type: schema
+    version: 1.0.0
+    owner: harness
+    status: active
+    updated_at: 2026-09-05
+    authoritative: true
+  - id: provenance-record-schema
+    path: schemas/provenance-record.schema.json
+    source: docs/operating-standard.md
+    type: schema
+    version: 1.0.0
+    owner: harness
+    status: active
+    updated_at: 2026-09-05
+    authoritative: true
+  - id: replay-manifest-schema
+    path: schemas/replay-manifest.schema.json
+    source: docs/operating-standard.md
+    type: schema
+    version: 1.0.0
+    owner: harness
+    status: active
+    updated_at: 2026-09-05
+    authoritative: true
+  - id: anti-patterns
+    path: anti-patterns/anti-patterns.md
+    source: docs/operating-standard.md
+    type: reference
+    version: 1.0.0
+    owner: harness
+    status: active
+    updated_at: 2026-09-05
+    authoritative: true
+  - id: adapter-contract
+    path: adapters/adapter-contract.md
+    source: docs/operating-standard.md
+    type: contract
+    version: 1.0.0
+    owner: harness
+    status: active
+    updated_at: 2026-09-05
+    authoritative: true
+  - id: harness-contract
+    path: harness/harness-contract.md
+    source: docs/operating-standard.md
+    type: contract
+    version: 1.0.0
+    owner: harness
+    status: active
+    updated_at: 2026-09-05
+    authoritative: true
+  - id: provenance-sample
+    path: provenance/sample-provenance-record.yaml
+    source: project.yaml
+    type: example
+    version: 1.0.0
+    owner: harness
+    status: active
+    updated_at: 2026-09-05
+    authoritative: false
+  - id: replay-manifest-template
+    path: replay/replay-manifest-template.yaml
+    source: schemas/replay-manifest.schema.json
+    type: template
+    version: 1.0.0
+    owner: harness
+    status: active
+    updated_at: 2026-09-05
+    authoritative: true
+  - id: project-kickoff-template-human
+    path: templates/project-kickoff.md
+    source: project_review
+    type: template
+    version: 1.2.0
+    owner: human_or_authorized_caller
+    status: active
+    updated_at: 2026-09-05
+    authoritative: true
+  - id: project-kickoff-template-machine
+    path: templates/project-kickoff.yaml
+    source: templates/project-kickoff.md
+    type: template
+    version: 1.2.0
+    owner: harness
+    status: active
+    updated_at: 2026-09-05
+    authoritative: true
+  - id: curo-validation-script
+    path: scripts/validate_curo.py
+    source: docs/gaps-and-roadmap.md
+    type: validation_script
+    version: 1.0.0
+    owner: harness
+    status: active
+    updated_at: 2026-09-05
+    authoritative: true
+  - id: observability-contract
+    path: observability/observability-contract.md
+    source: E:/observe hitl/BREAKFAST-GOVERNANCE.md
+    type: contract
+    version: 1.0.0
+    owner: harness
+    status: active
+    updated_at: 2026-09-05
+    authoritative: true
+  - id: observability-run-record-template
+    path: observability/run-record-template.md
+    source: E:/observe hitl/BREAKFAST-RUN-RECORD-TEMPLATE-v0.2.md
+    type: template
+    version: 1.0.0
+    owner: harness
+    status: active
+    updated_at: 2026-09-05
+    authoritative: true
+  - id: observability-run-index-template
+    path: observability/run-index-template.md
+    source: E:/observe hitl/RUN-INDEX.md
+    type: template
+    version: 1.0.0
+    owner: harness
+    status: active
+    updated_at: 2026-09-05
+    authoritative: true
+  - id: observability-run-record-schema
+    path: observability/run-record.schema.json
+    source: observability/observability-contract.md
+    type: schema
+    version: 1.0.0
+    owner: harness
+    status: active
+    updated_at: 2026-09-05
+    authoritative: true
+  - id: observability-run-event-schema
+    path: observability/run-event.schema.json
+    source: observability/observability-contract.md
+    type: schema
+    version: 1.0.0
+    owner: harness
+    status: active
+    updated_at: 2026-09-05
+    authoritative: true

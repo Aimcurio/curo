@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.local/schemas/project-kickoff.schema.json",
+  "title": "CuroProjectKickoff",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "template_type",
+    "template_version",
+    "updated_at",
+    "status",
+    "project",
+    "objective",
+    "scope",
+    "users",
+    "environment",
+    "execution_profile",
+    "ownership",
+    "acceptance_criteria",
+    "failure_cases",
+    "approval_boundaries",
+    "open_decisions",
+    "known_risks",
+    "first_implementation_slice"
+  ],
+  "properties": {
+    "template_type": { "const": "curo_project_kickoff" },
+    "template_version": { "type": "string", "minLength": 1 },
+    "updated_at": { "type": "string", "format": "date" },
+    "status": { "enum": ["DRAFT", "READY_FOR_DESIGN", "BLOCKED"] },
+    "project": { "$ref": "#/$defs/requiredObject" },
+    "objective": { "$ref": "#/$defs/requiredObject" },
+    "scope": { "$ref": "#/$defs/requiredObject" },
+    "users": { "$ref": "#/$defs/requiredObject" },
+    "environment": { "$ref": "#/$defs/requiredObject" },
+    "ux": { "$ref": "#/$defs/requiredObject" },
+    "execution_profile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["system_type", "ai_assistance", "mutation_level", "safety_criticality", "runtime"],
+      "properties": {
+        "system_type": { "anyOf": [{ "enum": ["deterministic", "ai_assisted", "hybrid"] }, { "const": "REQUIRED" }] },
+        "ai_assistance": { "anyOf": [{ "type": "boolean" }, { "const": "REQUIRED" }] },
+        "mutation_level": { "anyOf": [{ "enum": ["read_only", "reversible", "irreversible"] }, { "const": "REQUIRED" }] },
+        "safety_criticality": { "anyOf": [{ "enum": ["low", "medium", "high"] }, { "const": "REQUIRED" }] },
+        "runtime": { "anyOf": [{ "enum": ["none", "planned", "existing"] }, { "const": "REQUIRED" }] }
+      }
+    },
+    "workflow_capabilities": { "$ref": "#/$defs/requiredObject" },
+    "provider": { "$ref": "#/$defs/requiredObject" },
+    "data_and_privacy": { "$ref": "#/$defs/requiredObject" },
+    "ownership": { "$ref": "#/$defs/requiredObject" },
+    "acceptance_criteria": { "type": "array", "items": { "type": "string", "minLength": 1 } },
+    "failure_cases": { "type": "array", "minItems": 1, "items": { "type": "object", "required": ["id", "status", "user_visible_behavior", "evidence_to_capture", "retry_allowed"], "additionalProperties": false, "properties": { "id": { "type": "string" }, "status": { "type": "string" }, "user_visible_behavior": { "type": "string" }, "evidence_to_capture": { "type": "string" }, "retry_allowed": { "type": ["boolean", "string"] } } } },
+    "approval_boundaries": { "$ref": "#/$defs/requiredObject" },
+    "open_decisions": { "type": "array" },
+    "known_risks": { "type": "array" },
+    "first_implementation_slice": { "type": "string", "minLength": 1 }
+  },
+  "$defs": {
+    "requiredObject": {
+      "type": "object",
+      "minProperties": 1
+    }
+  }
+}

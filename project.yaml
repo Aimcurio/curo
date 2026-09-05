@@ -1,0 +1,67 @@
+name: Curo
+slug: curo
+description: >-
+  Model-agnostic AI systems operating standard and addendum package with
+  human-readable docs, machine-readable metadata, and explicit ownership.
+version: 1.6.0
+status: active
+maturity: foundation
+runtime_status: not_implemented
+created_at: 2026-09-05
+updated_at: 2026-09-05
+language: en
+source:
+  conversation_id: 6a9c0aab-cc98-83e8-9a95-2fea63283d6e
+  conversation_title: Project Ideas for GPT Astra
+  basis: latest conversation content provided in-thread
+  authority_note: >-
+    This project is derived from the latest conversation content and should be
+    treated as the authoritative local package unless later superseded.
+lineage:
+  standard_family: model-agnostic-ai-systems-operating-standard
+  addendum_family: addendum-a
+  revision: G
+  canonical_document: docs/operating-standard.md
+ownership:
+  objective: human_or_authorized_caller
+  operational_state: harness
+  prompt_template: versioned_artifact
+  context_selection: context_builder_under_harness_policy
+  tool_authority: harness_or_policy_guard
+  execution: harness_controlled_tool_layer
+  validation: deterministic_validator_where_feasible
+  provenance: harness
+  evidence_persistence: harness
+  replay_manifests: harness
+  observability: harness
+  capability_measurements: evaluation_pipeline
+  pending_decisions: human_or_authorized_caller
+lifecycle:
+  creation: create first, validate next, then promote
+  validation: deterministic first, model judgment last
+  promotion: only after evidence-backed verification
+  rollback: preserve prior package version and revert the active pointer
+  retirement: archive with provenance and replacement note
+usage:
+  read_order:
+    - project.yaml
+    - README.md
+    - docs/operating-standard.md
+    - docs/addendum-a.md
+    - docs/gaps-and-roadmap.md
+  kickoff_templates:
+    human: templates/project-kickoff.md
+    machine: templates/project-kickoff.yaml
+  observability:
+    contract: observability/observability-contract.md
+    run_record: observability/run-record-template.md
+    run_index: observability/run-index-template.md
+  applied_reasoning_patterns:
+    - normal_successful_execution
+    - cancellation_or_early_termination
+    - dependency_timeout_or_failure
+    - missing_or_unverifiable_provenance
+    - component_replacement
+  update_policy: >-
+    Do not edit files outside this directory unless the change is explicitly
+    intended for the broader workspace and has been checked first.

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.local/schemas/observability-run-event.schema.json",
+  "title": "CuroObservabilityRunEvent",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["event_type", "run_id", "occurred_at", "source", "observation_status"],
+  "properties": {
+    "event_type": { "type": "string", "minLength": 1 },
+    "run_id": { "type": "string", "minLength": 1 },
+    "occurred_at": { "type": "string", "format": "date-time" },
+    "source": { "type": "string", "minLength": 1 },
+    "observation_status": { "enum": ["OBSERVED", "VERIFIED", "PROPOSED", "UNKNOWN", "UNAVAILABLE", "DISPUTED"] },
+    "payload_ref": { "type": ["string", "null"] },
+    "summary": { "type": ["string", "null"] }
+  }
+}

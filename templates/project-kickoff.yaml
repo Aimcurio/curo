@@ -1,0 +1,128 @@
+template_type: curo_project_kickoff
+template_version: 1.2.0
+updated_at: '2026-09-05'
+status: DRAFT
+
+project:
+  name: REQUIRED
+  description: REQUIRED
+  requester: REQUIRED
+  working_directory: REQUIRED
+  target_start_date: OPTIONAL
+  desired_first_release_date: OPTIONAL
+
+objective:
+  problem: REQUIRED
+  intended_outcome: REQUIRED
+  out_of_scope: []
+
+scope:
+  version_1_must_have: []
+  later: []
+  explicitly_excluded: []
+
+users:
+  primary_user: REQUIRED
+  skill_level: REQUIRED
+  usage_environment: REQUIRED
+  expected_volume: OPTIONAL
+  accessibility: OPTIONAL
+  locales: OPTIONAL
+
+environment:
+  product_type: REQUIRED
+  platforms: []
+  repository: REQUIRED
+  deployment_target: DECISION_REQUIRED
+  authentication: DECISION_REQUIRED
+  external_services: []
+
+execution_profile:
+  system_type: REQUIRED
+  ai_assistance: REQUIRED
+  mutation_level: REQUIRED
+  safety_criticality: REQUIRED
+  runtime: REQUIRED
+
+ux:
+  primary_layout: REQUIRED
+  visual_direction: REQUIRED
+  responsive_behavior: REQUIRED
+  interaction_states: []
+  references: []
+  constraints: []
+
+workflow_capabilities:
+  multiple_sessions_or_work_items: DECISION_REQUIRED
+  streaming_or_incremental_results: DECISION_REQUIRED
+  cancellation_or_early_termination: DECISION_REQUIRED
+  retry: DECISION_REQUIRED
+  component_selection: DECISION_REQUIRED
+  attachments: OUT
+  tool_calls: OUT
+  voice: OUT
+  structured_or_rich_results: DECISION_REQUIRED
+
+provider:
+  initial_provider: NOT_APPLICABLE
+  initial_model: NOT_APPLICABLE
+  portability_required: true
+  credentials_status: NOT_YET
+  provider_specific_features_v1: DECISION_REQUIRED
+
+data_and_privacy:
+  allowed_input_data: REQUIRED
+  allowed_storage: REQUIRED
+  storage_location: DECISION_REQUIRED
+  retention_period: UNKNOWN
+  user_deletion_required: REQUIRED
+  raw_provider_response_retention: DECISION_REQUIRED
+  sensitive_data_involved: UNKNOWN
+  provider_data_use_constraints: OPTIONAL
+
+ownership:
+  objective: human_or_authorized_caller
+  ui_state: application_state_manager
+  execution_state: harness
+  provider_translation: adapter
+  validation_result: deterministic_validator
+  provenance: harness
+  replay_manifest: harness
+  pending_product_decisions: human_or_authorized_caller
+
+acceptance_criteria: []
+
+failure_cases:
+  - id: normal_successful_response
+    status: REQUIRED
+    user_visible_behavior: REQUIRED
+    evidence_to_capture: REQUIRED
+    retry_allowed: DECISION_REQUIRED
+  - id: cancellation_or_early_termination
+    status: REQUIRED
+    user_visible_behavior: REQUIRED
+    evidence_to_capture: REQUIRED
+    retry_allowed: DECISION_REQUIRED
+  - id: dependency_timeout_or_failure
+    status: REQUIRED
+    user_visible_behavior: REQUIRED
+    evidence_to_capture: REQUIRED
+    retry_allowed: DECISION_REQUIRED
+  - id: missing_or_unverifiable_provenance
+    status: REQUIRED
+    user_visible_behavior: REQUIRED
+    evidence_to_capture: REQUIRED
+    retry_allowed: DECISION_REQUIRED
+  - id: component_replacement
+    status: REQUIRED
+    user_visible_behavior: REQUIRED
+    evidence_to_capture: REQUIRED
+    retry_allowed: DECISION_REQUIRED
+
+approval_boundaries:
+  builder_may_decide: []
+  requester_must_approve: []
+
+open_decisions: []
+known_risks: []
+first_implementation_slice: REQUIRED
