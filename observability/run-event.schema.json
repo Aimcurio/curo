@@ -12,6 +12,7 @@
     "source": { "type": "string", "minLength": 1 },
     "observation_status": { "enum": ["OBSERVED", "VERIFIED", "PROPOSED", "UNKNOWN", "UNAVAILABLE", "DISPUTED"] },
     "payload_ref": { "type": ["string", "null"] },
-    "summary": { "type": ["string", "null"] }
+    "summary": { "type": ["string", "null"] },
+    "learning_candidate_ref": { "type": ["string", "null"] }
   }
 }

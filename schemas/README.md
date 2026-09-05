@@ -13,6 +13,8 @@ runtime record and event templates are maintained as one operational unit.
 - [`project-kickoff.schema.json`](project-kickoff.schema.json) - schema for completed project kickoff briefs.
 - [`review-findings.schema.json`](review-findings.schema.json) - batched review findings and correction classification.
 - [`hitl-packet.schema.json`](hitl-packet.schema.json) - consolidated human decision escalation.
+- [`learning-candidate.schema.json`](learning-candidate.schema.json) - evidence-backed learning proposals.
+- [`promotion-record.schema.json`](promotion-record.schema.json) - validated promotion and regression closure.
 - Colocated observability schemas: [`../observability/run-record.schema.json`](../observability/run-record.schema.json) and [`../observability/run-event.schema.json`](../observability/run-event.schema.json).
 
 ## Change rule

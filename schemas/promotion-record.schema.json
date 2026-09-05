@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://curo.local/schemas/promotion-record.schema.json",
+  "title": "Curo Promotion Record",
+  "type": "object",
+  "required": ["artifact_type", "artifact_version", "promotion_id", "candidate_id", "project_id", "status", "validated_by", "validation_refs", "approval_required", "target_artifact", "resulting_commit", "regression_guard_ref", "rollback_ref"],
+  "properties": {
+    "artifact_type": {"const": "curo_promotion_record"},
+    "artifact_version": {"type": "string"},
+    "promotion_id": {"type": "string", "minLength": 1},
+    "candidate_id": {"type": "string", "minLength": 1},
+    "project_id": {"type": "string", "minLength": 1},
+    "status": {"enum": ["VALIDATION_PENDING", "VALIDATED", "APPROVED", "PROMOTED", "REJECTED", "BLOCKED"]},
+    "validated_by": {"type": "string", "minLength": 1},
+    "validation_refs": {"type": "array", "items": {"type": "string"}},
+    "approval_required": {"type": "boolean"},
+    "approval_ref": {"type": ["string", "null"]},
+    "target_artifact": {"type": "string", "minLength": 1},
+    "resulting_commit": {"type": "string", "minLength": 1},
+    "regression_guard_ref": {"type": "string", "minLength": 1},
+    "rollback_ref": {"type": "string", "minLength": 1}
+  },
+  "additionalProperties": true
+}

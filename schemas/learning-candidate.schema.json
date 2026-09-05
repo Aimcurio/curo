@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://curo.local/schemas/learning-candidate.schema.json",
+  "title": "Curo Learning Candidate",
+  "type": "object",
+  "required": ["artifact_type", "artifact_version", "candidate_id", "project_id", "owner", "status", "candidate_type", "source_run_ids", "evidence_refs", "proposed_change", "requires_hitl"],
+  "properties": {
+    "artifact_type": {"const": "curo_learning_candidate"},
+    "artifact_version": {"type": "string"},
+    "candidate_id": {"type": "string", "minLength": 1},
+    "project_id": {"type": "string", "minLength": 1},
+    "owner": {"type": "string", "minLength": 1},
+    "status": {"enum": ["PROPOSED", "VALIDATION_PENDING", "VALIDATED", "PROMOTED", "REJECTED", "BLOCKED"]},
+    "candidate_type": {"type": "string", "minLength": 1},
+    "source_run_ids": {"type": "array", "items": {"type": "string"}},
+    "source_event_ids": {"type": "array", "items": {"type": "string"}},
+    "source_finding_ids": {"type": "array", "items": {"type": "string"}},
+    "evidence_refs": {"type": "array", "items": {"type": "string"}},
+    "failure_signature": {"type": "object"},
+    "proposed_change": {"type": "object", "required": ["target", "description"]},
+    "required_validation": {"type": "array", "items": {"type": "string"}},
+    "requires_hitl": {"type": "boolean"},
+    "promotion_ref": {"type": ["string", "null"]}
+  },
+  "additionalProperties": true
+}

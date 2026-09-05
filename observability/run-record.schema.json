@@ -26,6 +26,17 @@
     "blockers": { "type": "array", "items": { "type": "string" } },
     "status_transition_authorized": { "type": ["boolean", "null"] },
     "authorizing_evidence": { "type": ["string", "null"] },
-    "next_authorized_action": { "type": "string", "minLength": 1 }
+    "next_authorized_action": { "type": "string", "minLength": 1 },
+    "learning": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["eligible", "status", "candidate_refs", "promotion_ref"],
+      "properties": {
+        "eligible": { "type": "boolean" },
+        "status": { "enum": ["NOT_REQUIRED", "PENDING", "PROPOSED", "VALIDATION_PENDING", "VALIDATED", "PROMOTED", "REJECTED", "BLOCKED"] },
+        "candidate_refs": { "type": "array", "items": { "type": "string" } },
+        "promotion_ref": { "type": ["string", "null"] }
+      }
+    }
   }
 }

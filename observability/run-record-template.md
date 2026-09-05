@@ -65,6 +65,16 @@ Exactly one immediate current task:
 
 `<one next action | NONE>`
 
+## Learning Distillation
+
+- Eligible: `[YES | NO]`
+- Status: `[NOT_REQUIRED | PENDING | PROPOSED | VALIDATION_PENDING | VALIDATED | PROMOTED | REJECTED | BLOCKED]`
+- Candidate reference(s): `<learning artifact path or NONE>`
+- Promotion reference: `<promotion record or NONE>`
+
+This section links to learning artifacts. It does not promote them or create
+authority.
+
 ## Notes
 
 Preserve prior failures, blockers, reversals, and unknowns. If the authoritative

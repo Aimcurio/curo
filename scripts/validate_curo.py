@@ -37,6 +37,13 @@ EXPECTED_ARTIFACT_IDS = {
     "hitl-packet-template",
     "review-findings-schema",
     "hitl-packet-schema",
+    "learning-distillation-protocol",
+    "learning-candidate-template",
+    "promotion-record-template",
+    "learning-candidate-schema",
+    "promotion-record-schema",
+    "observability-run-record-sample",
+    "observability-run-event-sample",
 }
 
 

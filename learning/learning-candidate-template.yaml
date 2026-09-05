@@ -1,0 +1,21 @@
+artifact_type: curo_learning_candidate
+artifact_version: 1.0.0
+candidate_id: LEARN-DECISION_REQUIRED
+project_id: DECISION_REQUIRED
+owner: model
+status: PROPOSED
+candidate_type: DECISION_REQUIRED
+source_run_ids: []
+source_event_ids: []
+source_finding_ids: []
+evidence_refs: []
+failure_signature:
+  signature_id: DECISION_REQUIRED
+  observed_pattern: DECISION_REQUIRED
+  recurrence: 0
+proposed_change:
+  target: DECISION_REQUIRED
+  description: DECISION_REQUIRED
+required_validation: []
+requires_hitl: true
+promotion_ref: null

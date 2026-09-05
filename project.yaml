@@ -3,7 +3,7 @@ slug: curo
 description: >-
   Model-agnostic AI systems operating standard and addendum package with
   human-readable docs, machine-readable metadata, and explicit ownership.
-version: 1.7.0
+version: 1.8.0
 status: active
 maturity: foundation
 runtime_status: not_implemented
@@ -20,7 +20,7 @@ source:
 lineage:
   standard_family: model-agnostic-ai-systems-operating-standard
   addendum_family: addendum-a
-  revision: H
+  revision: I
   canonical_document: docs/operating-standard.md
 ownership:
   objective: human_or_authorized_caller
@@ -34,6 +34,7 @@ ownership:
   evidence_persistence: harness
   replay_manifests: harness
   observability: harness
+  learning_distillation: harness_proposal_tier
   capability_measurements: evaluation_pipeline
   pending_decisions: human_or_authorized_caller
 lifecycle:
@@ -56,6 +57,10 @@ usage:
     contract: observability/observability-contract.md
     run_record: observability/run-record-template.md
     run_index: observability/run-index-template.md
+  learning:
+    protocol: learning/learning-distillation-protocol.md
+    candidate_template: learning/learning-candidate-template.yaml
+    promotion_template: learning/promotion-record-template.yaml
   applied_reasoning_patterns:
     - normal_successful_execution
     - cancellation_or_early_termination

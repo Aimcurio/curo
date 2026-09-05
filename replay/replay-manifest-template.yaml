@@ -1,6 +1,6 @@
 manifest_type: replay_manifest
 artifact_id: operating-standard
-version: 1.7.0
+version: 1.8.0
 inputs: []
 expected_checks:
   - structure check

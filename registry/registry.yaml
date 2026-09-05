@@ -6,7 +6,7 @@ artifacts:
     path: docs/operating-standard.md
     source: conversation:6a9c0aab-cc98-83e8-9a95-2fea63283d6e
     type: standard
-    version: 1.7.0
+    version: 1.8.0
     owner: human_or_authorized_caller
     status: active
     updated_at: 2026-09-05
@@ -257,6 +257,51 @@ artifacts:
   - id: hitl-packet-schema
     path: schemas/hitl-packet.schema.json
     source: review/exception-review-protocol.md
+    type: schema
+    version: 1.0.0
+    owner: harness
+    status: active
+    updated_at: 2026-09-05
+    authoritative: true
+  - id: learning-distillation-protocol
+    path: learning/learning-distillation-protocol.md
+    source: docs/operating-standard.md
+    type: protocol
+    version: 1.0.0
+    owner: harness
+    status: active
+    updated_at: 2026-09-05
+    authoritative: true
+  - id: learning-candidate-template
+    path: learning/learning-candidate-template.yaml
+    source: learning/learning-distillation-protocol.md
+    type: template
+    version: 1.0.0
+    owner: harness
+    status: active
+    updated_at: 2026-09-05
+    authoritative: true
+  - id: promotion-record-template
+    path: learning/promotion-record-template.yaml
+    source: learning/learning-distillation-protocol.md
+    type: template
+    version: 1.0.0
+    owner: harness
+    status: active
+    updated_at: 2026-09-05
+    authoritative: true
+  - id: learning-candidate-schema
+    path: schemas/learning-candidate.schema.json
+    source: learning/learning-distillation-protocol.md
+    type: schema
+    version: 1.0.0
+    owner: harness
+    status: active
+    updated_at: 2026-09-05
+    authoritative: true
+  - id: promotion-record-schema
+    path: schemas/promotion-record.schema.json
+    source: learning/learning-distillation-protocol.md
     type: schema
     version: 1.0.0
     owner: harness

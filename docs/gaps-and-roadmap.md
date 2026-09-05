@@ -19,6 +19,7 @@ mistaken for an already-enforced capability.
 | Tools, MCP, and hooks | Extension area | Contracts and permissions must be defined per project before use. |
 | Evaluation runner | Planned | Project-specific evaluation cases and runners are still required. |
 | Review and promotion automation | Foundation | Event-triggered exception review, batched findings, correction limits, and HITL packet contracts exist; runtime automation remains project-specific. |
+| Learning and distillation | Foundation | Evidence-backed candidate and promotion contracts exist; automated distillation remains project-specific. |
 
 ## Required project extensions
 
@@ -30,6 +31,7 @@ Every new project should add only the extensions it needs:
 - `tools/`, `mcp/`, and `hooks/` for authorized capabilities
 - `evaluations/` for expected behavior and failure cases
 - `provenance/` and `replay/` for run evidence
+- `learning/` for evidence-backed proposals and promotion records
 
 ## Recommended build order
 

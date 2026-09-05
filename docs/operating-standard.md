@@ -1,6 +1,6 @@
 # Model-Agnostic AI Systems Operating Standard
 
-Document version: 1.7.0
+Document version: 1.8.0
 Updated: 2026-09-05  
 Status: Canonical
 
@@ -37,6 +37,7 @@ This standard applies to:
 - provenance
 - replay
 - observability
+- learning and distillation
 - registry maintenance
 - adapter boundaries
 - anti-pattern management
@@ -190,6 +191,8 @@ required evidence remains unresolved.
 | Evidence persistence | Harness |
 | Replay manifests | Harness |
 | Observability records and events | Harness / designated writer |
+| Learning candidates | Model or analysis utility; proposal only |
+| Learning validation and promotion | Harness, evaluation pipeline, and human approver where required |
 | Capability measurements | Evaluation pipeline |
 | Pending decisions | Human / authorized caller |
 
@@ -211,6 +214,29 @@ Use this distinction:
 3. Validate ownership.
 4. Validate replayability.
 5. Validate only then promote.
+
+## Learning and distillation
+
+Learning is a post-execution governance loop. Observability identifies
+evidence-backed runs and findings that are eligible for distillation; it does
+not create or promote authoritative rules.
+
+The learning utility may propose an anti-pattern, validator rule, regression
+test, harness change, project rule, skill, or standard amendment. Every
+candidate must link to source run, event, finding, and evidence identifiers.
+Candidates remain proposals until deterministic validation, required testing,
+and authorized promotion are complete.
+
+A confirmed correction must be closed in the current revision, revalidated, and
+protected by a regression guard when appropriate. If correction is prevented by
+permissions, missing tools, inaccessible artifacts, service outage, quota, or
+another external constraint, record and report the blocker rather than carrying
+the same finding forward as unresolved.
+
+Promotion to a canonical Curo policy, standard, addendum, ownership rule, or
+registry authority requires HITL approval. Project-local rules may be promoted
+within the project only when their owner, tests, provenance, and rollback path
+are recorded.
 
 ## Failure handling
 

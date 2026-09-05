@@ -29,6 +29,7 @@ This project is organized for both human reading and machine processing. The can
 - `harness/` - enforcement and execution boundaries
 - `observability/` - run records, status, evidence links, checkpoints, and HITL boundaries
 - `review/` - event-triggered Exception Review Protocol, findings, correction, and HITL artifacts
+- `learning/` - post-execution learning candidates and governed promotion records
 - `registry/` - canonical inventory of artifacts and ownership
 - `provenance/` - sample record formats and trace notes
 - `replay/` - manifests for rerun and verification
@@ -47,6 +48,7 @@ This project is organized for both human reading and machine processing. The can
    - provider integration changes go in `adapters/`
    - validation or enforcement changes go in `harness/`
    - exception review and HITL changes go in `review/`
+   - learning and promotion changes go in `learning/`
    - inventory or naming changes go in `registry/`
    - evidence and trace updates go in `provenance/`
    - rerun packaging changes go in `replay/`

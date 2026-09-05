@@ -1,0 +1,14 @@
+artifact_type: curo_promotion_record
+artifact_version: 1.0.0
+promotion_id: PROMO-DECISION_REQUIRED
+candidate_id: DECISION_REQUIRED
+project_id: DECISION_REQUIRED
+status: VALIDATION_PENDING
+validated_by: DECISION_REQUIRED
+validation_refs: []
+approval_required: true
+approval_ref: null
+target_artifact: DECISION_REQUIRED
+resulting_commit: DECISION_REQUIRED
+regression_guard_ref: DECISION_REQUIRED
+rollback_ref: DECISION_REQUIRED

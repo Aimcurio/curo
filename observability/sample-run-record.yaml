@@ -20,3 +20,8 @@ blockers: []
 status_transition_authorized: true
 authorizing_evidence: provenance/RUN-EXAMPLE-001.json
 next_authorized_action: NONE
+learning:
+  eligible: false
+  status: NOT_REQUIRED
+  candidate_refs: []
+  promotion_ref: null

@@ -57,6 +57,12 @@ Before promoting a Curo revision, run [`../scripts/validate_curo.py`](../scripts
 4. [`../schemas/review-findings.schema.json`](../schemas/review-findings.schema.json) - findings contract.
 5. [`../schemas/hitl-packet.schema.json`](../schemas/hitl-packet.schema.json) - HITL escalation contract.
 
+### Distill learning
+
+1. [`../learning/learning-distillation-protocol.md`](../learning/learning-distillation-protocol.md) - post-execution proposal and promotion rules.
+2. [`../learning/learning-candidate-template.yaml`](../learning/learning-candidate-template.yaml) - candidate proposal template.
+3. [`../learning/promotion-record-template.yaml`](../learning/promotion-record-template.yaml) - promotion and regression-guard record.
+
 ## Folder map
 
 | Folder | Purpose | Primary authority |
