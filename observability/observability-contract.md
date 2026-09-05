@@ -106,6 +106,17 @@ high-impact boundary, including:
 - public deployment
 - unresolved deadlock after bounded recovery
 
+Exception Review Mode is event-triggered rather than a natural or permanent
+run state. Record the activation event, trigger, affected finding IDs, severity,
+and prior workflow state. Record the resolution outcome and return to the prior
+state unless the human decision authorizes a different transition.
+
+Do not escalate routine formatting, schema normalization, registry completion,
+or other mechanically verifiable findings. Batch all remaining findings into a
+single review result or HITL packet. A disagreement becomes a HITL issue only
+when it changes authority, correctness, risk, scope, or cannot converge after
+the configured correction limit.
+
 Observability records the approval and its evidence; it does not grant the
 approval. Active cutoffs must be preserved even when they delay progress.
 

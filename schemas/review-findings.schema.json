@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://curo.local/schemas/review-findings.schema.json",
+  "title": "Curo Review Findings",
+  "type": "object",
+  "required": ["artifact_type", "artifact_version", "review_id", "project_id", "status", "findings", "resolution"],
+  "properties": {
+    "artifact_type": {"const": "curo_review_findings"},
+    "artifact_version": {"type": "string"},
+    "review_id": {"type": "string", "minLength": 1},
+    "project_id": {"type": "string", "minLength": 1},
+    "prior_workflow_state": {"type": "string"},
+    "status": {"enum": ["AGREED", "AGREED_WITH_WARNINGS", "NEEDS_CORRECTION", "NEEDS_EVIDENCE", "HITL_REQUIRED", "BLOCKED"]},
+    "correction_policy": {"type": "object"},
+    "findings": {"type": "array", "items": {"$ref": "#/$defs/finding"}},
+    "summary": {"type": "object"},
+    "resolution": {"type": "object", "required": ["outcome", "return_state"], "properties": {"outcome": {"type": "string"}, "return_state": {"type": "string"}}, "additionalProperties": true}
+  },
+  "$defs": {
+    "finding": {
+      "type": "object",
+      "required": ["id", "severity", "class", "description", "requires_human_decision"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "severity": {"enum": ["info", "warning", "error", "critical"]},
+        "class": {"enum": ["mechanical", "engineering", "evidence_required", "human_decision"]},
+        "field": {"type": "string"},
+        "rule": {"type": "string"},
+        "description": {"type": "string", "minLength": 1},
+        "current_value": {},
+        "expected": {},
+        "requires_human_decision": {"type": "boolean"},
+        "action": {"enum": ["corrected", "proposed", "deferred", "escalated", "blocked"]}
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true
+}

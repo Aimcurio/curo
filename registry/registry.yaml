@@ -1,4 +1,4 @@
-registry_version: 4
+registry_version: 5
 owner: harness
 updated_at: 2026-09-05
 artifacts:
@@ -6,7 +6,7 @@ artifacts:
     path: docs/operating-standard.md
     source: conversation:6a9c0aab-cc98-83e8-9a95-2fea63283d6e
     type: standard
-    version: 1.5.0
+    version: 1.6.0
     owner: human_or_authorized_caller
     status: active
     updated_at: 2026-09-05
@@ -194,6 +194,51 @@ artifacts:
   - id: observability-run-event-schema
     path: observability/run-event.schema.json
     source: observability/observability-contract.md
+    type: schema
+    version: 1.0.0
+    owner: harness
+    status: active
+    updated_at: 2026-09-05
+    authoritative: true
+  - id: exception-review-protocol
+    path: review/exception-review-protocol.md
+    source: docs/operating-standard.md
+    type: protocol
+    version: 1.0.0
+    owner: harness
+    status: active
+    updated_at: 2026-09-05
+    authoritative: true
+  - id: review-findings-template
+    path: review/findings-template.yaml
+    source: review/exception-review-protocol.md
+    type: template
+    version: 1.0.0
+    owner: harness
+    status: active
+    updated_at: 2026-09-05
+    authoritative: true
+  - id: hitl-packet-template
+    path: review/hitl-packet-template.yaml
+    source: review/exception-review-protocol.md
+    type: template
+    version: 1.0.0
+    owner: harness
+    status: active
+    updated_at: 2026-09-05
+    authoritative: true
+  - id: review-findings-schema
+    path: schemas/review-findings.schema.json
+    source: review/exception-review-protocol.md
+    type: schema
+    version: 1.0.0
+    owner: harness
+    status: active
+    updated_at: 2026-09-05
+    authoritative: true
+  - id: hitl-packet-schema
+    path: schemas/hitl-packet.schema.json
+    source: review/exception-review-protocol.md
     type: schema
     version: 1.0.0
     owner: harness

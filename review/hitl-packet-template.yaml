@@ -1,0 +1,14 @@
+artifact_type: curo_hitl_packet
+packet_version: 1.0.0
+packet_id: HITL-DECISION_REQUIRED
+project_id: DECISION_REQUIRED
+review_id: DECISION_REQUIRED
+status: HITL_REQUIRED
+summary:
+  automatic_corrections_applied: 0
+  model_resolutions_applied: 0
+  evidence_checks_pending: 0
+  human_decisions_required: 0
+decisions: []
+blocking_findings: []
+authorized_transition: DECISION_REQUIRED

@@ -1,0 +1,18 @@
+artifact_type: curo_review_findings
+artifact_version: 1.0.0
+review_id: REV-DECISION_REQUIRED
+project_id: DECISION_REQUIRED
+prior_workflow_state: PLAN_MODE
+status: NEEDS_CORRECTION
+correction_policy:
+  max_model_revision_cycles: 3
+  max_repeated_unresolved_findings: 2
+findings: []
+summary:
+  mechanical_corrections_applied: 0
+  engineering_corrections_proposed: 0
+  evidence_checks_pending: 0
+  human_decisions_required: 0
+resolution:
+  outcome: PENDING
+  return_state: PLAN_MODE

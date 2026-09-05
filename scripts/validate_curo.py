@@ -32,6 +32,11 @@ EXPECTED_ARTIFACT_IDS = {
     "observability-run-index-template",
     "observability-run-record-schema",
     "observability-run-event-schema",
+    "exception-review-protocol",
+    "review-findings-template",
+    "hitl-packet-template",
+    "review-findings-schema",
+    "hitl-packet-schema",
 }
 
 

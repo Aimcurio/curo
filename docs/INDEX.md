@@ -49,6 +49,14 @@ Before promoting a Curo revision, run [`../scripts/validate_curo.py`](../scripts
 4. [`../provenance/sample-provenance-record.yaml`](../provenance/sample-provenance-record.yaml) - example harness-owned evidence.
 5. [`../replay/replay-manifest-template.yaml`](../replay/replay-manifest-template.yaml) - rerun and verification template.
 
+### Resolve exceptions
+
+1. [`../review/exception-review-protocol.md`](../review/exception-review-protocol.md) - event-triggered adversarial-but-fair review.
+2. [`../review/findings-template.yaml`](../review/findings-template.yaml) - batched validator and reviewer findings.
+3. [`../review/hitl-packet-template.yaml`](../review/hitl-packet-template.yaml) - consolidated requester decisions.
+4. [`../schemas/review-findings.schema.json`](../schemas/review-findings.schema.json) - findings contract.
+5. [`../schemas/hitl-packet.schema.json`](../schemas/hitl-packet.schema.json) - HITL escalation contract.
+
 ## Folder map
 
 | Folder | Purpose | Primary authority |

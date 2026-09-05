@@ -28,6 +28,7 @@ This project is organized for both human reading and machine processing. The can
 - `adapters/` - model/provider interface expectations
 - `harness/` - enforcement and execution boundaries
 - `observability/` - run records, status, evidence links, checkpoints, and HITL boundaries
+- `review/` - event-triggered Exception Review Protocol, findings, correction, and HITL artifacts
 - `registry/` - canonical inventory of artifacts and ownership
 - `provenance/` - sample record formats and trace notes
 - `replay/` - manifests for rerun and verification
@@ -44,6 +45,7 @@ This project is organized for both human reading and machine processing. The can
    - failure-mode updates go in `anti-patterns/`
    - provider integration changes go in `adapters/`
    - validation or enforcement changes go in `harness/`
+   - exception review and HITL changes go in `review/`
    - inventory or naming changes go in `registry/`
    - evidence and trace updates go in `provenance/`
    - rerun packaging changes go in `replay/`

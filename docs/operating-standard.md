@@ -1,6 +1,6 @@
 # Model-Agnostic AI Systems Operating Standard
 
-Document version: 1.5.0  
+Document version: 1.6.0
 Updated: 2026-09-05  
 Status: Canonical
 
@@ -116,6 +116,55 @@ Loop engineering controls iteration:
 - validate
 - recover
 - continue or escalate
+
+## Exception Review Protocol
+
+Exception Review Mode is an event-triggered protocol, not a default workflow
+state. The normal state remains standard planning or execution. Activate this
+protocol only when a material issue prevents safe convergence.
+
+Qualifying triggers include:
+
+- failed validation or a material cross-field contradiction
+- conflicting authoritative evidence
+- unresolved ownership or an attempted authority override
+- a correctness dispute that changes the expected result
+- a security, privacy, regulatory, safety, or irreversible-action concern
+- a schema, contract, scope, architecture, provider, tool, MCP, or hook change
+- repeated non-convergence after bounded correction cycles
+
+Inside Exception Review Mode, the review posture is adversarial but fair:
+reviewers challenge assumptions, produce counterexamples, identify the
+governing evidence, and propose an acceptance test. The harness batches the
+findings and classifies them before asking for human input.
+
+Use these finding classes:
+
+- `mechanical`: fixable by deterministic rules or formatting
+- `engineering`: model may propose a correction, which must be validated
+- `evidence_required`: a check or artifact must be produced before resolution
+- `human_decision`: the requester owns the decision
+
+The harness may resolve mechanical findings and policy-settled disagreements.
+It may allow only a bounded number of model correction cycles for engineering
+findings. Escalate a consolidated HITL packet when the issue affects authority,
+correctness, risk, scope, or remains unresolved after the correction limit.
+
+The protocol exits with one of these outcomes:
+
+- `RESOLVED_AUTOMATICALLY`
+- `RESOLVED_BY_MODEL`
+- `RESOLVED_BY_EVIDENCE`
+- `ESCALATED_TO_HITL`
+- `BLOCKED`
+
+After exit, return to the workflow state that preceded the event. Do not mark a
+project permanently adversarial because one exception occurred.
+
+Agreement means convergence under requirements, evidence, ownership, and tests;
+it does not require every reviewer to share the same preference. A plan must not
+advance to implementation merely because reviewers agree if a human decision or
+required evidence remains unresolved.
 
 ## Governing principles
 

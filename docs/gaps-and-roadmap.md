@@ -18,7 +18,7 @@ mistaken for an already-enforced capability.
 | Project command-line validation scripts | Planned | Projects must provide or adopt verified domain scripts. |
 | Tools, MCP, and hooks | Extension area | Contracts and permissions must be defined per project before use. |
 | Evaluation runner | Planned | Project-specific evaluation cases and runners are still required. |
-| Review and promotion automation | Planned | High-impact promotion remains human- or project-controlled. |
+| Review and promotion automation | Foundation | Event-triggered exception review, batched findings, correction limits, and HITL packet contracts exist; runtime automation remains project-specific. |
 
 ## Required project extensions
 
@@ -41,7 +41,8 @@ Every new project should add only the extensions it needs:
 6. Add evaluations for success, failure, cancellation, provenance, and portability where applicable.
 7. Add provenance and replay writers.
 8. Run package integrity and promotion checks.
-9. Promote reusable patterns back into Curo only after evidence from more than one project.
+9. Use Exception Review Mode only when a qualifying event occurs; return to the prior workflow state after resolution.
+10. Promote reusable patterns back into Curo only after evidence from more than one project.
 
 ## Promotion rule
 

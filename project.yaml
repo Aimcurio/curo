@@ -3,7 +3,7 @@ slug: curo
 description: >-
   Model-agnostic AI systems operating standard and addendum package with
   human-readable docs, machine-readable metadata, and explicit ownership.
-version: 1.6.0
+version: 1.7.0
 status: active
 maturity: foundation
 runtime_status: not_implemented
@@ -20,7 +20,7 @@ source:
 lineage:
   standard_family: model-agnostic-ai-systems-operating-standard
   addendum_family: addendum-a
-  revision: G
+  revision: H
   canonical_document: docs/operating-standard.md
 ownership:
   objective: human_or_authorized_caller
