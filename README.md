@@ -54,7 +54,7 @@ This project is organized for both human reading and machine processing. The can
 - `docs/` - narrative reference material
 - `templates/` - reusable project initialization templates
 - `projects/` - project-specific profiles, assignment manifests, and preserved project evidence; not source repositories
-- `.agents/` - historical execution reports and handoffs, indexed separately from current architecture
+- `evidence/historical-agent-runs/` - historical execution reports and handoffs, indexed separately from current agent definitions and architecture
 - `scripts/` - dependency-free integrity and promotion checks
 
 ## How to use

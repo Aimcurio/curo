@@ -242,7 +242,8 @@ def check_scoped_registries(errors: list[str]) -> None:
 
 
 def check_historical_agent_evidence_manifest(errors: list[str]) -> None:
-    path = ROOT / ".agents/evidence-manifest.json"
+    evidence_root = ROOT / "evidence/historical-agent-runs"
+    path = evidence_root / "evidence-manifest.json"
     if not path.is_file():
         fail(errors, "missing historical agent evidence manifest")
         return
@@ -257,7 +258,7 @@ def check_historical_agent_evidence_manifest(errors: list[str]) -> None:
     if not isinstance(digest, str) or not re.fullmatch(r"[0-9a-f]{64}", digest):
         fail(errors, "historical agent evidence manifest has invalid inventory_sha256")
     raw_files = sorted(
-        item for item in (ROOT / ".agents").rglob("*")
+        item for item in evidence_root.rglob("*")
         if item.is_file() and item.name not in {"README.md", "evidence-manifest.json"}
     )
     if not raw_files:
@@ -633,13 +634,13 @@ def check_historical_project_evidence(errors: list[str]) -> None:
 def check_current_history_distinction(errors: list[str]) -> None:
     root_architecture = ROOT / "ARCHITECTURE.md"
     archived = ROOT / "docs/audits/2026-09-07-pre-remediation-architecture.md"
-    agents_index = ROOT / ".agents/README.md"
+    agents_index = ROOT / "evidence/historical-agent-runs/README.md"
     if not archived.is_file():
         fail(errors, "missing archived pre-remediation architecture audit")
     if not root_architecture.is_file() or "pre-remediation" not in root_architecture.read_text(encoding="utf-8").lower():
         fail(errors, "root architecture document does not distinguish the pre-remediation audit")
     if not agents_index.is_file() or "historical" not in agents_index.read_text(encoding="utf-8").lower():
-        fail(errors, ".agents index does not identify reports as historical evidence")
+        fail(errors, "historical agent-runs index does not identify reports as historical evidence")
 
     project_text = (ROOT / "project.yaml").read_text(encoding="utf-8")
     registry_text = (ROOT / "registry/registry.yaml").read_text(encoding="utf-8")

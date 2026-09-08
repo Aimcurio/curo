@@ -1,2 +1,5 @@
 __pycache__/
 *.py[cod]
+evidence/historical-agent-runs/*
+!evidence/historical-agent-runs/README.md
+!evidence/historical-agent-runs/evidence-manifest.json

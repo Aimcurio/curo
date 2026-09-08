@@ -445,7 +445,7 @@ artifacts:
     authoritative: true
   - id: historical-agent-evidence-manifest-schema
     path: schemas/historical-agent-evidence-manifest.schema.json
-    source: .agents/evidence-manifest.json
+    source: evidence/historical-agent-runs/evidence-manifest.json
     type: schema
     version: 1.0.0
     owner: harness
@@ -633,7 +633,7 @@ artifacts:
     updated_at: 2026-09-07
     authoritative: true
   - id: agent-evidence-index
-    path: .agents/README.md
+    path: evidence/historical-agent-runs/README.md
     source: ARCHITECTURE.md
     type: historical_evidence_index
     version: 1.0.0
@@ -642,8 +642,8 @@ artifacts:
     updated_at: 2026-09-07
     authoritative: false
   - id: agent-evidence-manifest
-    path: .agents/evidence-manifest.json
-    source: .agents/README.md
+    path: evidence/historical-agent-runs/evidence-manifest.json
+    source: evidence/historical-agent-runs/README.md
     type: historical_evidence_manifest
     version: 1.0.0
     owner: harness

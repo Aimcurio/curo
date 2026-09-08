@@ -25,7 +25,7 @@ That audit accurately described the pre-remediation snapshot, including
 `shell=True` execution, a four-test suite, the then-current status claims,
 schema-reference limitations, and the overloaded `replay_manifest` contract.
 Those observations are historical evidence, not descriptions of the current
-working tree. Individual reports under [`.agents/`](.agents/README.md) are
+working tree. Individual reports under [`evidence/historical-agent-runs/`](evidence/historical-agent-runs/README.md) are
 preserved on the same time-scoped basis.
 
 Current implementation authority resides in the current schemas, contracts,

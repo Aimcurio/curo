@@ -78,7 +78,7 @@ and `project verify-assignments`; use each command's `--help` for arguments.
 
 1. [`../ARCHITECTURE.md`](../ARCHITECTURE.md) describes current contracts and authority.
 2. [`audits/2026-09-07-pre-remediation-architecture.md`](audits/2026-09-07-pre-remediation-architecture.md) preserves the pre-remediation audit byte-for-byte.
-3. [`../.agents/README.md`](../.agents/README.md) indexes time-scoped agent execution evidence.
+3. [`../evidence/historical-agent-runs/README.md`](../evidence/historical-agent-runs/README.md) indexes time-scoped agent execution evidence.
 4. [`../CHANGE-MAP.md`](../CHANGE-MAP.md) and [`../REGRESSION-EVIDENCE.md`](../REGRESSION-EVIDENCE.md) record the remediation mapping and executable evidence.
 
 ### Observe and govern runs
@@ -136,7 +136,7 @@ Before promoting a Curo revision, run [`../scripts/validate_curo.py`](../scripts
 | [`learning/`](../learning/README.md) | Governed learning/promotion artifacts | Extension |
 | [`projects/`](../projects/README.md) | Project-specific profiles, assignments, and preserved evidence | Extension |
 | [`scripts/`](../scripts/README.md) | Package integrity checks | Support |
-| [`.agents/`](../.agents/README.md) | Historical agent reports and handoffs | Time-scoped evidence only |
+| [`evidence/historical-agent-runs/`](../evidence/historical-agent-runs/README.md) | Historical agent reports and handoffs | Time-scoped evidence only |
 
 ## Change routing
 

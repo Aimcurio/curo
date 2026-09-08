@@ -1,0 +1,15 @@
+{
+  "manifest_type": "curo_historical_agent_evidence_manifest",
+  "manifest_version": "1.1.0",
+  "evidence_scope": "evidence/historical-agent-runs",
+  "legacy_scope": ".agents",
+  "handling": "protected_local_untracked",
+  "file_count": 89,
+  "total_bytes": 550626,
+  "inventory_algorithm": "sha256(sorted(relative_posix_path + space + file_sha256 + newline))",
+  "inventory_sha256": "7c896325c8bce7ad3e653f8052d693e06766a60f188bccd69684c060bbdb895e",
+  "legacy_inventory_sha256": "8b81449bd3c5dad13f9cbf26f11adb6ae602d8fb41567b5ca83f6c98a031fc0b",
+  "captured_from_commit": "42925c06d3061660a94bb6e600f2dbcb3335db20",
+  "captured_at": "2026-09-08",
+  "authority_note": "This manifest proves preservation and relocation of the audited local evidence set; it does not make the historical reports current or authorize publication of the raw files."
+}

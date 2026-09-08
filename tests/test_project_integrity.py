@@ -360,11 +360,13 @@ class ProjectContractIntegrationTests(unittest.TestCase):
             self.assertTrue(validate_curo_payload(candidate, "learning-candidate")[0])
 
     def test_preexisting_agent_evidence_is_unchanged(self):
-        manifest = json.loads((ROOT / ".agents/evidence-manifest.json").read_text(encoding="utf-8"))
-        self.assertEqual(manifest["inventory_sha256"], "8b81449bd3c5dad13f9cbf26f11adb6ae602d8fb41567b5ca83f6c98a031fc0b")
+        evidence_root = ROOT / "evidence/historical-agent-runs"
+        manifest = json.loads((evidence_root / "evidence-manifest.json").read_text(encoding="utf-8"))
+        self.assertEqual(manifest["legacy_inventory_sha256"], "8b81449bd3c5dad13f9cbf26f11adb6ae602d8fb41567b5ca83f6c98a031fc0b")
+        self.assertEqual(manifest["inventory_sha256"], "7c896325c8bce7ad3e653f8052d693e06766a60f188bccd69684c060bbdb895e")
         records = []
         total_bytes = 0
-        for path in sorted((ROOT / ".agents").rglob("*")):
+        for path in sorted(evidence_root.rglob("*")):
             if path.is_file() and path.name not in {"README.md", "evidence-manifest.json"}:
                 relative = path.relative_to(ROOT).as_posix()
                 content = path.read_bytes()

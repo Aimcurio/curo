@@ -19,7 +19,7 @@ validation, and a failure boundary. The implementation folders explain how
 those requirements are represented, enforced, and replayed.
 
 Current architecture is described by [`../ARCHITECTURE.md`](../ARCHITECTURE.md).
-The audit under `audits/` and reports under [`.agents/`](../.agents/README.md)
+The audit under `audits/` and reports under [`evidence/historical-agent-runs/`](../evidence/historical-agent-runs/README.md)
 remain historical observations; they must not be read as current contracts
 without checking current schemas, code, change maps, and regression evidence.
 
