@@ -9,6 +9,8 @@ module:
   path: skills/goal-driven-deep-research/module.yaml
   type: module_manifest
   version: 1.0.0
+  owner: human_or_authorized_caller
+  status: active
   authoritative: true
 artifacts:
   - id: goal-driven-deep-research-skill

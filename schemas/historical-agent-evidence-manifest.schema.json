@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://curo.local/schemas/historical-agent-evidence-manifest.schema.json",
+  "title": "Curo Historical Agent Evidence Manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["manifest_type", "manifest_version", "evidence_scope", "handling", "file_count", "total_bytes", "inventory_algorithm", "inventory_sha256", "captured_from_commit", "captured_at", "authority_note"],
+  "properties": {
+    "manifest_type": {"const": "curo_historical_agent_evidence_manifest"},
+    "manifest_version": {"type": "string", "minLength": 1},
+    "evidence_scope": {"const": ".agents"},
+    "handling": {"const": "protected_local_untracked"},
+    "file_count": {"type": "integer", "minimum": 1},
+    "total_bytes": {"type": "integer", "minimum": 1},
+    "inventory_algorithm": {"const": "sha256(sorted(relative_posix_path + space + file_sha256 + newline))"},
+    "inventory_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "captured_from_commit": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+    "captured_at": {"type": "string", "format": "date"},
+    "authority_note": {"type": "string", "minLength": 1}
+  }
+}

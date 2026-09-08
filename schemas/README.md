@@ -19,6 +19,8 @@ runtime record and event templates are maintained as one operational unit.
 - [`project-profile.schema.json`](project-profile.schema.json) - project-specific human intent, constraints, authority, and validation requirements.
 - [`llm-assignments.schema.json`](llm-assignments.schema.json) - deterministic desired/resolved role assignment contract bound to a project-profile hash.
 - [`project-relocation-record.schema.json`](project-relocation-record.schema.json) - provenance for preserved project artifact copies and relocations.
+- [`scoped-registry.schema.json`](scoped-registry.schema.json) - contract for bounded extension registry shards.
+- [`historical-agent-evidence-manifest.schema.json`](historical-agent-evidence-manifest.schema.json) - aggregate preservation record for protected local agent evidence.
 
 Runtime writers identify one canonical schema before persistence. Relative repository-local `$ref` links resolve from the containing schema, with a standard-library fallback when the optional `jsonschema` package is unavailable.
 - [`promotion-record.schema.json`](promotion-record.schema.json) - validated promotion and regression closure.

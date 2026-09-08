@@ -24,6 +24,95 @@ mistaken for an already-enforced capability.
 | Review and promotion automation | Foundation | Event-triggered exception review, batched findings, correction limits, and HITL packet contracts exist; runtime automation remains project-specific. |
 | Learning and distillation | Implemented proposal writer | The harness emits schema-valid candidates for five canonical types; validation, approval, and promotion remain governed steps. |
 
+## Learning brain and evaluation backlog
+
+The learning brain must treat ChatGPT and Antigravity product/base files as
+read-only sources. User-owned global rules and skills are controlled promotion
+targets, not automatic write destinations. No candidate may modify an agent,
+skill, rule, or global configuration before evaluation and explicit approval.
+
+### P0 - Build the evaluation and benchmark foundation
+
+- [ ] Define versioned schemas for evaluation cases, benchmark suites, run
+  results, scorecards, and promotion recommendations.
+- [ ] Create `evaluations/` and `benchmarks/` with golden tasks, failure cases,
+  adversarial cases, and regression fixtures.
+- [ ] Implement a deterministic evaluation runner with reproducible inputs,
+  environment metadata, hashes, and replay references.
+- [ ] Define hard safety gates for authority compliance, path containment,
+  provenance, evidence quality, schema validity, and critical regressions.
+- [ ] Define scored measures for task correctness, completeness, portability,
+  latency, cost, and unnecessary tool use.
+- [ ] Compare the installed incumbent and isolated candidate on the same suite;
+  never treat a higher aggregate score as overriding a failed hard gate.
+- [ ] Add benchmark tests for rules, agent instructions, new skills, compatible
+  skill updates, breaking skill versions, validators, and anti-patterns.
+- [ ] Add model- and provider-portability runs where a candidate claims to be
+  model agnostic.
+
+### P1 - Implement the governed learning intake
+
+- [ ] Define a read-only import contract for `/learn` output from Antigravity,
+  ChatGPT, and other approved sources.
+- [ ] Preserve source platform, conversation/run identifiers, original proposal,
+  evidence references, source hashes, and approval state.
+- [ ] Normalize imported findings into Curo learning candidates without writing
+  to source-platform base or configuration files.
+- [ ] Separate `LEARN`, `ANALYZE`, and `EXPLAIN` intents so an analysis request is
+  not misreported as a completed learning cycle.
+- [ ] Extend the learning utility to inspect a requested topic, task, run, or
+  evidence bundle and return reusable findings rather than requiring the user to
+  supply the conclusion.
+- [ ] Classify each finding as `rule`, `skill`, `anti_pattern`, `validator`, or
+  `standard_amendment`, while retaining `no_candidate` as a valid outcome.
+- [ ] Generate an isolated candidate implementation, required evaluations,
+  rollback plan, and proposed target scope.
+
+### P1 - Implement recommendation and approval
+
+- [ ] Produce an evidence-backed recommendation to update an agent, update an
+  existing skill, create a compatible skill version, create a breaking/new
+  version, create a separate skill, defer, or reject.
+- [ ] Require explicit human approval for the exact candidate content, version,
+  scope, and target before promotion.
+- [ ] Keep candidate approval separate from implementation authorization and
+  promotion completion.
+- [ ] Record rejected, superseded, blocked, and inconclusive candidates so they
+  are not silently rediscovered or treated as approved.
+
+### P2 - Implement controlled promotion and learning observability
+
+- [ ] Add adapters for approved user-owned global rule and skill locations;
+  exclude Antigravity and ChatGPT product/base files from writable targets.
+- [ ] Verify the destination, current version, expected hash, backup/rollback,
+  and write boundary immediately before promotion.
+- [ ] Create a versioned promotion record and run the regression suite after the
+  promoted artifact is installed.
+- [ ] Roll back or block promotion when post-install regression fails.
+- [ ] Add a learning registry that links observation, candidate, benchmark
+  scorecard, approval, promoted version, and regression result.
+- [ ] Expose a read-only summary suitable for a future Curo development portal;
+  the portal must not become the authority or promotion mechanism.
+
+### Initial benchmark candidates
+
+- [ ] Evidence-tag discipline for research and architecture documents: test
+  factual traceability, false tagging, excessive tagging, and validator support.
+- [ ] Antigravity-specific large-file delivery: test exact bytes, encoding,
+  special characters, long paths, failure recovery, and source-tool drift before
+  considering a user-global skill.
+- [ ] Research-document acceptance audit: test against seeded shallow sections,
+  false citations, missing metric fields, missing threat fields, and unsupported
+  conclusions; treat it as a skill candidate rather than an automatic rule.
+
+### Learning-brain readiness gate
+
+The learning brain is ready for promotion-capable use only when the benchmark
+runner is reproducible, hard gates are enforced, incumbent-versus-candidate
+comparison is recorded, imports are read-only, approval is content-bound, global
+writes are adapter-controlled, and post-promotion regression plus rollback have
+been demonstrated end to end.
+
 ## Required project extensions
 
 Every new project starts with `projects/<project-id>/project.yaml` and

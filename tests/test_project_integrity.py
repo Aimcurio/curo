@@ -360,13 +360,22 @@ class ProjectContractIntegrationTests(unittest.TestCase):
             self.assertTrue(validate_curo_payload(candidate, "learning-candidate")[0])
 
     def test_preexisting_agent_evidence_is_unchanged(self):
+        manifest = json.loads((ROOT / ".agents/evidence-manifest.json").read_text(encoding="utf-8"))
+        self.assertEqual(manifest["inventory_sha256"], "8b81449bd3c5dad13f9cbf26f11adb6ae602d8fb41567b5ca83f6c98a031fc0b")
         records = []
+        total_bytes = 0
         for path in sorted((ROOT / ".agents").rglob("*")):
-            if path.is_file() and path.name != "README.md":
+            if path.is_file() and path.name not in {"README.md", "evidence-manifest.json"}:
                 relative = path.relative_to(ROOT).as_posix()
-                records.append(f"{relative} {hashlib.sha256(path.read_bytes()).hexdigest()}\n")
+                content = path.read_bytes()
+                total_bytes += len(content)
+                records.append(f"{relative} {hashlib.sha256(content).hexdigest()}\n")
+        if not records:
+            return
         inventory = hashlib.sha256("".join(records).encode("utf-8")).hexdigest()
-        self.assertEqual(inventory, "8b81449bd3c5dad13f9cbf26f11adb6ae602d8fb41567b5ca83f6c98a031fc0b")
+        self.assertEqual(len(records), manifest["file_count"])
+        self.assertEqual(total_bytes, manifest["total_bytes"])
+        self.assertEqual(inventory, manifest["inventory_sha256"])
 
     def test_archived_architecture_hash_is_preserved(self):
         archived = ROOT / "docs/audits/2026-09-07-pre-remediation-architecture.md"

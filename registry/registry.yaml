@@ -434,6 +434,33 @@ artifacts:
     status: active
     updated_at: 2026-09-07
     authoritative: true
+  - id: scoped-registry-schema
+    path: schemas/scoped-registry.schema.json
+    source: registry/README.md
+    type: schema
+    version: 1.0.0
+    owner: harness
+    status: active
+    updated_at: 2026-09-08
+    authoritative: true
+  - id: historical-agent-evidence-manifest-schema
+    path: schemas/historical-agent-evidence-manifest.schema.json
+    source: .agents/evidence-manifest.json
+    type: schema
+    version: 1.0.0
+    owner: harness
+    status: active
+    updated_at: 2026-09-08
+    authoritative: true
+  - id: deep-research-registry
+    path: registry/deep-research.yaml
+    source: project.yaml
+    type: scoped_registry
+    version: 1.0.0
+    owner: human_or_authorized_caller
+    status: active
+    updated_at: 2026-09-08
+    authoritative: true
   - id: project-profile-template
     path: templates/project-profile.yaml
     source: schemas/project-profile.schema.json
@@ -614,6 +641,15 @@ artifacts:
     status: active
     updated_at: 2026-09-07
     authoritative: false
+  - id: agent-evidence-manifest
+    path: .agents/evidence-manifest.json
+    source: .agents/README.md
+    type: historical_evidence_manifest
+    version: 1.0.0
+    owner: harness
+    status: active
+    updated_at: 2026-09-08
+    authoritative: true
   - id: project-profile-migration-report
     path: PROJECT-PROFILE-MIGRATION-REPORT.md
     source: PROJECT-PROFILE-FINDINGS.md

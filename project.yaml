@@ -6,7 +6,7 @@ description: >-
   validators, workflows, governance, observability, execution systems, research
   systems, adapters, and other capabilities are extensions and do not define
   Curo core by themselves.
-version: 1.8.3
+version: 1.8.2
 status: active
 maturity: foundation
 runtime_status: implemented_and_regression_tested

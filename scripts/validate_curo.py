@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import hashlib
 import re
 import sys
 from pathlib import Path
@@ -67,6 +68,11 @@ EXPECTED_ARTIFACT_IDS = {
     "math-node-project-profile",
     "math-node-llm-assignments",
     "human-approval-record-schema",
+    "scoped-registry-schema",
+    "historical-agent-evidence-manifest-schema",
+    "deep-research-registry",
+    "agent-evidence-index",
+    "agent-evidence-manifest",
 }
 
 
@@ -100,7 +106,13 @@ def check_registry(errors: list[str]) -> None:
         return
 
     required_metadata = ("path:", "source:", "type:", "version:", "owner:", "status:", "updated_at:", "authoritative:")
-    ids = {match.group(1) for match in re.finditer(r"^  - id:\s*(\S+)", text, re.MULTILINE)}
+    id_values = re.findall(r"^  - id:\s*(\S+)", text, re.MULTILINE)
+    ids = set(id_values)
+    for duplicate in sorted({value for value in id_values if id_values.count(value) > 1}):
+        fail(errors, f"registry contains duplicate artifact ID: {duplicate}")
+    path_values = re.findall(r"^    path:\s*(\S+)", text, re.MULTILINE)
+    for duplicate in sorted({value for value in path_values if path_values.count(value) > 1}):
+        fail(errors, f"registry contains duplicate artifact path: {duplicate}")
     for missing_id in sorted(EXPECTED_ARTIFACT_IDS - ids):
         fail(errors, f"registry missing expected artifact: {missing_id}")
     for block in entry_blocks:
@@ -111,6 +123,159 @@ def check_registry(errors: list[str]) -> None:
         match = re.search(r"^    path:\s*(\S+)", block, re.MULTILINE)
         if match and not (ROOT / match.group(1)).is_file():
             fail(errors, f"registry path does not exist: {match.group(1)}")
+
+
+def _scoped_registry_declarations() -> list[tuple[str, str]]:
+    project = (ROOT / "project.yaml").read_text(encoding="utf-8")
+    block = re.search(r"^    scoped:\s*\n((?:^      \S.*(?:\n|$))*)", project, re.MULTILINE)
+    if not block:
+        return []
+    return re.findall(r"^      ([a-z0-9_]+):\s*(\S+)", block.group(1), re.MULTILINE)
+
+
+def _scoped_entry_blocks(text: str) -> list[str]:
+    match = re.search(r"^artifacts:\s*\n(.*?)(?=^\S|\Z)", text, re.MULTILINE | re.DOTALL)
+    if not match:
+        return []
+    return re.split(r"(?=^  - id: )", match.group(1), flags=re.MULTILINE)[1:]
+
+
+def check_scoped_registries(errors: list[str]) -> None:
+    declarations = _scoped_registry_declarations()
+    names = [name for name, _ in declarations]
+    paths = [path for _, path in declarations]
+    for duplicate in sorted({value for value in names if names.count(value) > 1}):
+        fail(errors, f"project.yaml declares duplicate scoped registry name: {duplicate}")
+    for duplicate in sorted({value for value in paths if paths.count(value) > 1}):
+        fail(errors, f"project.yaml declares duplicate scoped registry path: {duplicate}")
+
+    declared = set(paths)
+    discovered = {
+        path.relative_to(ROOT).as_posix()
+        for path in (ROOT / "registry").glob("*.yaml")
+        if path.name != "registry.yaml"
+    }
+    for relative in sorted(discovered - declared):
+        fail(errors, f"scoped registry is not declared in project.yaml: {relative}")
+    for relative in sorted(declared - discovered):
+        fail(errors, f"declared scoped registry does not exist: {relative}")
+
+    root_text = (ROOT / "registry/registry.yaml").read_text(encoding="utf-8")
+    root_ids = set(re.findall(r"^  - id:\s*(\S+)", root_text, re.MULTILINE))
+    root_paths = set(re.findall(r"^    path:\s*(\S+)", root_text, re.MULTILINE))
+    seen_ids = set(root_ids)
+    seen_paths = set(root_paths)
+    required_top = ("registry_version", "registry_id", "scope", "owner", "updated_at", "status")
+    required_entry = ("id", "path", "type", "version", "owner", "status", "authoritative")
+
+    for relative in paths:
+        if relative not in root_paths:
+            fail(errors, f"scoped registry is not registered in root registry: {relative}")
+        shard_path = ROOT / relative
+        if not shard_path.is_file():
+            continue
+        text = shard_path.read_text(encoding="utf-8")
+        values = {}
+        for field in required_top:
+            match = re.search(rf"^{field}:\s*([^\s#]+)", text, re.MULTILINE)
+            values[field] = match.group(1).strip("'\"") if match else None
+            if values[field] is None:
+                fail(errors, f"scoped registry {relative} lacks top-level {field}")
+        scope = values.get("scope")
+        if scope and (scope.startswith(("/", "\\")) or "\\" in scope or ".." in scope.split("/")):
+            fail(errors, f"scoped registry {relative} has unsafe scope: {scope}")
+
+        module_match = re.search(r"^module:\s*\n(.*?)(?=^\S|\Z)", text, re.MULTILINE | re.DOTALL)
+        blocks = [(module_match.group(1), "  ")] if module_match else []
+        if not module_match:
+            fail(errors, f"scoped registry {relative} lacks module entry")
+        artifact_blocks = _scoped_entry_blocks(text)
+        if not artifact_blocks:
+            fail(errors, f"scoped registry {relative} contains no artifact entries")
+        blocks.extend((block, "    ") for block in artifact_blocks)
+
+        shard_ids: list[str] = []
+        shard_paths: list[str] = []
+        for block, indent in blocks:
+            fields = {}
+            for field in required_entry:
+                prefix = "  - " if field == "id" and indent == "    " else indent
+                match = re.search(rf"^{re.escape(prefix)}{field}:\s*([^\s#]+)", block, re.MULTILINE)
+                fields[field] = match.group(1).strip("'\"") if match else None
+                if fields[field] is None:
+                    fail(errors, f"scoped registry {relative} entry lacks {field}")
+            entry_id = fields.get("id")
+            entry_path = fields.get("path")
+            if fields.get("authoritative") not in {"true", "false"}:
+                fail(errors, f"scoped registry {relative} entry {entry_id or '<unknown>'} has invalid authoritative value")
+            if entry_id:
+                shard_ids.append(entry_id)
+            if entry_path:
+                shard_paths.append(entry_path)
+                if scope and not entry_path.startswith(f"{scope}/"):
+                    fail(errors, f"scoped registry {relative} path escapes scope {scope}: {entry_path}")
+                if not (ROOT / entry_path).is_file():
+                    fail(errors, f"scoped registry {relative} path does not exist: {entry_path}")
+
+        for duplicate in sorted({value for value in shard_ids if shard_ids.count(value) > 1}):
+            fail(errors, f"scoped registry {relative} contains duplicate artifact ID: {duplicate}")
+        for duplicate in sorted({value for value in shard_paths if shard_paths.count(value) > 1}):
+            fail(errors, f"scoped registry {relative} contains duplicate artifact path: {duplicate}")
+        for duplicate in sorted(set(shard_ids) & seen_ids):
+            fail(errors, f"artifact ID is authoritative in more than one registry: {duplicate}")
+        for duplicate in sorted(set(shard_paths) & seen_paths):
+            fail(errors, f"artifact path is authoritative in more than one registry: {duplicate}")
+        seen_ids.update(shard_ids)
+        seen_paths.update(shard_paths)
+
+        if scope and (ROOT / scope).is_dir():
+            actual = {
+                path.relative_to(ROOT).as_posix()
+                for path in (ROOT / scope).rglob("*")
+                if path.is_file() and "__pycache__" not in path.parts
+            }
+            registered = set(shard_paths)
+            for missing in sorted(actual - registered):
+                fail(errors, f"file in scoped registry boundary is undeclared: {missing}")
+            for outside in sorted(registered - actual):
+                fail(errors, f"scoped registry declares missing boundary file: {outside}")
+
+
+def check_historical_agent_evidence_manifest(errors: list[str]) -> None:
+    path = ROOT / ".agents/evidence-manifest.json"
+    if not path.is_file():
+        fail(errors, "missing historical agent evidence manifest")
+        return
+    try:
+        manifest = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as exc:
+        fail(errors, f"invalid historical agent evidence manifest: {exc}")
+        return
+    if manifest.get("manifest_type") != "curo_historical_agent_evidence_manifest":
+        fail(errors, "historical agent evidence manifest has invalid manifest_type")
+    digest = manifest.get("inventory_sha256")
+    if not isinstance(digest, str) or not re.fullmatch(r"[0-9a-f]{64}", digest):
+        fail(errors, "historical agent evidence manifest has invalid inventory_sha256")
+    raw_files = sorted(
+        item for item in (ROOT / ".agents").rglob("*")
+        if item.is_file() and item.name not in {"README.md", "evidence-manifest.json"}
+    )
+    if not raw_files:
+        return
+    records = []
+    total_bytes = 0
+    for item in raw_files:
+        relative = item.relative_to(ROOT).as_posix()
+        content = item.read_bytes()
+        total_bytes += len(content)
+        records.append(f"{relative} {hashlib.sha256(content).hexdigest()}\n")
+    actual_digest = hashlib.sha256("".join(records).encode("utf-8")).hexdigest()
+    if len(raw_files) != manifest.get("file_count"):
+        fail(errors, f"historical agent evidence count drift: expected={manifest.get('file_count')} actual={len(raw_files)}")
+    if total_bytes != manifest.get("total_bytes"):
+        fail(errors, f"historical agent evidence byte-size drift: expected={manifest.get('total_bytes')} actual={total_bytes}")
+    if actual_digest != digest:
+        fail(errors, f"historical agent evidence digest drift: expected={digest} actual={actual_digest}")
 
 
 def check_standard_headings(errors: list[str]) -> None:
@@ -507,6 +672,8 @@ def main() -> int:
     check_required_files(errors)
     check_json_schemas(errors)
     check_registry(errors)
+    check_scoped_registries(errors)
+    check_historical_agent_evidence_manifest(errors)
     check_standard_headings(errors)
     check_version_sync(errors)
     check_sentinels(errors)
