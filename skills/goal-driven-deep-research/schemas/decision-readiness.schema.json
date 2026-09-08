@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "curo://goal-driven-deep-research/decision-readiness.schema.json",
+  "title": "Goal-Driven Deep Research Decision Readiness",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["goal_id", "goal_status", "decision_question", "critical_investigations", "high_materiality_contradictions", "critical_unknowns", "evidence_traceable", "outcome", "confidence"],
+  "properties": {
+    "goal_id": {"type": "string", "minLength": 1},
+    "goal_status": {"enum": ["OPEN", "RESEARCHING", "DECISION_READY", "INSUFFICIENT_EVIDENCE", "BLOCKED", "CANCELLED"]},
+    "decision_question": {"type": "string", "minLength": 1},
+    "critical_investigations": {"type": "array", "items": {"type": "string"}},
+    "high_materiality_contradictions": {"type": "array", "items": {"type": "string"}},
+    "critical_unknowns": {"type": "array", "items": {"type": "string"}},
+    "evidence_traceable": {"type": "boolean"},
+    "outcome": {"type": "string", "minLength": 1},
+    "confidence": {"enum": ["HIGH", "MEDIUM", "LOW"]},
+    "rationale": {"type": ["string", "null"]},
+    "next_action": {"type": ["string", "null"]}
+  }
+}
