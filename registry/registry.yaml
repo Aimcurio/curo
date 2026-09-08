@@ -1,6 +1,6 @@
-registry_version: 5
+registry_version: 6
 owner: harness
-updated_at: 2026-09-05
+updated_at: 2026-09-08
 artifacts:
   - id: operating-standard
     path: docs/operating-standard.md
@@ -28,6 +28,60 @@ artifacts:
     owner: harness
     status: active
     updated_at: 2026-09-05
+    authoritative: true
+  - id: core-identity
+    path: core-policies/core-identity.md
+    source: requester_approved_core_minimalism
+    type: policy
+    version: 1.0.0
+    owner: human_or_authorized_caller
+    status: active
+    updated_at: 2026-09-08
+    authoritative: true
+  - id: architecture-drift-check
+    path: core-policies/drift-check.md
+    source: core-policies/core-identity.md
+    type: policy
+    version: 1.0.0
+    owner: human_or_authorized_caller
+    status: active
+    updated_at: 2026-09-08
+    authoritative: true
+  - id: architecture-layers
+    path: docs/architecture-layers.md
+    source: core-policies/core-identity.md
+    type: architecture_reference
+    version: 1.0.0
+    owner: human_or_authorized_caller
+    status: active
+    updated_at: 2026-09-08
+    authoritative: true
+  - id: framework-capture-anti-patterns
+    path: anti-patterns/framework-capture.md
+    source: core-policies/core-identity.md
+    type: reference
+    version: 1.0.0
+    owner: human_or_authorized_caller
+    status: active
+    updated_at: 2026-09-08
+    authoritative: true
+  - id: model-package-design-skill
+    path: skills/model-package-design/SKILL.md
+    source: portable_instruction_packaging_design
+    type: skill
+    version: 1.0.0
+    owner: human_or_authorized_caller
+    status: active
+    updated_at: 2026-09-08
+    authoritative: true
+  - id: architecture-review-agent
+    path: agents/architecture-review.md
+    source: core-policies/core-identity.md
+    type: agent_profile
+    version: 1.0.0
+    owner: human_or_authorized_caller
+    status: active
+    updated_at: 2026-09-08
     authoritative: true
   - id: ownership-policy
     path: core-policies/ownership.md
