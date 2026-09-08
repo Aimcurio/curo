@@ -1,0 +1,83 @@
+registry_version: 1
+registry_id: deep-research
+scope: skills/goal-driven-deep-research
+owner: human_or_authorized_caller
+updated_at: 2026-09-08
+status: active
+module:
+  id: goal-driven-deep-research
+  path: skills/goal-driven-deep-research/module.yaml
+  type: module_manifest
+  version: 1.0.0
+  authoritative: true
+artifacts:
+  - id: goal-driven-deep-research-skill
+    path: skills/goal-driven-deep-research/SKILL.md
+    type: skill
+    version: 1.0.0
+    owner: human_or_authorized_caller
+    status: active
+    authoritative: true
+  - id: deep-research-retrieval-policy
+    path: skills/goal-driven-deep-research/retrieval-policy.md
+    type: policy
+    version: 1.0.0
+    owner: human_or_authorized_caller
+    status: active
+    authoritative: true
+  - id: deep-research-evidence-policy
+    path: skills/goal-driven-deep-research/evidence-policy.md
+    type: policy
+    version: 1.0.0
+    owner: human_or_authorized_caller
+    status: active
+    authoritative: true
+  - id: deep-research-contradiction-policy
+    path: skills/goal-driven-deep-research/contradiction-policy.md
+    type: policy
+    version: 1.0.0
+    owner: human_or_authorized_caller
+    status: active
+    authoritative: true
+  - id: deep-research-stopping-rules
+    path: skills/goal-driven-deep-research/stopping-rules.md
+    type: policy
+    version: 1.0.0
+    owner: human_or_authorized_caller
+    status: active
+    authoritative: true
+  - id: deep-research-investigation-schema
+    path: skills/goal-driven-deep-research/schemas/investigation.schema.json
+    type: schema
+    version: 1.0.0
+    owner: human_or_authorized_caller
+    status: active
+    authoritative: true
+  - id: deep-research-evidence-schema
+    path: skills/goal-driven-deep-research/schemas/evidence.schema.json
+    type: schema
+    version: 1.0.0
+    owner: human_or_authorized_caller
+    status: active
+    authoritative: true
+  - id: deep-research-finding-schema
+    path: skills/goal-driven-deep-research/schemas/finding.schema.json
+    type: schema
+    version: 1.0.0
+    owner: human_or_authorized_caller
+    status: active
+    authoritative: true
+  - id: deep-research-decision-readiness-schema
+    path: skills/goal-driven-deep-research/schemas/decision-readiness.schema.json
+    type: schema
+    version: 1.0.0
+    owner: human_or_authorized_caller
+    status: active
+    authoritative: true
+invariants:
+  - deep_research_is_extension_not_core
+  - report_generation_does_not_equal_goal_completion
+  - evidence_and_inference_are_distinct
+  - contradiction_search_is_required
+  - unresolved_unknowns_are_preserved
+  - insufficient_evidence_is_valid_terminal_state
