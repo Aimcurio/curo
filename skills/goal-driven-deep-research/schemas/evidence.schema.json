@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "curo://goal-driven-deep-research/evidence.schema.json",
+  "title": "Goal-Driven Deep Research Evidence Record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["evidence_id", "investigation_id", "source_title", "source_type", "claim_relation", "summary"],
+  "properties": {
+    "evidence_id": {"type": "string", "minLength": 1},
+    "investigation_id": {"type": "string", "minLength": 1},
+    "source_uri": {"type": ["string", "null"]},
+    "source_title": {"type": "string", "minLength": 1},
+    "source_type": {"enum": ["PRIMARY", "OFFICIAL_DOCUMENTATION", "ORIGINAL_RESEARCH", "SOURCE_CODE", "DATASET", "INSTITUTIONAL", "SECONDARY_ANALYSIS", "COMMUNITY", "OTHER"]},
+    "publisher_or_author": {"type": ["string", "null"]},
+    "published_or_updated_at": {"type": ["string", "null"]},
+    "retrieved_at": {"type": ["string", "null"]},
+    "claim_relation": {"enum": ["SUPPORTS", "CHALLENGES", "CONTEXT", "DISCOVERY"]},
+    "claim_supported_or_challenged": {"type": ["string", "null"]},
+    "summary": {"type": "string", "minLength": 1},
+    "provenance_notes": {"type": ["string", "null"]},
+    "independence_notes": {"type": ["string", "null"]},
+    "access_limitations": {"type": ["string", "null"]}
+  }
+}
