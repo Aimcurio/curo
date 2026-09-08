@@ -1,0 +1,42 @@
+module:
+  id: goal-driven-deep-research
+  version: 1.0.0
+  type: skill
+  status: active
+  classification: EXTENSION
+  core_redefinition: false
+
+entrypoint: SKILL.md
+
+policies:
+  retrieval: retrieval-policy.md
+  evidence: evidence-policy.md
+  contradiction: contradiction-policy.md
+  stopping: stopping-rules.md
+
+schemas:
+  investigation: schemas/investigation.schema.json
+  evidence: schemas/evidence.schema.json
+  finding: schemas/finding.schema.json
+  decision_readiness: schemas/decision-readiness.schema.json
+
+inputs:
+  - goal.yaml
+  - context.yaml
+  - constraints.yaml
+  - research-plan.yaml
+
+outputs:
+  - research/investigations.json
+  - research/findings.json
+  - research/evidence.jsonl
+  - research/contradictions.json
+  - research/unknowns.yaml
+  - research/decision-readiness.json
+
+required_core_references:
+  - core-policies/core-identity.md
+  - core-policies/drift-check.md
+
+required_skill_references:
+  - skills/model-package-design/SKILL.md
