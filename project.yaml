@@ -6,7 +6,7 @@ description: >-
   validators, workflows, governance, observability, execution systems, research
   systems, adapters, and other capabilities are extensions and do not define
   Curo core by themselves.
-version: 1.8.1
+version: 1.8.2
 status: active
 maturity: foundation
 runtime_status: not_implemented
@@ -16,7 +16,7 @@ language: en
 source:
   conversation_id: 6a9c0aab-cc98-83e8-9a95-2fea63283d6e
   conversation_title: Project Ideas for GPT Astra
-  basis: latest conversation content plus approved core-minimalism clarification
+  basis: latest conversation content plus approved core-minimalism and goal-driven deep research extensions
   authority_note: >-
     This package is authoritative for the repository unless later superseded by
     an explicit approved architecture decision. Extension maturity must not be
@@ -89,6 +89,7 @@ usage:
     - docs/gaps-and-roadmap.md
   skills:
     model_package_design: skills/model-package-design/SKILL.md
+    goal_driven_deep_research: skills/goal-driven-deep-research/SKILL.md
   agents:
     architecture_review: agents/architecture-review.md
   kickoff_templates:
@@ -108,6 +109,7 @@ usage:
     - dependency_timeout_or_failure
     - missing_or_unverifiable_provenance
     - component_replacement
+    - goal_driven_deep_research
   update_policy: >-
     Do not edit files outside this directory unless the change is explicitly
     intended for the broader workspace and has been checked first. Prefer bounded
