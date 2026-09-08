@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "curo://goal-driven-deep-research/investigation.schema.json",
+  "title": "Goal-Driven Deep Research Investigation",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["investigation_id", "goal_id", "question", "status", "relevance", "completion_criteria", "unresolved_unknowns"],
+  "properties": {
+    "investigation_id": {"type": "string", "minLength": 1},
+    "goal_id": {"type": "string", "minLength": 1},
+    "question": {"type": "string", "minLength": 1},
+    "status": {"enum": ["OPEN", "IN_PROGRESS", "COMPLETE", "BLOCKED", "INSUFFICIENT_EVIDENCE", "SUPERSEDED"]},
+    "relevance": {"type": "string", "minLength": 1},
+    "retrieval_scope": {"type": "array", "items": {"type": "string"}, "default": []},
+    "source_quality_expectations": {"type": "array", "items": {"type": "string"}, "default": []},
+    "completion_criteria": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+    "finding_ids": {"type": "array", "items": {"type": "string"}, "default": []},
+    "evidence_ids": {"type": "array", "items": {"type": "string"}, "default": []},
+    "contradiction_ids": {"type": "array", "items": {"type": "string"}, "default": []},
+    "unresolved_unknowns": {"type": "array", "items": {"type": "string"}},
+    "closure_notes": {"type": ["string", "null"]}
+  }
+}
