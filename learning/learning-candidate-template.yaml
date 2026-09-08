@@ -4,7 +4,7 @@ candidate_id: LEARN-DECISION_REQUIRED
 project_id: DECISION_REQUIRED
 owner: model
 status: PROPOSED
-candidate_type: DECISION_REQUIRED
+candidate_type: rule
 source_run_ids: []
 source_event_ids: []
 source_finding_ids: []

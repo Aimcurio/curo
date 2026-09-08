@@ -1,0 +1,48 @@
+{
+  "manifest_type": "replay_manifest",
+  "artifact_id": "math-node-v0.1",
+  "version": "0.1.0",
+  "inputs": [
+    {
+      "contract_digests": {
+        "contracts\\MATH-SEMANTICS-CONTRACT-v0.1.md": "615853577dfe13a3b6d386d974c866f9c7a67224b75127298eae18a22eef4997",
+        "contracts\\EXECUTION-POLICY-CONTRACT-v0.1.md": "d9928d6e2a8681e0db896336ab71742910b8e884f5032d528ecc03d636633263",
+        "contracts\\TRANSFORMATION-CONTRACT-v0.1.md": "544ea0d9a3f365b83d0f63a9ced5f0b019bc11a7df260a37775207039c4b6458",
+        "contracts\\canonical-boundaries.json": "20f86ac4afbcc8e00b2df08507b57b7aea848f6be29fb05766711d50de243578",
+        "spec\\BOUNDARY-TEST-SPECIFICATIONS.md": "1cba5b7fccc2b7780607f08e77034f979e5122340c3241146908d63fd2020c06",
+        "spec\\TRANSFORMATION-TEST-SPECIFICATIONS.md": "2fb2a0ebabd1d4aca44fffdc2c0cd7321bacfd17c77222a774f4df971ca2d02c"
+      },
+      "source_digests": {
+        "src\\kernel\\rational.ts": "a37ee9b1f651c7a6a2a2cb1ff962d546cf51861656a5919fa1267ad4fc322d15",
+        "src\\kernel\\lexer.ts": "52b187a0255813c282e4c080c22074657c93c6c1c65674737c2b50e8b08b55ff",
+        "src\\kernel\\parser.ts": "cf57a2056bc3c0dae323ace027306d2c240da5b22344b7a7f704fde0d72ceb21",
+        "src\\kernel\\evaluator.ts": "0548d6c278fa39657a64eebf0cce613a610621413b31aac40abdb5a759cd6eb2",
+        "src\\kernel\\transform.ts": "a01186ca213a17bebe9afd65412e0aca15c9d954a041a1d8ec743332e8cc029c",
+        "src\\kernel\\kernel.ts": "30f6b1e6871388b22ff7fe05e74cc722eae1d260a80d34fc0a8b8fb541b9b29f"
+      },
+      "test_specs_count": 24,
+      "property_test_expressions": 1000,
+      "property_test_evaluations": 20000,
+      "property_fuzzer_seed": 20260905
+    }
+  ],
+  "expected_checks": [
+    "structure check",
+    "ownership check",
+    "provenance check",
+    "schema check",
+    "boundary replay check",
+    "property equivalence replay check"
+  ],
+  "provenance": {
+    "record_type": "provenance_record",
+    "artifact_id": "math-node-v0.1",
+    "input_hash": "7770f13ed0575cbeaf8c3f3bff7913d2b602feef798c8996b7e0009a2e6fa3d3",
+    "output_hash": "08a323878fd52f41de4c347d1e7b2c504e93f84d59783801e168af43193f9d54",
+    "validator_result": "PASS",
+    "owner": "harness",
+    "created_at": "2026-09-05T14:02:00Z",
+    "source_conversation_id": "c7ef128a-8ce2-4f77-95f0-d90f8842054d",
+    "source_note": "Governed ingestion of Math Node M0-M4 verified evidence into Curo manifests."
+  }
+}

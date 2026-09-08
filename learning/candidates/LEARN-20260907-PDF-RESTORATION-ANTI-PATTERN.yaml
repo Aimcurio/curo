@@ -1,0 +1,35 @@
+artifact_type: curo_learning_candidate
+artifact_version: 1.1.0
+candidate_id: LEARN-20260907-PDF-RESTORATION-ANTI-PATTERN
+project_id: curo
+owner: curo-learning-governance
+status: PROPOSED
+candidate_type: anti_pattern
+source_run_ids:
+  - 5dc964f9-e037-4866-a346-19a1dcb2457d
+source_event_ids:
+  - evt-pdf-conversion-request
+  - evt-deformity-removal-correction
+source_finding_ids:
+  - fnd-pdftoppm-host-missing
+  - fnd-bleedthrough-crease-deformity
+  - fnd-edge-header-clipping-risk
+  - fnd-hardcoded-resolution-trap
+evidence_refs:
+  - learning/candidates/LEARN-20260907-PDF-RESTORATION.yaml
+  - sha256:4e0751651e1e5c887183789fd50a907fe516c7419547a9e1271fe96c4bed1b17
+  - file:///E:/Pipeline/20260809_140145.PDF
+  - file:///E:/Pipeline/20260809_140119.PDF
+  - file:///E:/Pipeline/digital_native_test.pdf
+failure_signature:
+  signature_id: SIG-PDF-BLIND-FIXED-PROCESSING
+  observed_pattern: Fixed kernels and thresholds fail across resolution and exposure, blind edge clearing destroys content, and applying raster cleanup to clean vector PDFs degrades them.
+  recurrence: 2
+proposed_change:
+  target: anti-patterns/anti-patterns.md
+  description: Propose explicit warnings and guards against hardcoded restoration parameters, blind margin clearing, and unconditional raster processing.
+required_validation:
+  - python E:/curo/scripts/validate_curo.py
+  - uv run E:/curo/scripts/enhance_scanned_pdf.py --test
+requires_hitl: true
+promotion_ref: null

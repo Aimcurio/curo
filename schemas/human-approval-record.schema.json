@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://curo.local/schemas/human-approval-record.schema.json",
+  "title": "Curo Human Approval Record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "artifact_type", "artifact_version", "approval_id", "project_id", "decision",
+    "approved_profile_hash", "approved_assignment_ids", "actor", "recorded_at",
+    "recorded_by", "evidence_source"
+  ],
+  "properties": {
+    "artifact_type": {"const": "curo_human_approval_record"},
+    "artifact_version": {"type": "string", "minLength": 1},
+    "approval_id": {"type": "string", "minLength": 1},
+    "project_id": {"type": "string", "minLength": 1},
+    "decision": {"const": "APPROVE"},
+    "approved_profile_hash": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "approved_assignment_ids": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "actor": {"$ref": "#/$defs/approvalActor"},
+    "recorded_at": {"type": "string", "format": "date-time"},
+    "recorded_by": {"const": "harness"},
+    "evidence_source": {"type": "string", "minLength": 1}
+  },
+  "$defs": {
+    "approvalActor": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["actor_type", "actor_id"],
+      "properties": {
+        "actor_type": {"const": "HUMAN"},
+        "actor_id": {"type": "string", "minLength": 1}
+      }
+    },
+    "approvalReference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["artifact_path", "artifact_sha256", "approval_id"],
+      "properties": {
+        "artifact_path": {"type": "string", "minLength": 1},
+        "artifact_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "approval_id": {"type": "string", "minLength": 1}
+      }
+    }
+  }
+}

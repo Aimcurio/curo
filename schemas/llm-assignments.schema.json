@@ -1,0 +1,182 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://curo.local/schemas/llm-assignments.schema.json",
+  "title": "Curo LLM and Agent Assignments",
+  "description": "Deterministic desired and resolved runtime assignments bound to one canonical project profile. Observed identity is intentionally excluded.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "artifact_type", "artifact_version", "project_id", "source_project_profile",
+    "source_profile_hash", "assignment_policy_version", "reference_time", "generated_at",
+    "generated_by", "approval_status", "approval_ref", "assignments",
+    "unresolved_assignments", "provenance"
+  ],
+  "properties": {
+    "artifact_type": {"const": "curo_llm_assignments"},
+    "artifact_version": {"type": "string", "minLength": 1},
+    "project_id": {"type": "string", "minLength": 1, "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "source_project_profile": {"type": "string", "minLength": 1},
+    "source_profile_hash": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "assignment_policy_version": {"type": "string", "minLength": 1},
+    "reference_time": {"type": "string", "format": "date-time"},
+    "generated_at": {"type": "string", "format": "date-time"},
+    "generated_by": {"$ref": "#/$defs/generator"},
+    "approval_status": {"enum": ["PROPOSED", "DECISION_REQUIRED", "READY_FOR_APPROVAL", "APPROVED", "SUPERSEDED"]},
+    "approval_ref": {"anyOf": [{"type": "null"}, {"$ref": "human-approval-record.schema.json#/$defs/approvalReference"}]},
+    "assignments": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/assignment"}},
+    "unresolved_assignments": {"type": "array", "items": {"$ref": "#/$defs/unresolvedAssignment"}},
+    "provenance": {"$ref": "#/$defs/provenance"},
+    "extensions": {"$ref": "#/$defs/extensions"}
+  },
+  "$defs": {
+    "stringList": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "extensions": {"type": "object", "additionalProperties": {"type": ["string", "number", "integer", "boolean", "null"]}},
+    "generator": {
+      "type": "object", "additionalProperties": false,
+      "required": ["generator_type", "generator_id", "deterministic"],
+      "properties": {
+        "generator_type": {"enum": ["CURO_COMPILER", "MANUAL_DRAFT", "MIGRATION_TOOL"]},
+        "generator_id": {"type": "string", "minLength": 1},
+        "deterministic": {"type": "boolean"}
+      }
+    },
+    "identity": {
+      "type": "object", "additionalProperties": false,
+      "required": ["provider", "model"],
+      "properties": {
+        "provider": {"type": "string", "minLength": 1},
+        "model": {"type": "string", "minLength": 1}
+      }
+    },
+    "credentialRequirement": {
+      "type": "object", "additionalProperties": false,
+      "required": ["credential_id", "secret_source", "required"],
+      "properties": {
+        "credential_id": {"type": "string", "minLength": 1},
+        "secret_source": {"enum": ["ENVIRONMENT", "OS_KEYRING", "SECRET_MANAGER", "MANUAL_INJECTION", "NOT_APPLICABLE"]},
+        "required": {"type": "boolean"}
+      }
+    },
+    "fallback": {
+      "type": "object", "additionalProperties": false,
+      "required": ["fallback_id", "provider", "model", "capabilities", "data_classification_limit", "authority_scope", "required_validators"],
+      "properties": {
+        "fallback_id": {"type": "string", "minLength": 1},
+        "provider": {"type": "string", "minLength": 1},
+        "model": {"type": "string", "minLength": 1},
+        "capabilities": {"$ref": "#/$defs/stringList"},
+        "data_classification_limit": {"enum": ["PUBLIC", "INTERNAL", "CONFIDENTIAL", "RESTRICTED"]},
+        "authority_scope": {"$ref": "#/$defs/authorityScope"},
+        "required_validators": {"$ref": "#/$defs/stringList"}
+      }
+    },
+    "fallbackPolicy": {
+      "type": "object", "additionalProperties": false,
+      "required": ["mode", "requires_capability_match", "may_weaken_data_controls", "may_expand_authority", "approval_required"],
+      "properties": {
+        "mode": {"enum": ["DISABLED", "ORDERED", "HUMAN_SELECTED"]},
+        "requires_capability_match": {"const": true},
+        "may_weaken_data_controls": {"const": false},
+        "may_expand_authority": {"const": false},
+        "approval_required": {"type": "boolean"}
+      }
+    },
+    "authorityScope": {
+      "type": "object", "additionalProperties": false,
+      "required": ["may_read", "may_write", "may_execute", "may_validate", "may_approve"],
+      "properties": {
+        "may_read": {"type": "boolean"},
+        "may_write": {"type": "boolean"},
+        "may_execute": {"type": "boolean"},
+        "may_validate": {"type": "boolean"},
+        "may_approve": {"type": "boolean"}
+      }
+    },
+    "networkPolicy": {
+      "type": "object", "additionalProperties": false,
+      "required": ["mode", "allowed_destinations"],
+      "properties": {
+        "mode": {"enum": ["DENY", "ALLOWLIST", "APPROVAL_REQUIRED", "ALLOWED"]},
+        "allowed_destinations": {"$ref": "#/$defs/stringList"}
+      }
+    },
+    "reviewRequirements": {
+      "type": "object", "additionalProperties": false,
+      "required": ["reviewer_role_ids", "human_approval_required", "self_approval_prohibited"],
+      "properties": {
+        "reviewer_role_ids": {"$ref": "#/$defs/stringList"},
+        "human_approval_required": {"type": "boolean"},
+        "self_approval_prohibited": {"const": true}
+      }
+    },
+    "assignment": {
+      "type": "object", "additionalProperties": false,
+      "required": [
+        "assignment_id", "role_id", "role_name", "role_type", "purpose", "assignment_status",
+        "authority_scope", "required_capabilities", "prohibited_capabilities", "preferred_provider",
+        "preferred_model", "resolved_identity_state", "resolved_provider", "resolved_model",
+        "acceptable_fallbacks", "fallback_policy", "required_tools", "optional_tools",
+        "allowed_context_sources", "prohibited_context_sources", "allowed_project_roots",
+        "allowed_write_roots", "network_policy", "data_classification_limit",
+        "credential_requirements", "required_validators", "completion_evidence",
+        "review_requirements", "escalation_conditions"
+      ],
+      "properties": {
+        "assignment_id": {"type": "string", "minLength": 1},
+        "role_id": {"type": "string", "minLength": 1},
+        "role_name": {"type": "string", "minLength": 1},
+        "role_type": {"enum": ["MODEL", "DETERMINISTIC_COMPONENT", "HUMAN"]},
+        "purpose": {"type": "string", "minLength": 1},
+        "assignment_status": {"enum": ["PROPOSED", "UNRESOLVED", "READY_FOR_APPROVAL", "APPROVED", "RESOLVED", "UNAVAILABLE", "BLOCKED", "SUPERSEDED"]},
+        "authority_scope": {"$ref": "#/$defs/authorityScope"},
+        "required_capabilities": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+        "prohibited_capabilities": {"$ref": "#/$defs/stringList"},
+        "preferred_provider": {"type": "string", "minLength": 1},
+        "preferred_model": {"type": "string", "minLength": 1},
+        "resolved_identity_state": {"enum": ["UNRESOLVED", "RESOLVED", "UNAVAILABLE"]},
+        "resolved_provider": {"type": ["string", "null"]},
+        "resolved_model": {"type": ["string", "null"]},
+        "acceptable_fallbacks": {"type": "array", "items": {"$ref": "#/$defs/fallback"}},
+        "fallback_policy": {"$ref": "#/$defs/fallbackPolicy"},
+        "required_tools": {"$ref": "#/$defs/stringList"},
+        "optional_tools": {"$ref": "#/$defs/stringList"},
+        "allowed_context_sources": {"$ref": "#/$defs/stringList"},
+        "prohibited_context_sources": {"$ref": "#/$defs/stringList"},
+        "allowed_project_roots": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+        "allowed_write_roots": {"$ref": "#/$defs/stringList"},
+        "network_policy": {"$ref": "#/$defs/networkPolicy"},
+        "data_classification_limit": {"enum": ["PUBLIC", "INTERNAL", "CONFIDENTIAL", "RESTRICTED"]},
+        "credential_requirements": {"type": "array", "items": {"$ref": "#/$defs/credentialRequirement"}},
+        "required_validators": {"$ref": "#/$defs/stringList"},
+        "completion_evidence": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+        "review_requirements": {"$ref": "#/$defs/reviewRequirements"},
+        "escalation_conditions": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+        "extensions": {"$ref": "#/$defs/extensions"}
+      }
+    },
+    "unresolvedAssignment": {
+      "type": "object", "additionalProperties": false,
+      "required": ["role_id", "reason", "required_decision", "owner"],
+      "properties": {
+        "role_id": {"type": "string", "minLength": 1},
+        "reason": {"type": "string", "minLength": 1},
+        "required_decision": {"type": "string", "minLength": 1},
+        "owner": {"type": "string", "minLength": 1}
+      }
+    },
+    "provenance": {
+      "type": "object", "additionalProperties": false,
+      "required": ["source_profile_hash_algorithm", "compiler_input_refs", "approval_actor"],
+      "properties": {
+        "source_profile_hash_algorithm": {"const": "SHA-256"},
+        "compiler_input_refs": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+        "approval_actor": {
+          "anyOf": [
+            {"type": "null"},
+            {"$ref": "human-approval-record.schema.json#/$defs/approvalActor"}
+          ]
+        }
+      }
+    }
+  }
+}

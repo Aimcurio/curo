@@ -11,7 +11,15 @@ fallback_allowed: false
 fallback_used: false
 fallback_reason: null
 provenance_source: HARNESS_CLI
+observed_identity:
+  state: UNKNOWN
+  provider: null
+  model: null
+  evidence_source: null
+  evidence_sha256: null
 status: PASS
+process_status: COMPLETE
+validation_status: PASS
 evidence_locators:
   - provenance/RUN-EXAMPLE-001.json
 evidence_manifest: replay/RUN-EXAMPLE-001.yaml
@@ -20,6 +28,22 @@ blockers: []
 status_transition_authorized: true
 authorizing_evidence: provenance/RUN-EXAMPLE-001.json
 next_authorized_action: NONE
+execution:
+  executable: python
+  args:
+    - -m
+    - unittest
+  cwd: E:/authorized-workspace
+  timeout_seconds: 120
+  exit_code: 0
+  duration_ms: 42.0
+  timeout_termination_succeeded: null
+inputs: {}
+outputs: {}
+diagnostic_reasons: []
+stdout_snippet: ''
+stderr_snippet: ''
+redaction_applied: false
 learning:
   eligible: false
   status: NOT_REQUIRED

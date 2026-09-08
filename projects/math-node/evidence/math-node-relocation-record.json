@@ -1,0 +1,22 @@
+{
+  "artifact_type": "curo_project_relocation_record",
+  "artifact_version": "1.0.0",
+  "record_id": "math-node-legacy-replay-copy-20260907",
+  "project_id": "math-node",
+  "original_path": "manifests/math-node-v0.1-replay.json",
+  "relocated_path": "projects/math-node/evidence/math-node-v0.1-replay.json",
+  "original_sha256": "effb92008a760ae228803a427a146bec1b8cee8df1c764ac9c48f16c85b0b8c9",
+  "relocated_sha256": "effb92008a760ae228803a427a146bec1b8cee8df1c764ac9c48f16c85b0b8c9",
+  "preservation_status": "BYTE_IDENTICAL",
+  "relocation_method": "COPY_PRESERVE_SOURCE",
+  "supersedes_classification_only": true,
+  "created_at": "2026-09-07T00:00:00Z",
+  "created_by": "curo-project-profile-migration",
+  "provenance": {
+    "source_refs": [
+      "manifests/math-node-v0.1-replay.json",
+      "projects/math-node/evidence/math-node-v0.1-artifact-verification.json"
+    ],
+    "note": "The source remains at its original path. The destination preserves the legacy replay-classified bytes; only the new companion artifact supersedes that classification."
+  }
+}

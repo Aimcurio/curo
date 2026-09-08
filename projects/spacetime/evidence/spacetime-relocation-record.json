@@ -1,0 +1,22 @@
+{
+  "artifact_type": "curo_project_relocation_record",
+  "artifact_version": "1.0.0",
+  "record_id": "spacetime-learning-record-copy-20260907",
+  "project_id": "spacetime",
+  "original_path": "manifests/spacetime-sim-learning-record.json",
+  "relocated_path": "projects/spacetime/evidence/spacetime-sim-learning-record.json",
+  "original_sha256": "ec0d0eb61854d39d5ea3343ace6cd085182a11043e3b7eb7889a9f23335cb5ca",
+  "relocated_sha256": "ec0d0eb61854d39d5ea3343ace6cd085182a11043e3b7eb7889a9f23335cb5ca",
+  "preservation_status": "BYTE_IDENTICAL",
+  "relocation_method": "COPY_PRESERVE_SOURCE",
+  "supersedes_classification_only": false,
+  "created_at": "2026-09-07T00:00:00Z",
+  "created_by": "curo-project-profile-migration",
+  "provenance": {
+    "source_refs": [
+      "manifests/spacetime-sim-learning-record.json",
+      "PROJECT-PROFILE-FINDINGS.md"
+    ],
+    "note": "The source remains at its original path. The destination is a byte-identical project-scoped evidence copy; no historical claims were reinterpreted as current state."
+  }
+}

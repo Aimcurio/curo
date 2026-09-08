@@ -10,8 +10,8 @@
     "candidate_id": {"type": "string", "minLength": 1},
     "project_id": {"type": "string", "minLength": 1},
     "owner": {"type": "string", "minLength": 1},
-    "status": {"enum": ["PROPOSED", "VALIDATION_PENDING", "VALIDATED", "PROMOTED", "REJECTED", "BLOCKED"]},
-    "candidate_type": {"type": "string", "minLength": 1},
+    "status": {"enum": ["PROPOSED", "VALIDATION_PENDING", "VALIDATED", "APPROVED", "PROMOTED", "REJECTED", "BLOCKED"]},
+    "candidate_type": {"enum": ["rule", "skill", "anti_pattern", "validator", "standard_amendment"]},
     "source_run_ids": {"type": "array", "items": {"type": "string"}},
     "source_event_ids": {"type": "array", "items": {"type": "string"}},
     "source_finding_ids": {"type": "array", "items": {"type": "string"}},
@@ -22,5 +22,5 @@
     "requires_hitl": {"type": "boolean"},
     "promotion_ref": {"type": ["string", "null"]}
   },
-  "additionalProperties": true
+  "additionalProperties": false
 }

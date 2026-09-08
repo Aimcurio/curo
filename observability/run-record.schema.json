@@ -4,7 +4,7 @@
   "title": "CuroObservabilityRunRecord",
   "type": "object",
   "additionalProperties": false,
-  "required": ["record_type", "run_id", "recorded_at", "project_id", "workflow_id", "role", "status", "provenance_source", "evidence_locators", "next_authorized_action"],
+  "required": ["record_type", "run_id", "recorded_at", "project_id", "workflow_id", "role", "status", "process_status", "validation_status", "provenance_source", "observed_identity", "evidence_locators", "next_authorized_action", "execution", "inputs", "outputs", "stdout_snippet", "stderr_snippet", "redaction_applied"],
   "properties": {
     "record_type": { "const": "observability_run_record" },
     "run_id": { "type": "string", "minLength": 1 },
@@ -19,7 +19,34 @@
     "fallback_used": { "type": ["boolean", "null"] },
     "fallback_reason": { "type": ["string", "null"] },
     "provenance_source": { "enum": ["HARNESS_API", "HARNESS_CLI", "UI_OBSERVATION", "MODEL_SELF_REPORT", "UNAVAILABLE"] },
-    "status": { "enum": ["CREATED", "RUNNING", "COMPLETE", "PASS", "FAIL", "BLOCKED", "PARTIAL", "CANCELLED", "TIMED_OUT", "IMPLEMENTED", "CLEAR", "MATERIAL_FINDINGS", "DEFERRED", "NOT_STARTED", "NOT_AUTHORIZED", "FROZEN", "UNKNOWN"] },
+    "observed_identity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["state", "provider", "model", "evidence_source", "evidence_sha256"],
+      "properties": {
+        "state": {"enum": ["VERIFIED", "UNKNOWN", "UNAVAILABLE", "MISMATCH"]},
+        "provider": {"type": ["string", "null"]},
+        "model": {"type": ["string", "null"]},
+        "evidence_source": {"type": ["string", "null"]},
+        "evidence_sha256": {"anyOf": [{"type": "null"}, {"type": "string", "pattern": "^[0-9a-f]{64}$"}]}
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"state": {"const": "VERIFIED"}}},
+          "then": {
+            "properties": {
+              "provider": {"type": "string", "minLength": 1},
+              "model": {"type": "string", "minLength": 1},
+              "evidence_source": {"type": "string", "minLength": 1},
+              "evidence_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+            }
+          }
+        }
+      ]
+    },
+    "status": { "enum": ["PASS", "FAIL", "UNKNOWN", "TIMED_OUT"] },
+    "process_status": { "enum": ["COMPLETE", "FAIL", "TIMED_OUT", "NOT_STARTED"] },
+    "validation_status": { "enum": ["PASS", "FAIL", "UNKNOWN"] },
     "evidence_locators": { "type": "array", "items": { "type": "string" } },
     "evidence_manifest": { "type": ["string", "null"] },
     "files_changed": { "type": "array", "items": { "type": "string" } },
@@ -27,6 +54,26 @@
     "status_transition_authorized": { "type": ["boolean", "null"] },
     "authorizing_evidence": { "type": ["string", "null"] },
     "next_authorized_action": { "type": "string", "minLength": 1 },
+    "execution": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["executable", "args", "cwd", "timeout_seconds", "exit_code", "duration_ms"],
+      "properties": {
+        "executable": {"type": "string", "minLength": 1},
+        "args": {"type": "array", "items": {"type": "string"}},
+        "cwd": {"type": "string", "minLength": 1},
+        "timeout_seconds": {"type": "number"},
+        "exit_code": {"type": ["integer", "null"]},
+        "duration_ms": {"type": "number"},
+        "timeout_termination_succeeded": {"type": ["boolean", "null"]}
+      }
+    },
+    "inputs": {"type": "object", "additionalProperties": {"type": "string"}},
+    "outputs": {"type": "object", "additionalProperties": {"type": "string"}},
+    "diagnostic_reasons": {"type": "array", "items": {"type": "string"}},
+    "stdout_snippet": {"type": "string"},
+    "stderr_snippet": {"type": "string"},
+    "redaction_applied": {"type": "boolean"},
     "learning": {
       "type": "object",
       "additionalProperties": false,

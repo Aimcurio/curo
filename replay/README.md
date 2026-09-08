@@ -1,11 +1,14 @@
 # Replay
 
-This folder contains the inputs needed to rerun or independently verify an execution without treating the original model response as proof of completion.
+This folder contains two deliberately separate manifest classes. Neither treats a model response or a successful process exit as proof of validation.
 
 ## Files
 
-- [`replay-manifest-template.yaml`](replay-manifest-template.yaml) - starting point for a replay manifest.
+- [`execution-replay-manifest-template.yaml`](execution-replay-manifest-template.yaml) - re-executes a structured executable and argv contract with `shell=False`.
+- [`artifact-verification-manifest-template.yaml`](artifact-verification-manifest-template.yaml) - verifies historical artifacts, hashes, lineage, and optional schemas without executing a process.
 
 ## Ownership
 
-The harness creates and updates replay manifests from the actual artifact versions, inputs, environment, tool events, and validation outcomes. A replay is complete only when its deterministic checks and evidence links pass.
+The harness creates manifests from observed inputs, outputs, environment, tool events, and validation outcomes. An execution replay requires `executable`, `args`, `cwd`, and `timeout_seconds`; an artifact verification manifest must not contain those execution fields. Referenced paths must remain inside the configured workspace boundary.
+
+A replay is complete only when its declared checks and evidence links pass. Process exit zero is only a process fact.

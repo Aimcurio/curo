@@ -3,7 +3,7 @@
   "$id": "https://curo.local/schemas/hitl-packet.schema.json",
   "title": "Curo HITL Packet",
   "type": "object",
-  "required": ["artifact_type", "packet_version", "packet_id", "project_id", "review_id", "status", "decisions"],
+  "required": ["artifact_type", "packet_version", "packet_id", "project_id", "review_id", "status", "created_at", "decisions"],
   "properties": {
     "artifact_type": {"const": "curo_hitl_packet"},
     "packet_version": {"type": "string"},
@@ -11,9 +11,34 @@
     "project_id": {"type": "string", "minLength": 1},
     "review_id": {"type": "string", "minLength": 1},
     "status": {"const": "HITL_REQUIRED"},
-    "summary": {"type": "object"},
+    "created_at": {"type": "string", "format": "date-time"},
+    "summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["automatic_corrections_applied", "model_resolutions_applied", "evidence_checks_pending", "human_decisions_required"],
+      "properties": {
+        "automatic_corrections_applied": {"type": "integer"},
+        "model_resolutions_applied": {"type": "integer"},
+        "evidence_checks_pending": {"type": "integer"},
+        "human_decisions_required": {"type": "integer"}
+      }
+    },
     "decisions": {"type": "array", "items": {"$ref": "#/$defs/decision"}},
-    "blocking_findings": {"type": "array"},
+    "blocking_findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "severity", "finding_class", "description", "blocking"],
+        "properties": {
+          "id": {"type": "string", "minLength": 1},
+          "severity": {"enum": ["info", "warning", "error", "critical"]},
+          "finding_class": {"enum": ["mechanical", "engineering", "evidence_required", "human_decision"]},
+          "description": {"type": "string", "minLength": 1},
+          "blocking": {"type": "boolean"}
+        }
+      }
+    },
     "authorized_transition": {"type": "string"}
   },
   "$defs": {
@@ -31,5 +56,5 @@
       "additionalProperties": true
     }
   },
-  "additionalProperties": true
+  "additionalProperties": false
 }

@@ -1,0 +1,142 @@
+artifact_type: curo_project_profile
+artifact_version: 1.0.0
+project_id: spacetime
+display_name: Spacetime Gravity Simulator
+description: Curo governance profile for the historically recorded spacetime gravity simulation project.
+project_class: SIMULATION
+project_status: MAINTENANCE
+profile_status: DECISION_REQUIRED
+created_at: '2026-09-07T00:00:00Z'
+updated_at: '2026-09-07T00:00:00Z'
+source_context:
+  kickoff_path: null
+  source_refs:
+    - manifests/spacetime-sim-learning-record.json
+    - projects/spacetime/evidence/spacetime-sim-learning-record.json
+  summary: The preserved historical record supports the recorded root and past build claims only.
+actual_project_roots:
+  - 'E:\spacetime'
+parent_system: null
+components:
+  - component_id: simulation-application
+    name: Spacetime Gravity Simulator
+    purpose: Render and simulate the recorded multi-body gravity experience.
+    component_type: OTHER
+    authority: [produce simulation outputs]
+    roots: ['E:\spacetime']
+  - component_id: curo-validator
+    name: Curo Validator
+    purpose: Establish profile, assignment, and artifact validation results.
+    component_type: VALIDATOR
+    authority: [ESTABLISH EVIDENCE]
+    roots: ['E:\curo']
+operators:
+  - operator_id: human-requester
+    operator_type: HUMAN
+    responsibilities: [Approve current scope, assignments, mutations, and release decisions.]
+objectives:
+  primary: Govern future Spacetime changes with bounded roles and evidence while preserving historical records.
+  success_measures:
+    - Project changes remain within the approved external root.
+    - Builds and behavior are independently validated before completion is claimed.
+scope:
+  included: [Project-specific governance, bounded source changes after approval, deterministic build and behavior evidence]
+  excluded: [Rewriting historical evidence, inferring current readiness from a 2026-09-05 record, autonomous deployment]
+architecture:
+  summary: External simulation source is governed from Curo through proposed assignments and deterministic evidence.
+  authoritative_components: [external source repository for source, Curo harness for execution facts, validators for results, human for authorization]
+  data_flows: [approved profile -> assignment -> bounded external work, build output -> validator -> run and provenance records]
+execution_environment:
+  runtime: LOCAL
+  platforms: [Windows, web build toolchain recorded historically]
+  network_default: APPROVAL_REQUIRED
+  workspace_boundary: 'E:\spacetime'
+data_classification: INTERNAL
+privacy_constraints: [Do not disclose local paths or project data to unapproved providers.]
+storage_policy:
+  allowed_locations: ['E:\spacetime', projects/spacetime/evidence]
+  prohibited_locations: [Plaintext credential files, unapproved external stores]
+  retention: Preserve governed run evidence and historical copies until human-approved retirement.
+  deletion_authority: human-requester
+authority_model:
+  models_may: [Propose and implement bounded changes after authorization.]
+  models_may_not: [Approve their own assignments, overwrite historical evidence, claim unobserved identity.]
+  harness_owns: [Path containment, process facts, persistence, and provenance.]
+  validators_own: [Build, schema, and behavior validation results.]
+  human_owns: [Current project status, assignments, consequential changes, deployment, and release.]
+approval_boundaries:
+  - action: Modify the external Spacetime source or approve an assignment.
+    required_authority: human-requester
+    reason: External project mutation and role authority are consequential.
+required_validators:
+  - validator_id: project-profile-schema
+    purpose: Validate current project intent.
+    required_for: [profile approval, assignment compilation]
+  - validator_id: spacetime-build-validator
+    purpose: Establish current build and behavior facts from a fresh run.
+    required_for: [completion, release]
+evidence_policy:
+  required_artifacts: [profile and assignment validation, current run and provenance records, preserved historical hash]
+  provenance_required: true
+  unknown_handling: PRESERVE_AS_UNKNOWN
+context_policy:
+  allowed_sources: [approved profile, bounded external root, preserved project evidence]
+  prohibited_sources: [credentials, unrelated local projects]
+  least_context_required: true
+retrieval_policy:
+  method: BOUNDED
+  citation_required: true
+  unavailable_behavior: PRESERVE_UNKNOWN
+tool_policy:
+  default: ALLOWLIST
+  allowed_tools: [structured local process execution, filesystem reads within approved roots, deterministic validators]
+  prohibited_tools: [unbounded shell strings, external deployment without approval]
+  mutation_requires_approval: true
+model_policy:
+  assignment_manifest_required: true
+  self_approval_prohibited: true
+  observed_identity_source: run_and_provenance_records
+  fallback_must_preserve_constraints: true
+workflow_definitions:
+  - workflow_id: spacetime-change
+    purpose: Produce and validate an authorized simulation change.
+    ordered_steps: [review current source state, approve bounded change, implement, run deterministic checks, record evidence]
+    required_role_ids: [builder, critic-reviewer, deterministic-validator, human-approver]
+    completion_evidence: [current build result, requested behavior evidence, run and provenance records]
+failure_policy:
+  default_result: FAIL
+  retry_policy: Retry only after a bounded failure classification.
+  timeout_result: UNKNOWN
+  missing_evidence_result: UNKNOWN
+escalation_policy:
+  conditions: [External root is unavailable, current provider/model is unresolved, validation is failed or unavailable.]
+  destination: human-requester
+  required_evidence: [failure or absence evidence, current profile hash]
+observability:
+  run_records_required: true
+  provenance_records_required: true
+  observed_identity_state_values: [VERIFIED, UNKNOWN, UNAVAILABLE, MISMATCH]
+dependencies:
+  - dependency_id: spacetime-source
+    dependency_type: PROJECT
+    requirement: Recorded external source root must exist and be reviewed before mutation.
+    status: UNKNOWN
+related_projects: []
+open_decisions:
+  - decision_id: spacetime-current-status
+    question: Is the recorded external root current, and what work is presently authorized?
+    status: DECISION_REQUIRED
+    owner: human-requester
+  - decision_id: spacetime-models
+    question: Which providers and models are approved for proposed model roles?
+    status: DECISION_REQUIRED
+    owner: human-requester
+known_risks:
+  - risk_id: historical-pass-overreach
+    description: A past PASS claim could be mistaken for current validation.
+    severity: HIGH
+    mitigation: Require a fresh harness run and validator evidence for every current claim.
+provenance:
+  created_by: curo-project-profile-migration
+  source_refs: [manifests/spacetime-sim-learning-record.json, PROJECT-PROFILE-FINDINGS.md]
+  approval_ref: null

@@ -1,0 +1,370 @@
+{
+  "artifact_type": "curo_llm_assignments",
+  "artifact_version": "1.0.0",
+  "project_id": "spacetime",
+  "source_project_profile": "projects/spacetime/project.yaml",
+  "source_profile_hash": "sha256:bcd6621be84887e93297c2a8af05a347e67e9668d4173cadc7840cf74a8fd9d9",
+  "assignment_policy_version": "1.0.0",
+  "reference_time": "2026-09-07T00:00:00Z",
+  "generated_at": "2026-09-07T00:00:00Z",
+  "generated_by": {
+    "generator_type": "MANUAL_DRAFT",
+    "generator_id": "curo-project-migration-draft",
+    "deterministic": false
+  },
+  "approval_status": "DECISION_REQUIRED",
+  "approval_ref": null,
+  "assignments": [
+    {
+      "assignment_id": "builder-assignment",
+      "role_id": "builder",
+      "role_name": "Builder",
+      "role_type": "MODEL",
+      "purpose": "Implement an explicitly authorized simulation change within the recorded project root.",
+      "assignment_status": "UNRESOLVED",
+      "authority_scope": {
+        "may_read": true,
+        "may_write": true,
+        "may_execute": true,
+        "may_validate": false,
+        "may_approve": false
+      },
+      "required_capabilities": [
+        "TypeScript implementation",
+        "simulation development",
+        "structured build execution"
+      ],
+      "prohibited_capabilities": [
+        "self-approval",
+        "observed-identity-assertion"
+      ],
+      "preferred_provider": "UNKNOWN",
+      "preferred_model": "UNKNOWN",
+      "resolved_identity_state": "UNRESOLVED",
+      "resolved_provider": null,
+      "resolved_model": null,
+      "acceptable_fallbacks": [],
+      "fallback_policy": {
+        "mode": "DISABLED",
+        "requires_capability_match": true,
+        "may_weaken_data_controls": false,
+        "may_expand_authority": false,
+        "approval_required": true
+      },
+      "required_tools": [],
+      "optional_tools": [],
+      "allowed_context_sources": [
+        "approved Spacetime source root",
+        "current project profile and assignments",
+        "preserved project evidence"
+      ],
+      "prohibited_context_sources": [
+        "credentials and secret values",
+        "unapproved private or unrelated project data"
+      ],
+      "allowed_project_roots": [
+        "E:\\spacetime"
+      ],
+      "allowed_write_roots": [
+        "E:\\spacetime"
+      ],
+      "network_policy": {
+        "mode": "APPROVAL_REQUIRED",
+        "allowed_destinations": []
+      },
+      "data_classification_limit": "INTERNAL",
+      "credential_requirements": [],
+      "required_validators": [
+        "project-profile-schema",
+        "llm-assignments-validator",
+        "spacetime-build-validator"
+      ],
+      "completion_evidence": [
+        "bounded diff",
+        "current build and behavior evidence",
+        "run and provenance records"
+      ],
+      "review_requirements": {
+        "reviewer_role_ids": [
+          "critic-reviewer",
+          "deterministic-validator",
+          "human-approver"
+        ],
+        "human_approval_required": true,
+        "self_approval_prohibited": true
+      },
+      "escalation_conditions": [
+        "Provider or model identity remains unresolved.",
+        "Requested authority, path, data, or capability exceeds this assignment."
+      ]
+    },
+    {
+      "assignment_id": "critic-reviewer-assignment",
+      "role_id": "critic-reviewer",
+      "role_name": "Critic/Reviewer",
+      "role_type": "MODEL",
+      "purpose": "Review simulation changes, numerical claims, scope, and evidence without writing or approving.",
+      "assignment_status": "UNRESOLVED",
+      "authority_scope": {
+        "may_read": true,
+        "may_write": false,
+        "may_execute": false,
+        "may_validate": false,
+        "may_approve": false
+      },
+      "required_capabilities": [
+        "code review",
+        "numerical-risk review",
+        "acceptance-test design"
+      ],
+      "prohibited_capabilities": [
+        "self-approval",
+        "observed-identity-assertion"
+      ],
+      "preferred_provider": "UNKNOWN",
+      "preferred_model": "UNKNOWN",
+      "resolved_identity_state": "UNRESOLVED",
+      "resolved_provider": null,
+      "resolved_model": null,
+      "acceptable_fallbacks": [],
+      "fallback_policy": {
+        "mode": "DISABLED",
+        "requires_capability_match": true,
+        "may_weaken_data_controls": false,
+        "may_expand_authority": false,
+        "approval_required": true
+      },
+      "required_tools": [],
+      "optional_tools": [],
+      "allowed_context_sources": [
+        "approved Spacetime source root",
+        "current project profile and assignments",
+        "preserved project evidence"
+      ],
+      "prohibited_context_sources": [
+        "credentials and secret values",
+        "unapproved private or unrelated project data"
+      ],
+      "allowed_project_roots": [
+        "E:\\spacetime"
+      ],
+      "allowed_write_roots": [],
+      "network_policy": {
+        "mode": "APPROVAL_REQUIRED",
+        "allowed_destinations": []
+      },
+      "data_classification_limit": "INTERNAL",
+      "credential_requirements": [],
+      "required_validators": [
+        "project-profile-schema",
+        "llm-assignments-validator",
+        "spacetime-build-validator"
+      ],
+      "completion_evidence": [
+        "findings with source evidence",
+        "counterexamples or acceptance tests"
+      ],
+      "review_requirements": {
+        "reviewer_role_ids": [
+          "human-approver"
+        ],
+        "human_approval_required": true,
+        "self_approval_prohibited": true
+      },
+      "escalation_conditions": [
+        "Provider or model identity remains unresolved.",
+        "Requested authority, path, data, or capability exceeds this assignment."
+      ]
+    },
+    {
+      "assignment_id": "deterministic-validator-assignment",
+      "role_id": "deterministic-validator",
+      "role_name": "Deterministic Validator",
+      "role_type": "DETERMINISTIC_COMPONENT",
+      "purpose": "Run approved build and behavior checks and record machine-observed results.",
+      "assignment_status": "UNRESOLVED",
+      "authority_scope": {
+        "may_read": true,
+        "may_write": false,
+        "may_execute": true,
+        "may_validate": true,
+        "may_approve": false
+      },
+      "required_capabilities": [
+        "build validation",
+        "artifact verification",
+        "process evidence capture"
+      ],
+      "prohibited_capabilities": [
+        "source mutation",
+        "assignment approval",
+        "observed-model inference"
+      ],
+      "preferred_provider": "UNKNOWN",
+      "preferred_model": "UNKNOWN",
+      "resolved_identity_state": "UNRESOLVED",
+      "resolved_provider": null,
+      "resolved_model": null,
+      "acceptable_fallbacks": [],
+      "fallback_policy": {
+        "mode": "DISABLED",
+        "requires_capability_match": true,
+        "may_weaken_data_controls": false,
+        "may_expand_authority": false,
+        "approval_required": true
+      },
+      "required_tools": [
+        "structured local process runner",
+        "Spacetime build validators"
+      ],
+      "optional_tools": [],
+      "allowed_context_sources": [
+        "approved Spacetime source root",
+        "declared test and build configuration"
+      ],
+      "prohibited_context_sources": [
+        "credentials and secret values",
+        "unapproved private or unrelated project data"
+      ],
+      "allowed_project_roots": [
+        "E:\\spacetime"
+      ],
+      "allowed_write_roots": [],
+      "network_policy": {
+        "mode": "DENY",
+        "allowed_destinations": []
+      },
+      "data_classification_limit": "INTERNAL",
+      "credential_requirements": [],
+      "required_validators": [
+        "project-profile-schema",
+        "llm-assignments-validator"
+      ],
+      "completion_evidence": [
+        "exit status and timeout state",
+        "validator output",
+        "artifact hashes"
+      ],
+      "review_requirements": {
+        "reviewer_role_ids": [
+          "human-approver"
+        ],
+        "human_approval_required": true,
+        "self_approval_prohibited": true
+      },
+      "escalation_conditions": [
+        "Provider or model identity remains unresolved.",
+        "Requested authority, path, data, or capability exceeds this assignment."
+      ]
+    },
+    {
+      "assignment_id": "human-approver-assignment",
+      "role_id": "human-approver",
+      "role_name": "Human Approver",
+      "role_type": "HUMAN",
+      "purpose": "Approve the current root, assignment set, bounded mutations, and release decisions.",
+      "assignment_status": "UNRESOLVED",
+      "authority_scope": {
+        "may_read": true,
+        "may_write": false,
+        "may_execute": false,
+        "may_validate": false,
+        "may_approve": true
+      },
+      "required_capabilities": [
+        "project authorization",
+        "risk acceptance"
+      ],
+      "prohibited_capabilities": [
+        "unrecorded approval",
+        "observed-identity fabrication"
+      ],
+      "preferred_provider": "UNKNOWN",
+      "preferred_model": "UNKNOWN",
+      "resolved_identity_state": "UNRESOLVED",
+      "resolved_provider": null,
+      "resolved_model": null,
+      "acceptable_fallbacks": [],
+      "fallback_policy": {
+        "mode": "DISABLED",
+        "requires_capability_match": true,
+        "may_weaken_data_controls": false,
+        "may_expand_authority": false,
+        "approval_required": true
+      },
+      "required_tools": [],
+      "optional_tools": [],
+      "allowed_context_sources": [
+        "project profile",
+        "assignment manifest",
+        "review and validation evidence"
+      ],
+      "prohibited_context_sources": [
+        "credentials and secret values",
+        "unapproved private or unrelated project data"
+      ],
+      "allowed_project_roots": [
+        "E:\\spacetime"
+      ],
+      "allowed_write_roots": [],
+      "network_policy": {
+        "mode": "APPROVAL_REQUIRED",
+        "allowed_destinations": []
+      },
+      "data_classification_limit": "INTERNAL",
+      "credential_requirements": [],
+      "required_validators": [
+        "project-profile-schema",
+        "llm-assignments-validator"
+      ],
+      "completion_evidence": [
+        "explicit approval reference or recorded decision"
+      ],
+      "review_requirements": {
+        "reviewer_role_ids": [
+          "critic-reviewer"
+        ],
+        "human_approval_required": false,
+        "self_approval_prohibited": true
+      },
+      "escalation_conditions": [
+        "Provider or model identity remains unresolved.",
+        "Requested authority, path, data, or capability exceeds this assignment."
+      ]
+    }
+  ],
+  "unresolved_assignments": [
+    {
+      "role_id": "builder",
+      "reason": "The historical record does not verify a current provider/model or current work authorization.",
+      "required_decision": "Confirm the external root and approve a builder provider/model and scope.",
+      "owner": "human-requester"
+    },
+    {
+      "role_id": "critic-reviewer",
+      "reason": "No current reviewer provider/model is verified.",
+      "required_decision": "Select and approve a capability-compatible reviewer.",
+      "owner": "human-requester"
+    },
+    {
+      "role_id": "deterministic-validator",
+      "reason": "Current Spacetime validation commands and runtime availability require review.",
+      "required_decision": "Approve the current deterministic validation command set.",
+      "owner": "human-requester"
+    },
+    {
+      "role_id": "human-approver",
+      "reason": "No approval reference exists for this draft.",
+      "required_decision": "Review and explicitly approve or revise the project profile and assignments.",
+      "owner": "human-requester"
+    }
+  ],
+  "provenance": {
+    "source_profile_hash_algorithm": "SHA-256",
+    "compiler_input_refs": [
+      "projects/spacetime/project.yaml",
+      "PROJECT-PROFILE-FINDINGS.md"
+    ],
+    "approval_actor": null
+  }
+}

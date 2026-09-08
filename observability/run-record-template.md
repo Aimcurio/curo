@@ -53,7 +53,9 @@ Exactly one immediate current task:
 
 ## Run Result
 
-- Status: `<governed status vocabulary>`
+- Run status: `[PASS | FAIL | UNKNOWN | TIMED_OUT]`
+- Process status: `[COMPLETE | FAIL | TIMED_OUT | NOT_STARTED]`
+- Validation status: `[PASS | FAIL | UNKNOWN]`
 - Machine evidence locator(s): `<absolute path, relative path, run ID, manifest, commit, or NONE_WITH_REASON>`
 - Evidence manifest/hash: `<locator and SHA-256, or NONE_WITH_REASON>`
 - Files changed: `<path | NONE>`
@@ -68,7 +70,7 @@ Exactly one immediate current task:
 ## Learning Distillation
 
 - Eligible: `[YES | NO]`
-- Status: `[NOT_REQUIRED | PENDING | PROPOSED | VALIDATION_PENDING | VALIDATED | PROMOTED | REJECTED | BLOCKED]`
+- Status: `[NOT_REQUIRED | PENDING | PROPOSED | VALIDATION_PENDING | VALIDATED | APPROVED | PROMOTED | REJECTED | BLOCKED]`
 - Candidate reference(s): `<learning artifact path or NONE>`
 - Promotion reference: `<promotion record or NONE>`
 
@@ -78,5 +80,5 @@ authority.
 ## Notes
 
 Preserve prior failures, blockers, reversals, and unknowns. If the authoritative
-result cannot be established, use `BLOCKED` or `UNKNOWN` rather than inventing
-completion.
+result cannot be established, use `UNKNOWN` rather than inventing validation.
+Use the schema-specific review or learning `BLOCKED` state only in those domains.

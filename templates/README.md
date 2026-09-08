@@ -7,6 +7,8 @@ AI-assisted project.
 
 - [`project-kickoff.md`](project-kickoff.md) - copy-and-fill human kickoff brief.
 - [`project-kickoff.yaml`](project-kickoff.yaml) - machine-readable equivalent.
+- [`project-profile.yaml`](project-profile.yaml) - project-specific, human-governed intent template.
+- [`llm-assignments.json`](llm-assignments.json) - desired and resolved role assignments bound to a project-profile hash.
 
 Use the Markdown template when communicating with a builder or reviewer. Use
 the YAML template when the brief will be loaded by a harness, project tool, or
@@ -20,6 +22,19 @@ projects, and hybrid projects. The workflow-capability fields cover interactive
 interfaces, batch jobs, device workflows, audits, and other execution shapes.
 Provider fields are not applicable to every project; use `NOT_APPLICABLE` when
 no model is involved.
+
+The kickoff remains generic intake. Its lightweight `project_handoff` directs
+the next stages without embedding the full assignment contract:
+
+```text
+kickoff -> profile proposal -> review -> approval
+        -> assignment compilation and validation
+        -> bounded implementation authorization
+```
+
+The approved project profile owns project intent. The assignment manifest is a
+deterministic, hash-bound derivative. Run and provenance records—not either
+template—own observed provider and model identity.
 
 ## Required before implementation
 

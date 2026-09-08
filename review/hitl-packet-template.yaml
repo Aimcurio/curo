@@ -4,6 +4,7 @@ packet_id: HITL-DECISION_REQUIRED
 project_id: DECISION_REQUIRED
 review_id: DECISION_REQUIRED
 status: HITL_REQUIRED
+created_at: '2026-09-07T00:00:00Z'
 summary:
   automatic_corrections_applied: 0
   model_resolutions_applied: 0

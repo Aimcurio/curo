@@ -1,0 +1,230 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://curo.local/schemas/project-profile.schema.json",
+  "title": "Curo Project Profile",
+  "description": "Human-readable, human-governed project intent from which runtime assignments are derived.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "artifact_type", "artifact_version", "project_id", "display_name", "description",
+    "project_class", "project_status", "profile_status", "created_at", "updated_at",
+    "source_context", "actual_project_roots", "parent_system", "components", "operators",
+    "objectives", "scope", "architecture", "execution_environment", "data_classification",
+    "privacy_constraints", "storage_policy", "authority_model", "approval_boundaries",
+    "required_validators", "evidence_policy", "context_policy", "retrieval_policy",
+    "tool_policy", "model_policy", "workflow_definitions", "failure_policy",
+    "escalation_policy", "observability", "dependencies", "related_projects",
+    "open_decisions", "known_risks", "provenance"
+  ],
+  "properties": {
+    "artifact_type": {"const": "curo_project_profile"},
+    "artifact_version": {"type": "string", "minLength": 1},
+    "project_id": {"type": "string", "minLength": 1, "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "display_name": {"type": "string", "minLength": 1},
+    "description": {"type": "string", "minLength": 1},
+    "project_class": {"enum": ["FRAMEWORK", "PLATFORM", "APPLICATION", "SERVICE", "LIBRARY", "RESEARCH", "SIMULATION", "OTHER"]},
+    "project_status": {"enum": ["PLANNED", "ACTIVE", "BLOCKED", "MAINTENANCE", "SUPERSEDED", "RETIRED"]},
+    "profile_status": {"enum": ["DRAFT", "DECISION_REQUIRED", "READY_FOR_APPROVAL", "APPROVED", "ACTIVE", "BLOCKED", "SUPERSEDED", "RETIRED"]},
+    "created_at": {"type": "string", "format": "date-time"},
+    "updated_at": {"type": "string", "format": "date-time"},
+    "source_context": {"$ref": "#/$defs/sourceContext"},
+    "actual_project_roots": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "parent_system": {"anyOf": [{"$ref": "#/$defs/projectRelation"}, {"type": "null"}]},
+    "components": {"type": "array", "items": {"$ref": "#/$defs/component"}},
+    "operators": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/operator"}},
+    "objectives": {"$ref": "#/$defs/objectives"},
+    "scope": {"$ref": "#/$defs/scope"},
+    "architecture": {"$ref": "#/$defs/architecture"},
+    "execution_environment": {"$ref": "#/$defs/executionEnvironment"},
+    "data_classification": {"enum": ["PUBLIC", "INTERNAL", "CONFIDENTIAL", "RESTRICTED"]},
+    "privacy_constraints": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "storage_policy": {"$ref": "#/$defs/storagePolicy"},
+    "authority_model": {"$ref": "#/$defs/authorityModel"},
+    "approval_boundaries": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/approvalBoundary"}},
+    "required_validators": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/validator"}},
+    "evidence_policy": {"$ref": "#/$defs/evidencePolicy"},
+    "context_policy": {"$ref": "#/$defs/contextPolicy"},
+    "retrieval_policy": {"$ref": "#/$defs/retrievalPolicy"},
+    "tool_policy": {"$ref": "#/$defs/toolPolicy"},
+    "model_policy": {"$ref": "#/$defs/modelPolicy"},
+    "workflow_definitions": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/workflow"}},
+    "failure_policy": {"$ref": "#/$defs/failurePolicy"},
+    "escalation_policy": {"$ref": "#/$defs/escalationPolicy"},
+    "observability": {"$ref": "#/$defs/observability"},
+    "dependencies": {"type": "array", "items": {"$ref": "#/$defs/dependency"}},
+    "related_projects": {"type": "array", "items": {"$ref": "#/$defs/projectRelation"}},
+    "open_decisions": {"type": "array", "items": {"$ref": "#/$defs/openDecision"}},
+    "known_risks": {"type": "array", "items": {"$ref": "#/$defs/risk"}},
+    "provenance": {"$ref": "#/$defs/provenance"},
+    "extensions": {"$ref": "#/$defs/extensions"}
+  },
+  "$defs": {
+    "stringList": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "extensions": {"type": "object", "additionalProperties": {"type": ["string", "number", "integer", "boolean", "null"]}},
+    "sourceContext": {
+      "type": "object", "additionalProperties": false,
+      "required": ["kickoff_path", "source_refs", "summary"],
+      "properties": {
+        "kickoff_path": {"type": ["string", "null"]},
+        "source_refs": {"$ref": "#/$defs/stringList"},
+        "summary": {"type": "string", "minLength": 1}
+      }
+    },
+    "projectRelation": {
+      "type": "object", "additionalProperties": false,
+      "required": ["project_id", "relationship", "authority"],
+      "properties": {
+        "project_id": {"type": "string", "minLength": 1},
+        "relationship": {"type": "string", "minLength": 1},
+        "authority": {"enum": ["AUTHORITATIVE", "DEPENDENCY", "REFERENCE_ONLY", "NONE"]}
+      }
+    },
+    "component": {
+      "type": "object", "additionalProperties": false,
+      "required": ["component_id", "name", "purpose", "component_type", "authority", "roots"],
+      "properties": {
+        "component_id": {"type": "string", "minLength": 1},
+        "name": {"type": "string", "minLength": 1},
+        "purpose": {"type": "string", "minLength": 1},
+        "component_type": {"enum": ["HUMAN", "MODEL", "HARNESS", "VALIDATOR", "DATA_STORE", "UI", "SERVICE", "TOOL", "OTHER"]},
+        "authority": {"$ref": "#/$defs/stringList"},
+        "roots": {"$ref": "#/$defs/stringList"}
+      }
+    },
+    "operator": {
+      "type": "object", "additionalProperties": false,
+      "required": ["operator_id", "operator_type", "responsibilities"],
+      "properties": {
+        "operator_id": {"type": "string", "minLength": 1},
+        "operator_type": {"enum": ["HUMAN", "AUTHORIZED_CALLER", "AUTOMATION"]},
+        "responsibilities": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}}
+      }
+    },
+    "objectives": {
+      "type": "object", "additionalProperties": false,
+      "required": ["primary", "success_measures"],
+      "properties": {"primary": {"type": "string", "minLength": 1}, "success_measures": {"$ref": "#/$defs/stringList"}}
+    },
+    "scope": {
+      "type": "object", "additionalProperties": false,
+      "required": ["included", "excluded"],
+      "properties": {"included": {"$ref": "#/$defs/stringList"}, "excluded": {"$ref": "#/$defs/stringList"}}
+    },
+    "architecture": {
+      "type": "object", "additionalProperties": false,
+      "required": ["summary", "authoritative_components", "data_flows"],
+      "properties": {"summary": {"type": "string", "minLength": 1}, "authoritative_components": {"$ref": "#/$defs/stringList"}, "data_flows": {"$ref": "#/$defs/stringList"}}
+    },
+    "executionEnvironment": {
+      "type": "object", "additionalProperties": false,
+      "required": ["runtime", "platforms", "network_default", "workspace_boundary"],
+      "properties": {
+        "runtime": {"enum": ["NONE", "LOCAL", "REMOTE", "HYBRID", "UNKNOWN"]},
+        "platforms": {"$ref": "#/$defs/stringList"},
+        "network_default": {"enum": ["DENY", "ALLOWLIST", "APPROVAL_REQUIRED", "ALLOWED"]},
+        "workspace_boundary": {"type": "string", "minLength": 1}
+      }
+    },
+    "storagePolicy": {
+      "type": "object", "additionalProperties": false,
+      "required": ["allowed_locations", "prohibited_locations", "retention", "deletion_authority"],
+      "properties": {
+        "allowed_locations": {"$ref": "#/$defs/stringList"},
+        "prohibited_locations": {"$ref": "#/$defs/stringList"},
+        "retention": {"type": "string", "minLength": 1},
+        "deletion_authority": {"type": "string", "minLength": 1}
+      }
+    },
+    "authorityModel": {
+      "type": "object", "additionalProperties": false,
+      "required": ["models_may", "models_may_not", "harness_owns", "validators_own", "human_owns"],
+      "properties": {
+        "models_may": {"$ref": "#/$defs/stringList"},
+        "models_may_not": {"$ref": "#/$defs/stringList"},
+        "harness_owns": {"$ref": "#/$defs/stringList"},
+        "validators_own": {"$ref": "#/$defs/stringList"},
+        "human_owns": {"$ref": "#/$defs/stringList"}
+      }
+    },
+    "approvalBoundary": {
+      "type": "object", "additionalProperties": false,
+      "required": ["action", "required_authority", "reason"],
+      "properties": {"action": {"type": "string", "minLength": 1}, "required_authority": {"type": "string", "minLength": 1}, "reason": {"type": "string", "minLength": 1}}
+    },
+    "validator": {
+      "type": "object", "additionalProperties": false,
+      "required": ["validator_id", "purpose", "required_for"],
+      "properties": {"validator_id": {"type": "string", "minLength": 1}, "purpose": {"type": "string", "minLength": 1}, "required_for": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}}}
+    },
+    "evidencePolicy": {
+      "type": "object", "additionalProperties": false,
+      "required": ["required_artifacts", "provenance_required", "unknown_handling"],
+      "properties": {"required_artifacts": {"$ref": "#/$defs/stringList"}, "provenance_required": {"type": "boolean"}, "unknown_handling": {"const": "PRESERVE_AS_UNKNOWN"}}
+    },
+    "contextPolicy": {
+      "type": "object", "additionalProperties": false,
+      "required": ["allowed_sources", "prohibited_sources", "least_context_required"],
+      "properties": {"allowed_sources": {"$ref": "#/$defs/stringList"}, "prohibited_sources": {"$ref": "#/$defs/stringList"}, "least_context_required": {"type": "boolean"}}
+    },
+    "retrievalPolicy": {
+      "type": "object", "additionalProperties": false,
+      "required": ["method", "citation_required", "unavailable_behavior"],
+      "properties": {"method": {"enum": ["NONE", "BOUNDED", "APPROVAL_REQUIRED"]}, "citation_required": {"type": "boolean"}, "unavailable_behavior": {"enum": ["FAIL", "BLOCK", "PRESERVE_UNKNOWN"]}}
+    },
+    "toolPolicy": {
+      "type": "object", "additionalProperties": false,
+      "required": ["default", "allowed_tools", "prohibited_tools", "mutation_requires_approval"],
+      "properties": {"default": {"enum": ["DENY", "ALLOWLIST"]}, "allowed_tools": {"$ref": "#/$defs/stringList"}, "prohibited_tools": {"$ref": "#/$defs/stringList"}, "mutation_requires_approval": {"type": "boolean"}}
+    },
+    "modelPolicy": {
+      "type": "object", "additionalProperties": false,
+      "required": ["assignment_manifest_required", "self_approval_prohibited", "observed_identity_source", "fallback_must_preserve_constraints"],
+      "properties": {
+        "assignment_manifest_required": {"type": "boolean"},
+        "self_approval_prohibited": {"const": true},
+        "observed_identity_source": {"const": "run_and_provenance_records"},
+        "fallback_must_preserve_constraints": {"const": true}
+      }
+    },
+    "workflow": {
+      "type": "object", "additionalProperties": false,
+      "required": ["workflow_id", "purpose", "ordered_steps", "required_role_ids", "completion_evidence"],
+      "properties": {"workflow_id": {"type": "string", "minLength": 1}, "purpose": {"type": "string", "minLength": 1}, "ordered_steps": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}}, "required_role_ids": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}}, "completion_evidence": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}}}
+    },
+    "failurePolicy": {
+      "type": "object", "additionalProperties": false,
+      "required": ["default_result", "retry_policy", "timeout_result", "missing_evidence_result"],
+      "properties": {"default_result": {"enum": ["FAIL", "BLOCKED", "UNKNOWN"]}, "retry_policy": {"type": "string", "minLength": 1}, "timeout_result": {"enum": ["FAIL", "BLOCKED", "UNKNOWN"]}, "missing_evidence_result": {"const": "UNKNOWN"}}
+    },
+    "escalationPolicy": {
+      "type": "object", "additionalProperties": false,
+      "required": ["conditions", "destination", "required_evidence"],
+      "properties": {"conditions": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}}, "destination": {"type": "string", "minLength": 1}, "required_evidence": {"$ref": "#/$defs/stringList"}}
+    },
+    "observability": {
+      "type": "object", "additionalProperties": false,
+      "required": ["run_records_required", "provenance_records_required", "observed_identity_state_values"],
+      "properties": {"run_records_required": {"type": "boolean"}, "provenance_records_required": {"type": "boolean"}, "observed_identity_state_values": {"type": "array", "minItems": 4, "maxItems": 4, "uniqueItems": true, "items": {"enum": ["VERIFIED", "UNKNOWN", "UNAVAILABLE", "MISMATCH"]}}}
+    },
+    "dependency": {
+      "type": "object", "additionalProperties": false,
+      "required": ["dependency_id", "dependency_type", "requirement", "status"],
+      "properties": {"dependency_id": {"type": "string", "minLength": 1}, "dependency_type": {"enum": ["PROJECT", "SERVICE", "TOOL", "RUNTIME", "DATA", "OTHER"]}, "requirement": {"type": "string", "minLength": 1}, "status": {"enum": ["REQUIRED", "OPTIONAL", "UNKNOWN", "UNAVAILABLE"]}}
+    },
+    "openDecision": {
+      "type": "object", "additionalProperties": false,
+      "required": ["decision_id", "question", "status", "owner"],
+      "properties": {"decision_id": {"type": "string", "minLength": 1}, "question": {"type": "string", "minLength": 1}, "status": {"enum": ["OPEN", "DECISION_REQUIRED", "RESOLVED", "DEFERRED"]}, "owner": {"type": "string", "minLength": 1}}
+    },
+    "risk": {
+      "type": "object", "additionalProperties": false,
+      "required": ["risk_id", "description", "severity", "mitigation"],
+      "properties": {"risk_id": {"type": "string", "minLength": 1}, "description": {"type": "string", "minLength": 1}, "severity": {"enum": ["LOW", "MEDIUM", "HIGH", "CRITICAL"]}, "mitigation": {"type": "string", "minLength": 1}}
+    },
+    "provenance": {
+      "type": "object", "additionalProperties": false,
+      "required": ["created_by", "source_refs", "approval_ref"],
+      "properties": {"created_by": {"type": "string", "minLength": 1}, "source_refs": {"$ref": "#/$defs/stringList"}, "approval_ref": {"anyOf": [{"type": "null"}, {"$ref": "human-approval-record.schema.json#/$defs/approvalReference"}]}}
+    }
+  }
+}

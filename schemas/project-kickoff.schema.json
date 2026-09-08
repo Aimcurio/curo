@@ -19,6 +19,7 @@
     "acceptance_criteria",
     "failure_cases",
     "approval_boundaries",
+    "project_handoff",
     "open_decisions",
     "known_risks",
     "first_implementation_slice"
@@ -53,6 +54,19 @@
     "acceptance_criteria": { "type": "array", "items": { "type": "string", "minLength": 1 } },
     "failure_cases": { "type": "array", "minItems": 1, "items": { "type": "object", "required": ["id", "status", "user_visible_behavior", "evidence_to_capture", "retry_allowed"], "additionalProperties": false, "properties": { "id": { "type": "string" }, "status": { "type": "string" }, "user_visible_behavior": { "type": "string" }, "evidence_to_capture": { "type": "string" }, "retry_allowed": { "type": ["boolean", "string"] } } } },
     "approval_boundaries": { "$ref": "#/$defs/requiredObject" },
+    "project_handoff": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["project_profile_required", "assignment_manifest_required", "known_roles", "capability_requirements", "data_classification_constraints", "human_decisions_required"],
+      "properties": {
+        "project_profile_required": { "type": "boolean" },
+        "assignment_manifest_required": { "type": "boolean" },
+        "known_roles": { "type": "array", "items": { "type": "string", "minLength": 1 }, "uniqueItems": true },
+        "capability_requirements": { "type": "array", "items": { "type": "string", "minLength": 1 }, "uniqueItems": true },
+        "data_classification_constraints": { "type": "array", "items": { "type": "string", "minLength": 1 }, "uniqueItems": true },
+        "human_decisions_required": { "type": "array", "items": { "type": "string", "minLength": 1 }, "uniqueItems": true }
+      }
+    },
     "open_decisions": { "type": "array" },
     "known_risks": { "type": "array" },
     "first_implementation_slice": { "type": "string", "minLength": 1 }

@@ -2,14 +2,23 @@ registry_version: 6
 owner: harness
 updated_at: 2026-09-08
 artifacts:
+  - id: beginner-guide
+    path: docs/beginner-guide.md
+    source: requester_instruction:2026-09-08
+    type: guide
+    version: 1.0.0
+    owner: human_or_authorized_caller
+    status: active
+    updated_at: 2026-09-08
+    authoritative: false
   - id: operating-standard
     path: docs/operating-standard.md
     source: conversation:6a9c0aab-cc98-83e8-9a95-2fea63283d6e
     type: standard
-    version: 1.8.0
+    version: 1.8.2
     owner: human_or_authorized_caller
     status: active
-    updated_at: 2026-09-05
+    updated_at: 2026-09-08
     authoritative: true
   - id: addendum-a
     path: docs/addendum-a.md
@@ -20,6 +29,15 @@ artifacts:
     status: active
     updated_at: 2026-09-05
     authoritative: true
+  - id: addendum-b-protocol-integrity
+    path: docs/addendum-b-protocol-integrity.md
+    source: architecture_audit:2026-09-07
+    type: addendum
+    version: 1.0.0
+    owner: harness
+    status: active
+    updated_at: 2026-09-07
+    authoritative: true
   - id: gaps-and-roadmap
     path: docs/gaps-and-roadmap.md
     source: project_review
@@ -27,7 +45,7 @@ artifacts:
     version: 1.0.0
     owner: harness
     status: active
-    updated_at: 2026-09-05
+    updated_at: 2026-09-07
     authoritative: true
   - id: core-identity
     path: core-policies/core-identity.md
@@ -90,7 +108,7 @@ artifacts:
     version: 1.0.0
     owner: harness
     status: active
-    updated_at: 2026-09-05
+    updated_at: 2026-09-07
     authoritative: true
   - id: precedence-policy
     path: core-policies/precedence.md
@@ -99,7 +117,7 @@ artifacts:
     version: 1.0.0
     owner: harness
     status: active
-    updated_at: 2026-09-05
+    updated_at: 2026-09-07
     authoritative: true
   - id: validation-policy
     path: core-policies/validation.md
@@ -108,7 +126,7 @@ artifacts:
     version: 1.0.0
     owner: harness
     status: active
-    updated_at: 2026-09-05
+    updated_at: 2026-09-07
     authoritative: true
   - id: project-kickoff-schema
     path: schemas/project-kickoff.schema.json
@@ -117,7 +135,7 @@ artifacts:
     version: 1.0.0
     owner: harness
     status: active
-    updated_at: 2026-09-05
+    updated_at: 2026-09-07
     authoritative: true
   - id: provenance-record-schema
     path: schemas/provenance-record.schema.json
@@ -126,16 +144,25 @@ artifacts:
     version: 1.0.0
     owner: harness
     status: active
-    updated_at: 2026-09-05
+    updated_at: 2026-09-07
     authoritative: true
-  - id: replay-manifest-schema
-    path: schemas/replay-manifest.schema.json
-    source: docs/operating-standard.md
+  - id: execution-replay-manifest-schema
+    path: schemas/execution-replay-manifest.schema.json
+    source: harness/harness-contract.md
     type: schema
     version: 1.0.0
     owner: harness
     status: active
-    updated_at: 2026-09-05
+    updated_at: 2026-09-07
+    authoritative: true
+  - id: artifact-verification-manifest-schema
+    path: schemas/artifact-verification-manifest.schema.json
+    source: harness/harness-contract.md
+    type: schema
+    version: 1.0.0
+    owner: harness
+    status: active
+    updated_at: 2026-09-07
     authoritative: true
   - id: anti-patterns
     path: anti-patterns/anti-patterns.md
@@ -144,7 +171,7 @@ artifacts:
     version: 1.0.0
     owner: harness
     status: active
-    updated_at: 2026-09-05
+    updated_at: 2026-09-07
     authoritative: true
   - id: adapter-contract
     path: adapters/adapter-contract.md
@@ -162,7 +189,7 @@ artifacts:
     version: 1.0.0
     owner: harness
     status: active
-    updated_at: 2026-09-05
+    updated_at: 2026-09-07
     authoritative: true
   - id: provenance-sample
     path: provenance/sample-provenance-record.yaml
@@ -171,7 +198,7 @@ artifacts:
     version: 1.0.0
     owner: harness
     status: active
-    updated_at: 2026-09-05
+    updated_at: 2026-09-07
     authoritative: false
   - id: observability-run-record-sample
     path: observability/sample-run-record.yaml
@@ -180,7 +207,7 @@ artifacts:
     version: 1.0.0
     owner: harness
     status: active
-    updated_at: 2026-09-05
+    updated_at: 2026-09-07
     authoritative: false
   - id: observability-run-event-sample
     path: observability/sample-run-event.json
@@ -191,14 +218,23 @@ artifacts:
     status: active
     updated_at: 2026-09-05
     authoritative: false
-  - id: replay-manifest-template
-    path: replay/replay-manifest-template.yaml
-    source: schemas/replay-manifest.schema.json
+  - id: execution-replay-manifest-template
+    path: replay/execution-replay-manifest-template.yaml
+    source: schemas/execution-replay-manifest.schema.json
     type: template
     version: 1.0.0
     owner: harness
     status: active
-    updated_at: 2026-09-05
+    updated_at: 2026-09-07
+    authoritative: true
+  - id: artifact-verification-manifest-template
+    path: replay/artifact-verification-manifest-template.yaml
+    source: schemas/artifact-verification-manifest.schema.json
+    type: template
+    version: 1.0.0
+    owner: harness
+    status: active
+    updated_at: 2026-09-07
     authoritative: true
   - id: project-kickoff-template-human
     path: templates/project-kickoff.md
@@ -207,7 +243,7 @@ artifacts:
     version: 1.2.0
     owner: human_or_authorized_caller
     status: active
-    updated_at: 2026-09-05
+    updated_at: 2026-09-07
     authoritative: true
   - id: project-kickoff-template-machine
     path: templates/project-kickoff.yaml
@@ -216,7 +252,7 @@ artifacts:
     version: 1.2.0
     owner: harness
     status: active
-    updated_at: 2026-09-05
+    updated_at: 2026-09-07
     authoritative: true
   - id: curo-validation-script
     path: scripts/validate_curo.py
@@ -225,7 +261,7 @@ artifacts:
     version: 1.0.0
     owner: harness
     status: active
-    updated_at: 2026-09-05
+    updated_at: 2026-09-07
     authoritative: true
   - id: observability-contract
     path: observability/observability-contract.md
@@ -234,7 +270,7 @@ artifacts:
     version: 1.0.0
     owner: harness
     status: active
-    updated_at: 2026-09-05
+    updated_at: 2026-09-07
     authoritative: true
   - id: observability-run-record-template
     path: observability/run-record-template.md
@@ -243,7 +279,7 @@ artifacts:
     version: 1.0.0
     owner: harness
     status: active
-    updated_at: 2026-09-05
+    updated_at: 2026-09-07
     authoritative: true
   - id: observability-run-index-template
     path: observability/run-index-template.md
@@ -261,7 +297,7 @@ artifacts:
     version: 1.0.0
     owner: harness
     status: active
-    updated_at: 2026-09-05
+    updated_at: 2026-09-07
     authoritative: true
   - id: observability-run-event-schema
     path: observability/run-event.schema.json
@@ -297,7 +333,7 @@ artifacts:
     version: 1.0.0
     owner: harness
     status: active
-    updated_at: 2026-09-05
+    updated_at: 2026-09-07
     authoritative: true
   - id: review-findings-schema
     path: schemas/review-findings.schema.json
@@ -315,7 +351,7 @@ artifacts:
     version: 1.0.0
     owner: harness
     status: active
-    updated_at: 2026-09-05
+    updated_at: 2026-09-07
     authoritative: true
   - id: learning-distillation-protocol
     path: learning/learning-distillation-protocol.md
@@ -324,7 +360,7 @@ artifacts:
     version: 1.0.0
     owner: harness
     status: active
-    updated_at: 2026-09-05
+    updated_at: 2026-09-07
     authoritative: true
   - id: learning-candidate-template
     path: learning/learning-candidate-template.yaml
@@ -333,7 +369,7 @@ artifacts:
     version: 1.0.0
     owner: harness
     status: active
-    updated_at: 2026-09-05
+    updated_at: 2026-09-07
     authoritative: true
   - id: promotion-record-template
     path: learning/promotion-record-template.yaml
@@ -351,7 +387,7 @@ artifacts:
     version: 1.0.0
     owner: harness
     status: active
-    updated_at: 2026-09-05
+    updated_at: 2026-09-07
     authoritative: true
   - id: promotion-record-schema
     path: schemas/promotion-record.schema.json
@@ -361,4 +397,274 @@ artifacts:
     owner: harness
     status: active
     updated_at: 2026-09-05
+    authoritative: true
+  - id: project-profile-schema
+    path: schemas/project-profile.schema.json
+    source: docs/operating-standard.md
+    type: schema
+    version: 1.0.0
+    owner: harness
+    status: active
+    updated_at: 2026-09-07
+    authoritative: true
+  - id: llm-assignments-schema
+    path: schemas/llm-assignments.schema.json
+    source: schemas/project-profile.schema.json
+    type: schema
+    version: 1.0.0
+    owner: harness
+    status: active
+    updated_at: 2026-09-07
+    authoritative: true
+  - id: project-relocation-record-schema
+    path: schemas/project-relocation-record.schema.json
+    source: projects/README.md
+    type: schema
+    version: 1.0.0
+    owner: harness
+    status: active
+    updated_at: 2026-09-07
+    authoritative: true
+  - id: human-approval-record-schema
+    path: schemas/human-approval-record.schema.json
+    source: core-policies/ownership.md
+    type: schema
+    version: 1.0.0
+    owner: harness
+    status: active
+    updated_at: 2026-09-07
+    authoritative: true
+  - id: project-profile-template
+    path: templates/project-profile.yaml
+    source: schemas/project-profile.schema.json
+    type: template
+    version: 1.0.0
+    owner: human_or_authorized_caller
+    status: active
+    updated_at: 2026-09-07
+    authoritative: true
+  - id: llm-assignments-template
+    path: templates/llm-assignments.json
+    source: schemas/llm-assignments.schema.json
+    type: template
+    version: 1.0.0
+    owner: harness
+    status: active
+    updated_at: 2026-09-07
+    authoritative: true
+  - id: projects-index
+    path: projects/README.md
+    source: docs/operating-standard.md
+    type: index
+    version: 1.0.0
+    owner: harness
+    status: active
+    updated_at: 2026-09-07
+    authoritative: true
+  - id: kayo-project-profile
+    path: projects/kayo/project.yaml
+    source: PROJECT-PROFILE-FINDINGS.md
+    type: project_profile
+    version: 1.0.0
+    owner: human_or_authorized_caller
+    status: decision_required
+    updated_at: 2026-09-07
+    authoritative: false
+  - id: kayo-llm-assignments
+    path: projects/kayo/llm-assignments.json
+    source: projects/kayo/project.yaml
+    type: assignment_manifest
+    version: 1.0.0
+    owner: harness
+    status: decision_required
+    updated_at: 2026-09-07
+    authoritative: false
+  - id: spacetime-project-profile
+    path: projects/spacetime/project.yaml
+    source: PROJECT-PROFILE-FINDINGS.md
+    type: project_profile
+    version: 1.0.0
+    owner: human_or_authorized_caller
+    status: decision_required
+    updated_at: 2026-09-07
+    authoritative: false
+  - id: spacetime-llm-assignments
+    path: projects/spacetime/llm-assignments.json
+    source: projects/spacetime/project.yaml
+    type: assignment_manifest
+    version: 1.0.0
+    owner: harness
+    status: decision_required
+    updated_at: 2026-09-07
+    authoritative: false
+  - id: math-node-project-profile
+    path: projects/math-node/project.yaml
+    source: PROJECT-PROFILE-FINDINGS.md
+    type: project_profile
+    version: 1.0.0
+    owner: human_or_authorized_caller
+    status: decision_required
+    updated_at: 2026-09-07
+    authoritative: false
+  - id: math-node-llm-assignments
+    path: projects/math-node/llm-assignments.json
+    source: projects/math-node/project.yaml
+    type: assignment_manifest
+    version: 1.0.0
+    owner: harness
+    status: decision_required
+    updated_at: 2026-09-07
+    authoritative: false
+  - id: spacetime-relocation-record
+    path: projects/spacetime/evidence/spacetime-relocation-record.json
+    source: manifests/spacetime-sim-learning-record.json
+    type: relocation_record
+    version: 1.0.0
+    owner: harness
+    status: active
+    updated_at: 2026-09-07
+    authoritative: true
+  - id: spacetime-historical-learning-record-copy
+    path: projects/spacetime/evidence/spacetime-sim-learning-record.json
+    source: manifests/spacetime-sim-learning-record.json
+    type: historical_evidence
+    version: 1.0.0
+    owner: harness
+    status: archived
+    updated_at: 2026-09-07
+    authoritative: false
+  - id: math-node-relocation-record
+    path: projects/math-node/evidence/math-node-relocation-record.json
+    source: manifests/math-node-v0.1-replay.json
+    type: relocation_record
+    version: 1.0.0
+    owner: harness
+    status: active
+    updated_at: 2026-09-07
+    authoritative: true
+  - id: math-node-artifact-verification-manifest
+    path: projects/math-node/evidence/math-node-v0.1-artifact-verification.json
+    source: projects/math-node/evidence/math-node-v0.1-replay.json
+    type: artifact_verification_manifest
+    version: 1.0.0
+    owner: harness
+    status: active
+    updated_at: 2026-09-07
+    authoritative: true
+  - id: math-node-historical-replay-copy
+    path: projects/math-node/evidence/math-node-v0.1-replay.json
+    source: manifests/math-node-v0.1-replay.json
+    type: historical_evidence
+    version: 1.0.0
+    owner: harness
+    status: archived
+    updated_at: 2026-09-07
+    authoritative: false
+  - id: pdf-restoration-skill-candidate
+    path: learning/candidates/LEARN-20260907-PDF-RESTORATION-SKILL.yaml
+    source: learning/candidates/LEARN-20260907-PDF-RESTORATION.yaml
+    type: learning_candidate
+    version: 1.1.0
+    owner: curo-learning-governance
+    status: proposed
+    updated_at: 2026-09-07
+    authoritative: false
+  - id: pdf-restoration-anti-pattern-candidate
+    path: learning/candidates/LEARN-20260907-PDF-RESTORATION-ANTI-PATTERN.yaml
+    source: learning/candidates/LEARN-20260907-PDF-RESTORATION.yaml
+    type: learning_candidate
+    version: 1.1.0
+    owner: curo-learning-governance
+    status: proposed
+    updated_at: 2026-09-07
+    authoritative: false
+  - id: current-architecture
+    path: ARCHITECTURE.md
+    source: docs/audits/2026-09-07-pre-remediation-architecture.md
+    type: architecture
+    version: 1.0.0
+    owner: harness
+    status: active
+    updated_at: 2026-09-07
+    authoritative: true
+  - id: pre-remediation-architecture-audit
+    path: docs/audits/2026-09-07-pre-remediation-architecture.md
+    source: architecture_audit:2026-09-07
+    type: historical_audit
+    version: 1.0.0
+    owner: harness
+    status: archived
+    updated_at: 2026-09-07
+    authoritative: false
+  - id: pre-remediation-architecture-hash
+    path: docs/audits/2026-09-07-pre-remediation-architecture.sha256
+    source: docs/audits/2026-09-07-pre-remediation-architecture.md
+    type: preservation_digest
+    version: 1.0.0
+    owner: harness
+    status: active
+    updated_at: 2026-09-07
+    authoritative: true
+  - id: agent-evidence-index
+    path: .agents/README.md
+    source: ARCHITECTURE.md
+    type: historical_evidence_index
+    version: 1.0.0
+    owner: harness
+    status: active
+    updated_at: 2026-09-07
+    authoritative: false
+  - id: project-profile-migration-report
+    path: PROJECT-PROFILE-MIGRATION-REPORT.md
+    source: PROJECT-PROFILE-FINDINGS.md
+    type: migration_report
+    version: 1.0.0
+    owner: harness
+    status: active
+    updated_at: 2026-09-07
+    authoritative: false
+  - id: project-profile-findings
+    path: PROJECT-PROFILE-FINDINGS.md
+    source: project_evidence_review:2026-09-07
+    type: findings_report
+    version: 1.0.0
+    owner: harness
+    status: active
+    updated_at: 2026-09-07
+    authoritative: false
+  - id: project-profile-change-map
+    path: PROJECT-PROFILE-CHANGE-MAP.md
+    source: PROJECT-PROFILE-FINDINGS.md
+    type: change_map
+    version: 1.0.0
+    owner: harness
+    status: active
+    updated_at: 2026-09-07
+    authoritative: false
+  - id: project-profile-unresolved-decisions
+    path: PROJECT-PROFILE-UNRESOLVED-DECISIONS.md
+    source: PROJECT-PROFILE-MIGRATION-REPORT.md
+    type: decision_register
+    version: 1.0.0
+    owner: human_or_authorized_caller
+    status: decision_required
+    updated_at: 2026-09-07
+    authoritative: true
+  - id: project-profile-independent-review
+    path: PROJECT-PROFILE-REVIEW.md
+    source: PROJECT-PROFILE-CHANGE-MAP.md
+    type: review_report
+    version: 1.0.0
+    owner: reviewer
+    status: active
+    updated_at: 2026-09-07
+    authoritative: false
+  - id: project-profile-regression-evidence
+    path: PROJECT-PROFILE-REGRESSION-EVIDENCE.md
+    source: PROJECT-PROFILE-CHANGE-MAP.md
+    type: regression_evidence
+    version: 1.0.0
+    owner: harness
+    status: active
+    updated_at: 2026-09-07
     authoritative: true

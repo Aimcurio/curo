@@ -1,0 +1,102 @@
+{
+  "artifact_type": "curo_llm_assignments",
+  "artifact_version": "1.0.0",
+  "project_id": "required-project-id",
+  "source_project_profile": "projects/required-project-id/project.yaml",
+  "source_profile_hash": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+  "assignment_policy_version": "1.0.0",
+  "reference_time": "2026-09-07T00:00:00Z",
+  "generated_at": "2026-09-07T00:00:00Z",
+  "generated_by": {
+    "generator_type": "MANUAL_DRAFT",
+    "generator_id": "curo-assignment-template",
+    "deterministic": false
+  },
+  "approval_status": "DECISION_REQUIRED",
+  "approval_ref": null,
+  "assignments": [
+    {
+      "assignment_id": "required-role-assignment",
+      "role_id": "required-role",
+      "role_name": "REQUIRED",
+      "role_type": "MODEL",
+      "purpose": "Replace this placeholder with one bounded project role.",
+      "assignment_status": "UNRESOLVED",
+      "authority_scope": {
+        "may_read": true,
+        "may_write": false,
+        "may_execute": false,
+        "may_validate": false,
+        "may_approve": false
+      },
+      "required_capabilities": [
+        "REQUIRED"
+      ],
+      "prohibited_capabilities": [
+        "self-approval",
+        "observed-identity-assertion"
+      ],
+      "preferred_provider": "UNKNOWN",
+      "preferred_model": "UNKNOWN",
+      "resolved_identity_state": "UNRESOLVED",
+      "resolved_provider": null,
+      "resolved_model": null,
+      "acceptable_fallbacks": [],
+      "fallback_policy": {
+        "mode": "DISABLED",
+        "requires_capability_match": true,
+        "may_weaken_data_controls": false,
+        "may_expand_authority": false,
+        "approval_required": true
+      },
+      "required_tools": [],
+      "optional_tools": [],
+      "allowed_context_sources": [],
+      "prohibited_context_sources": [],
+      "allowed_project_roots": [
+        "REQUIRED_PROJECT_ROOT"
+      ],
+      "allowed_write_roots": [],
+      "network_policy": {
+        "mode": "APPROVAL_REQUIRED",
+        "allowed_destinations": []
+      },
+      "data_classification_limit": "INTERNAL",
+      "credential_requirements": [],
+      "required_validators": [
+        "project-profile-schema",
+        "llm-assignments-schema"
+      ],
+      "completion_evidence": [
+        "validated output artifact",
+        "run and provenance records"
+      ],
+      "review_requirements": {
+        "reviewer_role_ids": [
+          "human-approver"
+        ],
+        "human_approval_required": true,
+        "self_approval_prohibited": true
+      },
+      "escalation_conditions": [
+        "Provider or model remains unresolved.",
+        "Requested capability or authority exceeds this assignment."
+      ]
+    }
+  ],
+  "unresolved_assignments": [
+    {
+      "role_id": "required-role",
+      "reason": "The generic template cannot select an exact provider or model.",
+      "required_decision": "Select and approve a capability-compatible provider and model.",
+      "owner": "human-requester"
+    }
+  ],
+  "provenance": {
+    "source_profile_hash_algorithm": "SHA-256",
+    "compiler_input_refs": [
+      "templates/project-profile.yaml"
+    ],
+    "approval_actor": null
+  }
+}

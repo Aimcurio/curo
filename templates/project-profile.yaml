@@ -1,0 +1,147 @@
+artifact_type: curo_project_profile
+artifact_version: 1.0.0
+project_id: required-project-id
+display_name: REQUIRED
+description: REQUIRED
+project_class: OTHER
+project_status: PLANNED
+profile_status: DECISION_REQUIRED
+created_at: '2026-09-07T00:00:00Z'
+updated_at: '2026-09-07T00:00:00Z'
+
+source_context:
+  kickoff_path: templates/project-kickoff.yaml
+  source_refs: []
+  summary: Replace placeholders with reviewed project-specific evidence.
+
+actual_project_roots:
+  - REQUIRED_PROJECT_ROOT
+parent_system: null
+components: []
+operators:
+  - operator_id: human-requester
+    operator_type: HUMAN
+    responsibilities:
+      - Authorize consequential decisions and approve the project profile.
+
+objectives:
+  primary: REQUIRED
+  success_measures: []
+scope:
+  included: []
+  excluded: []
+architecture:
+  summary: REQUIRED
+  authoritative_components: []
+  data_flows: []
+
+execution_environment:
+  runtime: UNKNOWN
+  platforms: []
+  network_default: APPROVAL_REQUIRED
+  workspace_boundary: REQUIRED_PROJECT_ROOT
+data_classification: INTERNAL
+privacy_constraints: []
+storage_policy:
+  allowed_locations: []
+  prohibited_locations: []
+  retention: DECISION_REQUIRED
+  deletion_authority: human-requester
+
+authority_model:
+  models_may:
+    - Propose bounded work and assignment candidates.
+  models_may_not:
+    - Approve their own assignments or claim unobserved execution identity.
+  harness_owns:
+    - Runtime resolution, enforcement, and persistence.
+  validators_own:
+    - Validation results.
+  human_owns:
+    - Project intent, approval, and consequential decisions.
+approval_boundaries:
+  - action: Approve this project profile and its derived assignment manifest.
+    required_authority: human-requester
+    reason: Models may propose but may not approve their own authority.
+required_validators:
+  - validator_id: project-profile-schema
+    purpose: Validate this profile against its canonical schema.
+    required_for:
+      - profile approval
+      - assignment compilation
+
+evidence_policy:
+  required_artifacts:
+    - schema validation result
+    - source profile hash
+  provenance_required: true
+  unknown_handling: PRESERVE_AS_UNKNOWN
+context_policy:
+  allowed_sources: []
+  prohibited_sources: []
+  least_context_required: true
+retrieval_policy:
+  method: BOUNDED
+  citation_required: true
+  unavailable_behavior: PRESERVE_UNKNOWN
+tool_policy:
+  default: ALLOWLIST
+  allowed_tools: []
+  prohibited_tools: []
+  mutation_requires_approval: true
+model_policy:
+  assignment_manifest_required: true
+  self_approval_prohibited: true
+  observed_identity_source: run_and_provenance_records
+  fallback_must_preserve_constraints: true
+
+workflow_definitions:
+  - workflow_id: default-project-workflow
+    purpose: Convert approved intent into bounded, validated work.
+    ordered_steps:
+      - approve project profile
+      - compile and validate assignments
+      - authorize bounded execution
+      - validate outputs and record observed evidence
+    required_role_ids:
+      - human-approver
+    completion_evidence:
+      - validated output artifact
+      - run and provenance records
+failure_policy:
+  default_result: FAIL
+  retry_policy: Retry only when the failure is classified as safe and retryable.
+  timeout_result: UNKNOWN
+  missing_evidence_result: UNKNOWN
+escalation_policy:
+  conditions:
+    - Required project decision remains unresolved.
+    - Requested authority exceeds the approved boundary.
+  destination: human-requester
+  required_evidence: []
+observability:
+  run_records_required: true
+  provenance_records_required: true
+  observed_identity_state_values:
+    - VERIFIED
+    - UNKNOWN
+    - UNAVAILABLE
+    - MISMATCH
+
+dependencies: []
+related_projects: []
+open_decisions:
+  - decision_id: complete-project-profile
+    question: Which project-specific values replace the remaining REQUIRED and UNKNOWN placeholders?
+    status: DECISION_REQUIRED
+    owner: human-requester
+known_risks:
+  - risk_id: generic-profile-use
+    description: A generic template could be mistaken for approved project intent.
+    severity: HIGH
+    mitigation: Keep profile_status DECISION_REQUIRED until project-specific review and approval.
+provenance:
+  created_by: curo-template
+  source_refs:
+    - templates/project-kickoff.yaml
+  approval_ref: null

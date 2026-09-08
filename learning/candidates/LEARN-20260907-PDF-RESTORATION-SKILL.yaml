@@ -1,0 +1,35 @@
+artifact_type: curo_learning_candidate
+artifact_version: 1.1.0
+candidate_id: LEARN-20260907-PDF-RESTORATION-SKILL
+project_id: curo
+owner: curo-learning-governance
+status: PROPOSED
+candidate_type: skill
+source_run_ids:
+  - 5dc964f9-e037-4866-a346-19a1dcb2457d
+source_event_ids:
+  - evt-pdf-conversion-request
+  - evt-deformity-removal-correction
+source_finding_ids:
+  - fnd-pdftoppm-host-missing
+  - fnd-bleedthrough-crease-deformity
+  - fnd-edge-header-clipping-risk
+  - fnd-hardcoded-resolution-trap
+evidence_refs:
+  - learning/candidates/LEARN-20260907-PDF-RESTORATION.yaml
+  - sha256:4e0751651e1e5c887183789fd50a907fe516c7419547a9e1271fe96c4bed1b17
+  - file:///E:/Pipeline/20260809_140145.PDF
+  - file:///E:/Pipeline/20260809_140119.PDF
+  - file:///E:/Pipeline/digital_native_test.pdf
+failure_signature:
+  signature_id: SIG-PDF-RESTORATION-SKILL-GAP
+  observed_pattern: Windows PDF restoration needs a self-contained render path, resolution-aware image processing, clean-PDF detection, and safe edge preservation.
+  recurrence: 2
+proposed_change:
+  target: skills/pdf.md and scripts/enhance_scanned_pdf.py
+  description: Propose the evidence-backed PDF restoration workflow as a skill, separately from the related anti-pattern guidance.
+required_validation:
+  - python E:/curo/scripts/validate_curo.py
+  - uv run E:/curo/scripts/enhance_scanned_pdf.py --test
+requires_hitl: true
+promotion_ref: null

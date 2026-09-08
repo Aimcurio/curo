@@ -1,0 +1,139 @@
+artifact_type: curo_project_profile
+artifact_version: 1.0.0
+project_id: math-node
+display_name: Math Node
+description: Curo governance profile for the Math Node deterministic mathematics project and its preserved verification evidence.
+project_class: LIBRARY
+project_status: MAINTENANCE
+profile_status: DECISION_REQUIRED
+created_at: '2026-09-07T00:00:00Z'
+updated_at: '2026-09-07T00:00:00Z'
+source_context:
+  kickoff_path: null
+  source_refs:
+    - manifests/math-node-v0.1-replay.json
+    - projects/math-node/evidence/math-node-v0.1-replay.json
+  summary: Historical digests and checks are preserved; current root and runtime assignments remain unresolved.
+actual_project_roots: [UNKNOWN]
+parent_system: null
+components:
+  - component_id: math-kernel
+    name: Math Kernel
+    purpose: Provide deterministic parsing, evaluation, and transformation under explicit semantic contracts.
+    component_type: TOOL
+    authority: [produce deterministic mathematical outputs]
+    roots: [UNKNOWN]
+  - component_id: math-validator
+    name: Math Validator
+    purpose: Establish contract, boundary, property, and artifact verification results.
+    component_type: VALIDATOR
+    authority: [ESTABLISH EVIDENCE]
+    roots: [UNKNOWN]
+operators:
+  - operator_id: human-requester
+    operator_type: HUMAN
+    responsibilities: [Approve the current root, assignments, semantic changes, and release decisions.]
+objectives:
+  primary: Govern Math Node changes through explicit contracts, deterministic execution, and preserved verification evidence.
+  success_measures: [Semantic contracts remain authoritative, deterministic checks establish results, historical evidence remains unchanged.]
+scope:
+  included: [Math Node project governance, contract-bound implementation, artifact and behavior verification]
+  excluded: [Treating a non-executable manifest as replay, rewriting historical evidence, inferred provider or model identity]
+architecture:
+  summary: Contracts bound a deterministic math kernel; validators establish evidence; Curo records execution and provenance.
+  authoritative_components: [semantic contracts for meaning, deterministic kernel for computation, validators for results, human for authorization]
+  data_flows: [approved contracts -> bounded implementation, artifacts and tests -> validator -> run and provenance records]
+execution_environment:
+  runtime: UNKNOWN
+  platforms: [UNKNOWN]
+  network_default: DENY
+  workspace_boundary: UNKNOWN
+data_classification: INTERNAL
+privacy_constraints: [Keep unpublished project artifacts within approved roots and never store credentials.]
+storage_policy:
+  allowed_locations: [approved Math Node root when identified, projects/math-node/evidence]
+  prohibited_locations: [plaintext credential files, unapproved external stores]
+  retention: Preserve contracts, manifests, hashes, and validation evidence until human-approved retirement.
+  deletion_authority: human-requester
+authority_model:
+  models_may: [Propose or implement bounded changes after authorization.]
+  models_may_not: [Approve their own assignments, alter semantic authority, rewrite historical evidence, claim unobserved identity.]
+  harness_owns: [Bounded execution, process facts, persistence, and provenance.]
+  validators_own: [Schema, boundary, property, and artifact verification results.]
+  human_owns: [Project root, semantic decisions, assignments, consequential changes, and release.]
+approval_boundaries:
+  - action: Change mathematical semantics, approve assignments, or release artifacts.
+    required_authority: human-requester
+    reason: These actions alter authoritative behavior or delegated authority.
+required_validators:
+  - validator_id: project-profile-schema
+    purpose: Validate project intent.
+    required_for: [profile approval, assignment compilation]
+  - validator_id: math-contract-validator
+    purpose: Establish semantic, boundary, property, and artifact results.
+    required_for: [completion, release]
+evidence_policy:
+  required_artifacts: [profile and assignment validation, current deterministic test results, artifact verification manifest, run and provenance records]
+  provenance_required: true
+  unknown_handling: PRESERVE_AS_UNKNOWN
+context_policy:
+  allowed_sources: [approved Math Node contracts and source root, current Curo project records, preserved historical evidence]
+  prohibited_sources: [credentials, unrelated project data]
+  least_context_required: true
+retrieval_policy:
+  method: BOUNDED
+  citation_required: true
+  unavailable_behavior: PRESERVE_UNKNOWN
+tool_policy:
+  default: ALLOWLIST
+  allowed_tools: [deterministic local math runtime, structured test execution, schema and artifact validators]
+  prohibited_tools: [network access by default, unbounded shell strings, automatic release]
+  mutation_requires_approval: true
+model_policy:
+  assignment_manifest_required: true
+  self_approval_prohibited: true
+  observed_identity_source: run_and_provenance_records
+  fallback_must_preserve_constraints: true
+workflow_definitions:
+  - workflow_id: math-node-change
+    purpose: Implement and verify a contract-bound Math Node change.
+    ordered_steps: [review contracts, approve bounded change, implement, run deterministic checks, verify artifacts, record evidence]
+    required_role_ids: [builder, critic-reviewer, deterministic-validator, human-approver]
+    completion_evidence: [contract validation, boundary and property results, artifact verification, run and provenance records]
+failure_policy:
+  default_result: FAIL
+  retry_policy: Retry only after the deterministic failure is classified and the retry stays within approved semantics.
+  timeout_result: UNKNOWN
+  missing_evidence_result: UNKNOWN
+escalation_policy:
+  conditions: [Current project root is unresolved, semantic authority is ambiguous, validation is failed or unavailable.]
+  destination: human-requester
+  required_evidence: [contract reference, failure or absence evidence, current profile hash]
+observability:
+  run_records_required: true
+  provenance_records_required: true
+  observed_identity_state_values: [VERIFIED, UNKNOWN, UNAVAILABLE, MISMATCH]
+dependencies:
+  - dependency_id: math-node-source
+    dependency_type: PROJECT
+    requirement: Current source root and contracts must be identified before bounded implementation.
+    status: UNKNOWN
+related_projects: []
+open_decisions:
+  - decision_id: math-node-root
+    question: What is the approved current Math Node source root?
+    status: DECISION_REQUIRED
+    owner: human-requester
+  - decision_id: math-node-models
+    question: Which providers and models, if any, are approved for model-assisted roles?
+    status: DECISION_REQUIRED
+    owner: human-requester
+known_risks:
+  - risk_id: verification-replay-confusion
+    description: A digest-only artifact could be presented as executable replay evidence.
+    severity: HIGH
+    mitigation: Use artifact_verification_manifest and do not add an executable command.
+provenance:
+  created_by: curo-project-profile-migration
+  source_refs: [manifests/math-node-v0.1-replay.json, PROJECT-PROFILE-FINDINGS.md]
+  approval_ref: null

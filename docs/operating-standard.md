@@ -1,7 +1,7 @@
 # Model-Agnostic AI Systems Operating Standard
 
-Document version: 1.8.0
-Updated: 2026-09-05  
+Document version: 1.8.2
+Updated: 2026-09-07
 Status: Canonical
 
 ## Purpose
@@ -15,10 +15,11 @@ The core idea is simple:
 ## Maturity and extension boundary
 
 Curo is a foundation, not a completed universal runtime. This standard defines
-portable meaning, ownership, contracts, and promotion rules. A project may add
-an executable runtime, scripts, tools, MCP servers, hooks, adapters, and domain
-validators, but those extensions remain project-specific until they are proven
-reusable and promoted into the Curo foundation.
+portable meaning, ownership, contracts, and promotion rules. Curo includes a
+bounded local harness and project-contract CLI; each project may add its own
+executor, scripts, tools, MCP servers, hooks, adapters, and domain validators.
+Those extensions remain project-specific until they are proven reusable and
+promoted into the Curo foundation.
 
 The standard must not claim that an enforcement capability exists merely because
 its policy is documented. A capability is operational only when its implementing
@@ -42,16 +43,16 @@ This standard applies to:
 - adapter boundaries
 - anti-pattern management
 - project kickoff and extension planning
+- project-specific profiles and deterministic role assignments
 
 The following are governed extension areas rather than implemented capabilities
 of this package by default:
 
-- executable runtime
-- command-line scripts
-- tool catalog
+- project-specific executors and domain command-line scripts
+- project tool catalogs
 - MCP integrations
 - lifecycle hooks
-- evaluation runners
+- domain evaluation runners
 - review and promotion automation
 
 It is intended to work across ChatGPT, ChatGPT Desktop, Gemini, DeepSeek, Claude, Google Antigravity, local models, hosted APIs, and future providers.
@@ -195,6 +196,51 @@ required evidence remains unresolved.
 | Learning validation and promotion | Harness, evaluation pipeline, and human approver where required |
 | Capability measurements | Evaluation pipeline |
 | Pending decisions | Human / authorized caller |
+| Project intent and profile approval | Human / authorized caller |
+| Assignment compilation and linkage validation | Harness |
+| Assignment approval | Human / authorized caller; never the assigned model |
+| Observed provider/model identity | Harness or adapter that observed execution |
+
+## Project definition and assignment flow
+
+The generic kickoff is intake. It collects enough information to propose a
+project-specific profile without embedding the complete assignment contract.
+The governed flow is:
+
+```text
+kickoff completed
+    -> project profile proposed
+    -> project profile reviewed
+    -> project profile approved
+    -> LLM/agent assignments compiled and validated
+    -> bounded implementation authorized
+```
+
+Within `projects/<project-id>/`, `project.yaml` is human-readable project
+intent. `llm-assignments.json` is its validated, deterministic runtime
+derivative and must carry the canonical source-profile hash. A material profile
+change invalidates prior assignment approval. The two files must not become
+independent competing sources of truth.
+
+Assignment preference is desired identity; runtime selection is resolved
+identity. Neither proves execution. Only run and provenance evidence written by
+the observing component establishes actual provider/model identity. Missing
+identity evidence remains `UNKNOWN`. Models may propose assignments but may not
+approve their own assignments, and fallbacks may not weaken capability,
+privacy, validation, or authority requirements.
+
+Observed identity comparison accepts only a canonical, schema-valid trusted run
+record whose required `observed_identity` object carries state, provider,
+model, evidence source, and evidence hash. The evidence must be contained in
+the repository, match that hash, appear in the run's evidence locators, and be
+corroborated by matching harness-owned provenance for the run. An arbitrary
+caller-provided mapping cannot become observed truth.
+
+An `APPROVED` or `ACTIVE` profile, and an `APPROVED` assignment set, must point
+to a repository-contained human approval record whose SHA-256, project ID, and
+canonical profile hash match. Assignment approval also binds the exact
+assignment IDs and a declared HUMAN role. The harness validates this evidence;
+the authorized input channel remains responsible for authenticating the human.
 
 ## Decision tree
 
@@ -214,6 +260,12 @@ Use this distinction:
 3. Validate ownership.
 4. Validate replayability.
 5. Validate only then promote.
+
+## Executable protocol-integrity gate
+
+The executable harness follows [`addendum-b-protocol-integrity.md`](addendum-b-protocol-integrity.md). It must identify and successfully validate the canonical schema before persisting an authoritative JSON artifact. Process completion and validation are separate facts: exit code zero alone cannot produce provenance or run `PASS`.
+
+Process execution uses a structured executable plus ordered arguments with `shell=False`. Executable replay manifests and non-executing artifact verification manifests are distinct contracts. Governed paths stay within resolved configured boundaries, and telemetry is redacted before persistence.
 
 ## Learning and distillation
 

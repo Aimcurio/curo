@@ -28,6 +28,7 @@ Every governed run should record:
 - project and workflow identifier
 - governed role
 - preferred, required, and actual component identity when applicable
+- assignment ID and source-profile hash when a governed assignment was used
 - fallback state and reason
 - result status
 - machine-evidence locator
@@ -59,29 +60,32 @@ Use this order:
 
 Do not update a status from an unverified intermediate claim.
 
+Configured preference is desired identity. Runtime selection is resolved
+identity. Neither is observed identity. The designated observing harness or
+adapter records actual provider/model identity in run and provenance evidence;
+when it cannot establish that fact, observability must report `UNKNOWN` rather
+than copying a preferred or resolved value.
+
+Machine run records carry a required `observed_identity` object with identity
+state, provider, model, evidence source, and evidence SHA-256. Identity
+comparison accepts a `VERIFIED` claim only when the repository-contained run
+record passes its schema and trust checks, the named evidence matches its hash
+and is listed by the run, and matching harness-owned provenance corroborates
+the identity. An arbitrary mapping supplied by a caller cannot establish
+observed truth.
+
 ## Status vocabulary
 
-Use explicit statuses:
+Use scoped statuses. For harness execution records:
 
 ```text
-CREATED
-RUNNING
-COMPLETE
 PASS
 FAIL
-BLOCKED
-PARTIAL
-CANCELLED
 TIMED_OUT
-IMPLEMENTED
-CLEAR
-MATERIAL_FINDINGS
-DEFERRED
-NOT_STARTED
-NOT_AUTHORIZED
-FROZEN
 UNKNOWN
 ```
+
+The separate process state is `COMPLETE`, `FAIL`, `TIMED_OUT`, or `NOT_STARTED`; validation is `PASS`, `FAIL`, or `UNKNOWN`. Review findings, HITL packets, learning candidates, and promotion records retain their own schema-defined vocabularies. A process may be `COMPLETE` while the run result is `FAIL` or `UNKNOWN`.
 
 Do not use informal replacements such as `basically done`, `probably passed`,
 or `looks good`.

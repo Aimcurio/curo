@@ -9,7 +9,7 @@ description: >-
 version: 1.8.2
 status: active
 maturity: foundation
-runtime_status: not_implemented
+runtime_status: implemented_and_regression_tested
 created_at: 2026-09-05
 updated_at: 2026-09-08
 language: en
@@ -57,11 +57,16 @@ ownership:
   validation: deterministic_validator_where_feasible
   provenance: selected_provenance_extension
   evidence_persistence: selected_evidence_extension
-  replay_manifests: selected_replay_extension
+  execution_replay_manifests: selected_replay_extension
+  artifact_verification_manifests: selected_verification_extension
   observability: selected_observability_extension
   learning_distillation: selected_learning_extension
   capability_measurements: evaluation_pipeline
   pending_decisions: human_or_authorized_caller
+  project_profile_intent: human_or_authorized_caller
+  assignment_materialization: selected_harness_when_project_assignment_extension_is_used
+  assignment_approval: human_or_authorized_caller
+  observed_model_identity: selected_observing_harness_or_adapter
 lifecycle:
   creation: create first, validate next, then promote when promotion applies
   validation: deterministic first for deterministically checkable claims
@@ -81,12 +86,18 @@ usage:
   read_order:
     - project.yaml
     - README.md
+    - docs/beginner-guide.md
     - core-policies/core-identity.md
     - core-policies/drift-check.md
     - docs/architecture-layers.md
+    - ARCHITECTURE.md
+    - docs/INDEX.md
     - docs/operating-standard.md
+    - docs/addendum-b-protocol-integrity.md
     - docs/addendum-a.md
     - docs/gaps-and-roadmap.md
+    - PROJECT-PROFILE-REGRESSION-EVIDENCE.md
+    - PROJECT-PROFILE-UNRESOLVED-DECISIONS.md
   skills:
     model_package_design: skills/model-package-design/SKILL.md
     goal_driven_deep_research: skills/goal-driven-deep-research/SKILL.md
@@ -95,6 +106,17 @@ usage:
   kickoff_templates:
     human: templates/project-kickoff.md
     machine: templates/project-kickoff.yaml
+  project_definitions:
+    index: projects/README.md
+    profile_schema: schemas/project-profile.schema.json
+    assignment_schema: schemas/llm-assignments.schema.json
+    relocation_schema: schemas/project-relocation-record.schema.json
+    profile_template: templates/project-profile.yaml
+    assignment_template: templates/llm-assignments.json
+    cli:
+      validate: curo project validate
+      compile: curo project compile
+      verify_assignments: curo project verify-assignments
   observability:
     contract: observability/observability-contract.md
     run_record: observability/run-record-template.md

@@ -1,0 +1,8 @@
+# These files are byte-preserved historical evidence. Do not apply newline
+# conversion or other text filters during checkout on any platform.
+docs/audits/2026-09-07-pre-remediation-architecture.md -text
+learning/candidates/LEARN-20260907-PDF-RESTORATION.yaml -text
+manifests/spacetime-sim-learning-record.json -text
+projects/spacetime/evidence/spacetime-sim-learning-record.json -text
+manifests/math-node-v0.1-replay.json -text
+projects/math-node/evidence/math-node-v0.1-replay.json -text

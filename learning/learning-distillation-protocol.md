@@ -23,6 +23,8 @@ Observability records eligibility and references. The learning utility creates a
 proposal. The harness or evaluation pipeline establishes validation. The
 registry and authorized approver establish promotion.
 
+The canonical candidate types are `rule`, `skill`, `anti_pattern`, `validator`, and `standard_amendment`. Candidate lifecycle values are scoped to learning: `PROPOSED`, `VALIDATION_PENDING`, `VALIDATED`, `APPROVED`, `PROMOTED`, `REJECTED`, and `BLOCKED`. `APPROVED` does not imply `PROMOTED`.
+
 ## Eligible triggers
 
 - failed, blocked, partial, cancelled, or materially reviewed run

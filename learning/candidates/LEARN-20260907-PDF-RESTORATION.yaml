@@ -1,0 +1,40 @@
+artifact_type: curo_learning_candidate
+artifact_version: 1.1.0
+candidate_id: LEARN-20260907-PDF-RESTORATION
+project_id: curo
+owner: model
+status: APPROVED
+candidate_type: skill_and_anti_pattern_distillation
+source_run_ids:
+  - "5dc964f9-e037-4866-a346-19a1dcb2457d"
+source_event_ids:
+  - "evt-pdf-conversion-request"
+  - "evt-deformity-removal-correction"
+source_finding_ids:
+  - "fnd-pdftoppm-host-missing"
+  - "fnd-bleedthrough-crease-deformity"
+  - "fnd-edge-header-clipping-risk"
+  - "fnd-hardcoded-resolution-trap"
+evidence_refs:
+  - "file:///E:/Pipeline/20260809_140145.PDF"  # Dirty scan
+  - "file:///E:/Pipeline/20260809_140119.PDF"  # Dirty scan
+  - "file:///E:/Pipeline/digital_native_test.pdf" # Clean vector PDF
+failure_signature:
+  signature_id: SIG-PDF-PHYSICAL-DEFORMITIES
+  observed_pattern: >-
+    PDFs containing photographed paper documents exhibit creases and bleed-through. 
+    Default Poppler binaries are absent on Windows. Hardcoded morphological kernels 
+    and intensity thresholds fail across different DPIs/exposures. Blind margin 
+    clearing destroys edge headers and barcodes. Clean vector PDFs are unnecessarily degraded.
+  recurrence: 2
+proposed_change:
+  target: "skills/pdf.md, anti-patterns/anti-patterns.md, scripts/enhance_scanned_pdf.py"
+  description: >-
+    Promote self-contained PyMuPDF rendering via uv. Implement resolution-agnostic 
+    dynamic CV kernels, percentile-based contrast stretching, and histogram bimodality 
+    checks (to skip clean PDFs). Add safe margin filtering and document anti-patterns 6 & 7.
+required_validation:
+  - "python E:/curo/scripts/validate_curo.py"
+  - "uv run E:/curo/scripts/enhance_scanned_pdf.py --test"
+requires_hitl: true
+promotion_ref: null

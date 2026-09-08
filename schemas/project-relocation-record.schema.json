@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://curo.local/schemas/project-relocation-record.schema.json",
+  "title": "Curo Project Artifact Relocation Record",
+  "description": "Auditable evidence that historical project bytes were preserved when an artifact path changed.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "artifact_type", "artifact_version", "record_id", "project_id", "original_path",
+    "relocated_path", "original_sha256", "relocated_sha256", "preservation_status",
+    "relocation_method", "supersedes_classification_only", "created_at", "created_by", "provenance"
+  ],
+  "properties": {
+    "artifact_type": {"const": "curo_project_relocation_record"},
+    "artifact_version": {"type": "string", "minLength": 1},
+    "record_id": {"type": "string", "minLength": 1},
+    "project_id": {"type": "string", "minLength": 1, "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "original_path": {"type": "string", "minLength": 1},
+    "relocated_path": {"type": "string", "minLength": 1},
+    "original_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "relocated_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "preservation_status": {"enum": ["BYTE_IDENTICAL", "HASH_MISMATCH", "UNVERIFIED"]},
+    "relocation_method": {"enum": ["COPY_PRESERVE_SOURCE", "MOVE_WITH_RECORD", "ARCHIVE_COPY"]},
+    "supersedes_classification_only": {"type": "boolean"},
+    "created_at": {"type": "string", "format": "date-time"},
+    "created_by": {"type": "string", "minLength": 1},
+    "provenance": {
+      "type": "object", "additionalProperties": false,
+      "required": ["source_refs", "note"],
+      "properties": {
+        "source_refs": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+        "note": {"type": "string", "minLength": 1}
+      }
+    }
+  }
+}

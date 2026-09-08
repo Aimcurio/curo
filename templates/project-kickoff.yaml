@@ -1,6 +1,6 @@
 template_type: curo_project_kickoff
 template_version: 1.2.0
-updated_at: '2026-09-05'
+updated_at: '2026-09-07'
 status: DRAFT
 
 project:
@@ -87,7 +87,8 @@ ownership:
   provider_translation: adapter
   validation_result: deterministic_validator
   provenance: harness
-  replay_manifest: harness
+  execution_replay_manifest: harness
+  artifact_verification_manifest: harness
   pending_product_decisions: human_or_authorized_caller
 
 acceptance_criteria: []
@@ -122,6 +123,14 @@ failure_cases:
 approval_boundaries:
   builder_may_decide: []
   requester_must_approve: []
+
+project_handoff:
+  project_profile_required: true
+  assignment_manifest_required: true
+  known_roles: []
+  capability_requirements: []
+  data_classification_constraints: []
+  human_decisions_required: []
 
 open_decisions: []
 known_risks: []

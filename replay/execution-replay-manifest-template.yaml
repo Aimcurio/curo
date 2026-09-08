@@ -1,0 +1,32 @@
+manifest_type: execution_replay_manifest
+artifact_id: DECISION_REQUIRED
+version: 1.8.2
+executable: python
+args:
+  - -m
+  - unittest
+  - discover
+  - -s
+  - tests
+cwd: DECISION_REQUIRED
+timeout_seconds: 120
+inputs: []
+expected_outputs: []
+expected_checks:
+  - input_hash_verification
+  - process_exit_zero
+  - output_hash_verification
+  - artifact_schema_validation
+provenance:
+  record_type: provenance_record
+  artifact_id: DECISION_REQUIRED
+  input_hash: UNKNOWN
+  output_hash: UNKNOWN
+  validator_result: UNKNOWN
+  owner: harness
+  created_at: '2026-09-07T00:00:00Z'
+  source_conversation_id: null
+  source_note: Template values are not verified evidence.
+  validation_errors: []
+  diagnostic_reasons:
+    - TEMPLATE_NOT_EXECUTED

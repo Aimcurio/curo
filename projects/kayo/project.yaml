@@ -1,0 +1,267 @@
+artifact_type: curo_project_profile
+artifact_version: 1.0.0
+project_id: kayo
+display_name: KAYO
+description: Orchestration and governance system associated with the Second Brain platform.
+project_class: PLATFORM
+project_status: ACTIVE
+profile_status: DECISION_REQUIRED
+created_at: '2026-09-07T00:00:00Z'
+updated_at: '2026-09-07T00:00:00Z'
+source_context:
+  kickoff_path: null
+  source_refs:
+    - PROJECT-PROFILE-FINDINGS.md
+  summary: Retained conversation evidence establishes architectural roles but not runtime identities or roots.
+actual_project_roots:
+  - UNKNOWN
+parent_system:
+  project_id: second-brain
+  relationship: associated knowledge platform and authoritative system of record
+  authority: AUTHORITATIVE
+components:
+  - component_id: second-brain
+    name: Second Brain
+    purpose: Preserve authoritative knowledge.
+    component_type: DATA_STORE
+    authority: [KNOW]
+    roots: [UNKNOWN]
+  - component_id: kayo
+    name: KAYO
+    purpose: Coordinate bounded multi-role work.
+    component_type: SERVICE
+    authority: [COORDINATE]
+    roots: [UNKNOWN]
+  - component_id: control-room
+    name: Control Room
+    purpose: Observe operational state without becoming the knowledge authority.
+    component_type: UI
+    authority: [OBSERVE]
+    roots: [UNKNOWN]
+  - component_id: visual-data-node
+    name: Visual Data Node
+    purpose: Explain structure and relationships without authoring canonical knowledge.
+    component_type: UI
+    authority: [UNDERSTAND]
+    roots: [UNKNOWN]
+  - component_id: executor
+    name: Executor
+    purpose: Perform explicitly authorized bounded actions.
+    component_type: HARNESS
+    authority: [ACT]
+    roots: [UNKNOWN]
+  - component_id: validator
+    name: Validator
+    purpose: Establish results from deterministic evidence.
+    component_type: VALIDATOR
+    authority: [ESTABLISH EVIDENCE]
+    roots: [UNKNOWN]
+  - component_id: human
+    name: Human
+    purpose: Authorize consequential decisions and promotion.
+    component_type: HUMAN
+    authority: [AUTHORIZE]
+    roots: [UNKNOWN]
+operators:
+  - operator_id: human-requester
+    operator_type: HUMAN
+    responsibilities:
+      - Approve project intent, assignments, consequential actions, and promotion.
+objectives:
+  primary: Coordinate specialized agents while preserving knowledge, evidence, and human authority boundaries.
+  success_measures:
+    - Every action is assigned to a bounded role.
+    - Evidence and observed execution identity are recorded by the harness.
+    - Knowledge mutation and consequential actions require explicit authority.
+scope:
+  included:
+    - Multi-role coordination
+    - Assignment and authority enforcement
+    - Evidence-based validation and escalation
+  excluded:
+    - Replacing the Second Brain system of record
+    - Treating Control Room or Visual Data Node as knowledge writers
+    - Autonomous approval or inferred runtime identity
+architecture:
+  summary: Second Brain owns knowledge; KAYO coordinates; views observe or explain; the executor acts; validators establish evidence; humans authorize.
+  authoritative_components:
+    - 'second-brain: knowledge'
+    - 'kayo: coordination'
+    - 'validator: validation results'
+    - 'human: consequential authorization'
+  data_flows:
+    - Second Brain context -> KAYO bounded coordination
+    - KAYO proposal -> Human authorization -> Executor action
+    - Executor evidence -> Validator result -> run and provenance records
+    - Validated state -> Control Room and Visual Data Node read-only views
+execution_environment:
+  runtime: UNKNOWN
+  platforms:
+    - ChatGPT Desktop desired lane
+    - Codex desired lane
+    - Antigravity desired review lane
+    - Local private model desired lane
+  network_default: APPROVAL_REQUIRED
+  workspace_boundary: UNKNOWN
+data_classification: CONFIDENTIAL
+privacy_constraints:
+  - Private context must remain within an explicitly approved local/private lane.
+  - No role may expose credentials or promote configured identity to observed truth.
+storage_policy:
+  allowed_locations:
+    - Second Brain authoritative store, exact location DECISION_REQUIRED
+    - Curo run, provenance, and project evidence stores
+  prohibited_locations:
+    - Unapproved external services
+    - Plaintext credential files
+  retention: DECISION_REQUIRED
+  deletion_authority: human-requester
+authority_model:
+  models_may:
+    - Propose plans, implementations, reviews, and assignments within explicit bounds.
+  models_may_not:
+    - Approve their own assignments.
+    - Write authoritative Second Brain knowledge without an approved workflow.
+    - Claim configured or resolved identity as observed identity.
+  harness_owns:
+    - Execution boundaries, runtime resolution, persistence, and observed run records.
+  validators_own:
+    - Deterministic validation results and evidence status.
+  human_owns:
+    - Project intent, provider/model selection, consequential authorization, and promotion.
+approval_boundaries:
+  - action: Approve the KAYO project profile and assignment manifest.
+    required_authority: human-requester
+    reason: Project and model authority cannot be self-approved.
+  - action: Mutate authoritative Second Brain knowledge or use networked providers with confidential data.
+    required_authority: human-requester
+    reason: These actions cross consequential knowledge and privacy boundaries.
+required_validators:
+  - validator_id: project-profile-schema
+    purpose: Validate the project intent contract.
+    required_for: [profile approval, assignment compilation]
+  - validator_id: llm-assignments-validator
+    purpose: Validate role, capability, fallback, path, and profile-hash constraints.
+    required_for: [assignment approval, runtime resolution]
+  - validator_id: output-validator
+    purpose: Establish results from produced evidence.
+    required_for: [completion, promotion]
+evidence_policy:
+  required_artifacts:
+    - project profile validation result
+    - assignment validation result and source profile hash
+    - run and provenance records for execution claims
+    - deterministic validator output for completion claims
+  provenance_required: true
+  unknown_handling: PRESERVE_AS_UNKNOWN
+context_policy:
+  allowed_sources:
+    - Human-approved Second Brain context
+    - Current Curo project profile and assignments
+    - Bounded project workspace evidence
+  prohibited_sources:
+    - Credentials or secret values
+    - Unapproved private sources
+  least_context_required: true
+retrieval_policy:
+  method: APPROVAL_REQUIRED
+  citation_required: true
+  unavailable_behavior: PRESERVE_UNKNOWN
+tool_policy:
+  default: ALLOWLIST
+  allowed_tools:
+    - Read-only retrieval tools within approved context
+    - Structured local execution through the Curo harness
+    - Deterministic validators
+  prohibited_tools:
+    - Unbounded shell execution
+    - Direct secret extraction
+    - Unapproved authoritative-knowledge mutation
+  mutation_requires_approval: true
+model_policy:
+  assignment_manifest_required: true
+  self_approval_prohibited: true
+  observed_identity_source: run_and_provenance_records
+  fallback_must_preserve_constraints: true
+workflow_definitions:
+  - workflow_id: kayo-governed-delivery
+    purpose: Coordinate a proposal through review, authorization, bounded action, and validation.
+    ordered_steps:
+      - strategist proposes a bounded plan
+      - critic-reviewer challenges scope, evidence, and acceptance tests
+      - human-approver authorizes bounded implementation
+      - builder or local-private-model-lane produces an artifact
+      - deterministic-validator establishes the result from evidence
+      - harness records observed execution and provenance
+    required_role_ids:
+      - strategist
+      - builder
+      - critic-reviewer
+      - deterministic-validator
+      - local-private-model-lane
+      - human-approver
+    completion_evidence:
+      - human authorization reference
+      - validated output artifact
+      - run and provenance records
+failure_policy:
+  default_result: FAIL
+  retry_policy: Retry only after a deterministic or human classification identifies a bounded safe retry.
+  timeout_result: UNKNOWN
+  missing_evidence_result: UNKNOWN
+escalation_policy:
+  conditions:
+    - Required provider, model, root, or transport remains unresolved.
+    - Requested action exceeds role authority or privacy constraints.
+    - Validation is unavailable, failed, or inconclusive.
+  destination: human-requester
+  required_evidence:
+    - current assignment and profile hashes
+    - failure or unavailability evidence
+observability:
+  run_records_required: true
+  provenance_records_required: true
+  observed_identity_state_values: [VERIFIED, UNKNOWN, UNAVAILABLE, MISMATCH]
+dependencies:
+  - dependency_id: second-brain
+    dependency_type: PROJECT
+    requirement: Authoritative knowledge and approved context interface.
+    status: REQUIRED
+  - dependency_id: provider-transports
+    dependency_type: SERVICE
+    requirement: Exact transport availability must be independently verified.
+    status: UNKNOWN
+related_projects:
+  - project_id: control-room
+    relationship: read-only operational observation surface
+    authority: REFERENCE_ONLY
+  - project_id: visual-data-node
+    relationship: read-only structural understanding surface
+    authority: REFERENCE_ONLY
+open_decisions:
+  - decision_id: kayo-project-root
+    question: What is the approved current KAYO source root?
+    status: DECISION_REQUIRED
+    owner: human-requester
+  - decision_id: kayo-role-models
+    question: Which capability-compatible providers and models are approved for each model role?
+    status: DECISION_REQUIRED
+    owner: human-requester
+  - decision_id: kayo-private-boundary
+    question: Which context may leave the local/private lane and through which verified transports?
+    status: DECISION_REQUIRED
+    owner: human-requester
+known_risks:
+  - risk_id: boundary-collapse
+    description: Coordination or view components could be mistaken for authoritative knowledge owners.
+    severity: CRITICAL
+    mitigation: Enforce the named component boundaries, role scopes, human approvals, and deterministic validation.
+  - risk_id: identity-overclaim
+    description: Desired or resolved provider/model values could be reported as observed execution truth.
+    severity: HIGH
+    mitigation: Keep observed identity out of assignments and require harness run evidence.
+provenance:
+  created_by: curo-project-profile-migration
+  source_refs:
+    - PROJECT-PROFILE-FINDINGS.md
+  approval_ref: null

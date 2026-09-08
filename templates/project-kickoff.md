@@ -175,12 +175,42 @@ The requester must approve:
 
 ## 14. Kickoff instruction
 
+The kickoff is intake, not an operational assignment contract. Record only the
+handoff information needed to draft the project-specific profile:
+
+- `project_profile_required`: `true | false`
+- `assignment_manifest_required`: `true | false`
+- `known_roles`: `OPTIONAL list`
+- `capability_requirements`: `OPTIONAL list`
+- `data_classification_constraints`: `OPTIONAL list`
+- `human_decisions_required`: `OPTIONAL list`
+
+The governed handoff is:
+
+```text
+kickoff completed
+    -> project profile proposed
+    -> project profile reviewed
+    -> project profile approved
+    -> LLM/agent assignments compiled and validated
+    -> bounded implementation authorized
+```
+
+The kickoff must not contain the full assignment contract. The approved
+project profile owns project intent; the assignment manifest is derived from
+and hash-bound to that profile; run and provenance records own observed
+execution identity.
+
 Use this brief with the following instruction:
 
 ```text
 Use the Curo operating standard at the configured Curo root as the governing reference.
-First convert this brief into an ownership table, canonical contracts,
-implementation phases, validation gates, and an evidence/replay plan.
+First propose a project-specific profile for review. Do not compile assignments
+until the profile is approved. Then produce the ownership table, canonical
+contracts, bounded implementation phases, validation gates, and an
+evidence/replay plan.
+
+If execution is in scope, define a structured executable and ordered arguments. State separately whether reproducibility needs process re-execution, historical artifact verification, or both; do not use a shell command string as the canonical replay contract.
 Do not begin implementation until REQUIRED decisions are resolved or
 explicitly marked UNKNOWN. Keep model output as proposal data until the
 harness or deterministic validators establish authoritative facts.
@@ -194,4 +224,4 @@ harness or deterministic validators establish authoritative facts.
 - First implementation slice: `REQUIRED`
 - Template version: `1.2.0`
 - Project brief version: `0.1.0`
-- Updated: `2026-09-05`
+- Updated: `2026-09-07`

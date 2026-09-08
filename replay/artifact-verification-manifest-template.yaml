@@ -1,0 +1,22 @@
+manifest_type: artifact_verification_manifest
+artifact_id: DECISION_REQUIRED
+version: 1.0.0
+artifacts:
+  - path: DECISION_REQUIRED
+    sha256: DECISION_REQUIRED
+    schema: null
+expected_checks:
+  - artifact_hash_verification
+provenance:
+  record_type: provenance_record
+  artifact_id: DECISION_REQUIRED
+  input_hash: UNKNOWN
+  output_hash: UNKNOWN
+  validator_result: UNKNOWN
+  owner: harness
+  created_at: '2026-09-07T00:00:00Z'
+  source_conversation_id: null
+  source_note: Template values are not verified evidence.
+  validation_errors: []
+  diagnostic_reasons:
+    - TEMPLATE_NOT_VERIFIED

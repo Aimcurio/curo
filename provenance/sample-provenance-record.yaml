@@ -2,10 +2,13 @@ record_type: provenance_record
 artifact_id: operating-standard
 input_hash: UNKNOWN
 output_hash: UNKNOWN
-validator_result: pending
+validator_result: UNKNOWN
 owner: harness
 created_at: '2026-09-05T00:00:00Z'
 source_conversation_id: 6a9c0aab-cc98-83e8-9a95-2fea63283d6e
 source_note: >-
   Derived from the latest conversation content provided in-thread. UNKNOWN
   values remain unknown until the harness establishes them.
+validation_errors: []
+diagnostic_reasons:
+  - SAMPLE_NOT_EXECUTED

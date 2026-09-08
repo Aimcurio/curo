@@ -1,0 +1,540 @@
+{
+  "artifact_type": "curo_llm_assignments",
+  "artifact_version": "1.0.0",
+  "project_id": "kayo",
+  "source_project_profile": "projects/kayo/project.yaml",
+  "source_profile_hash": "sha256:a878c417b8ecbe11d9cad55cacbc9e21766e9a9f08dab82ecdff93dacf4303f5",
+  "assignment_policy_version": "1.0.0",
+  "reference_time": "2026-09-07T00:00:00Z",
+  "generated_at": "2026-09-07T00:00:00Z",
+  "generated_by": {
+    "generator_type": "MANUAL_DRAFT",
+    "generator_id": "curo-project-migration-draft",
+    "deterministic": false
+  },
+  "approval_status": "DECISION_REQUIRED",
+  "approval_ref": null,
+  "assignments": [
+    {
+      "assignment_id": "strategist-assignment",
+      "role_id": "strategist",
+      "role_name": "Strategist",
+      "role_type": "MODEL",
+      "purpose": "Propose bounded plans from approved objectives and context without authorizing execution.",
+      "assignment_status": "UNRESOLVED",
+      "authority_scope": {
+        "may_read": true,
+        "may_write": false,
+        "may_execute": false,
+        "may_validate": false,
+        "may_approve": false
+      },
+      "required_capabilities": [
+        "planning",
+        "constraint analysis",
+        "evidence-aware decomposition"
+      ],
+      "prohibited_capabilities": [
+        "self-approval",
+        "observed-identity-assertion"
+      ],
+      "preferred_provider": "UNKNOWN",
+      "preferred_model": "UNKNOWN",
+      "resolved_identity_state": "UNRESOLVED",
+      "resolved_provider": null,
+      "resolved_model": null,
+      "acceptable_fallbacks": [],
+      "fallback_policy": {
+        "mode": "DISABLED",
+        "requires_capability_match": true,
+        "may_weaken_data_controls": false,
+        "may_expand_authority": false,
+        "approval_required": true
+      },
+      "required_tools": [],
+      "optional_tools": [],
+      "allowed_context_sources": [
+        "human-approved Second Brain context",
+        "current KAYO profile and assignments",
+        "bounded project evidence"
+      ],
+      "prohibited_context_sources": [
+        "credentials and secret values",
+        "unapproved private or unrelated project data"
+      ],
+      "allowed_project_roots": [
+        "UNKNOWN"
+      ],
+      "allowed_write_roots": [],
+      "network_policy": {
+        "mode": "APPROVAL_REQUIRED",
+        "allowed_destinations": []
+      },
+      "data_classification_limit": "CONFIDENTIAL",
+      "credential_requirements": [],
+      "required_validators": [
+        "project-profile-schema",
+        "llm-assignments-validator",
+        "output-validator"
+      ],
+      "completion_evidence": [
+        "reviewable plan",
+        "declared assumptions and open decisions"
+      ],
+      "review_requirements": {
+        "reviewer_role_ids": [
+          "critic-reviewer",
+          "human-approver"
+        ],
+        "human_approval_required": true,
+        "self_approval_prohibited": true
+      },
+      "escalation_conditions": [
+        "Provider or model identity remains unresolved.",
+        "Requested authority, path, data, or capability exceeds this assignment."
+      ]
+    },
+    {
+      "assignment_id": "builder-assignment",
+      "role_id": "builder",
+      "role_name": "Builder",
+      "role_type": "MODEL",
+      "purpose": "Produce bounded implementation artifacts only after explicit human authorization and root resolution.",
+      "assignment_status": "UNRESOLVED",
+      "authority_scope": {
+        "may_read": true,
+        "may_write": false,
+        "may_execute": false,
+        "may_validate": false,
+        "may_approve": false
+      },
+      "required_capabilities": [
+        "implementation",
+        "structured tool use",
+        "test construction"
+      ],
+      "prohibited_capabilities": [
+        "self-approval",
+        "observed-identity-assertion"
+      ],
+      "preferred_provider": "UNKNOWN",
+      "preferred_model": "UNKNOWN",
+      "resolved_identity_state": "UNRESOLVED",
+      "resolved_provider": null,
+      "resolved_model": null,
+      "acceptable_fallbacks": [],
+      "fallback_policy": {
+        "mode": "DISABLED",
+        "requires_capability_match": true,
+        "may_weaken_data_controls": false,
+        "may_expand_authority": false,
+        "approval_required": true
+      },
+      "required_tools": [],
+      "optional_tools": [],
+      "allowed_context_sources": [
+        "human-approved Second Brain context",
+        "current KAYO profile and assignments",
+        "bounded project evidence"
+      ],
+      "prohibited_context_sources": [
+        "credentials and secret values",
+        "unapproved private or unrelated project data"
+      ],
+      "allowed_project_roots": [
+        "UNKNOWN"
+      ],
+      "allowed_write_roots": [],
+      "network_policy": {
+        "mode": "APPROVAL_REQUIRED",
+        "allowed_destinations": []
+      },
+      "data_classification_limit": "CONFIDENTIAL",
+      "credential_requirements": [],
+      "required_validators": [
+        "project-profile-schema",
+        "llm-assignments-validator",
+        "output-validator"
+      ],
+      "completion_evidence": [
+        "bounded change set",
+        "test and provenance records"
+      ],
+      "review_requirements": {
+        "reviewer_role_ids": [
+          "critic-reviewer",
+          "deterministic-validator",
+          "human-approver"
+        ],
+        "human_approval_required": true,
+        "self_approval_prohibited": true
+      },
+      "escalation_conditions": [
+        "Provider or model identity remains unresolved.",
+        "Requested authority, path, data, or capability exceeds this assignment."
+      ]
+    },
+    {
+      "assignment_id": "critic-reviewer-assignment",
+      "role_id": "critic-reviewer",
+      "role_name": "Critic/Reviewer",
+      "role_type": "MODEL",
+      "purpose": "Challenge proposals and artifacts using source evidence, counterexamples, and acceptance tests.",
+      "assignment_status": "UNRESOLVED",
+      "authority_scope": {
+        "may_read": true,
+        "may_write": false,
+        "may_execute": false,
+        "may_validate": false,
+        "may_approve": false
+      },
+      "required_capabilities": [
+        "adversarial review",
+        "evidence analysis",
+        "acceptance-test design"
+      ],
+      "prohibited_capabilities": [
+        "self-approval",
+        "observed-identity-assertion"
+      ],
+      "preferred_provider": "UNKNOWN",
+      "preferred_model": "UNKNOWN",
+      "resolved_identity_state": "UNRESOLVED",
+      "resolved_provider": null,
+      "resolved_model": null,
+      "acceptable_fallbacks": [],
+      "fallback_policy": {
+        "mode": "DISABLED",
+        "requires_capability_match": true,
+        "may_weaken_data_controls": false,
+        "may_expand_authority": false,
+        "approval_required": true
+      },
+      "required_tools": [],
+      "optional_tools": [],
+      "allowed_context_sources": [
+        "human-approved Second Brain context",
+        "current KAYO profile and assignments",
+        "bounded project evidence"
+      ],
+      "prohibited_context_sources": [
+        "credentials and secret values",
+        "unapproved private or unrelated project data"
+      ],
+      "allowed_project_roots": [
+        "UNKNOWN"
+      ],
+      "allowed_write_roots": [],
+      "network_policy": {
+        "mode": "APPROVAL_REQUIRED",
+        "allowed_destinations": []
+      },
+      "data_classification_limit": "CONFIDENTIAL",
+      "credential_requirements": [],
+      "required_validators": [
+        "project-profile-schema",
+        "llm-assignments-validator",
+        "output-validator"
+      ],
+      "completion_evidence": [
+        "severity-ranked findings",
+        "source evidence and acceptance tests"
+      ],
+      "review_requirements": {
+        "reviewer_role_ids": [
+          "human-approver"
+        ],
+        "human_approval_required": true,
+        "self_approval_prohibited": true
+      },
+      "escalation_conditions": [
+        "Provider or model identity remains unresolved.",
+        "Requested authority, path, data, or capability exceeds this assignment."
+      ]
+    },
+    {
+      "assignment_id": "deterministic-validator-assignment",
+      "role_id": "deterministic-validator",
+      "role_name": "Deterministic Validator",
+      "role_type": "DETERMINISTIC_COMPONENT",
+      "purpose": "Establish schema, policy, process, and artifact results from deterministic checks.",
+      "assignment_status": "UNRESOLVED",
+      "authority_scope": {
+        "may_read": true,
+        "may_write": false,
+        "may_execute": false,
+        "may_validate": true,
+        "may_approve": false
+      },
+      "required_capabilities": [
+        "schema validation",
+        "hash verification",
+        "deterministic test execution"
+      ],
+      "prohibited_capabilities": [
+        "assignment approval",
+        "observed-model inference",
+        "constraint weakening"
+      ],
+      "preferred_provider": "UNKNOWN",
+      "preferred_model": "UNKNOWN",
+      "resolved_identity_state": "UNRESOLVED",
+      "resolved_provider": null,
+      "resolved_model": null,
+      "acceptable_fallbacks": [],
+      "fallback_policy": {
+        "mode": "DISABLED",
+        "requires_capability_match": true,
+        "may_weaken_data_controls": false,
+        "may_expand_authority": false,
+        "approval_required": true
+      },
+      "required_tools": [
+        "Curo validator",
+        "project test commands"
+      ],
+      "optional_tools": [],
+      "allowed_context_sources": [
+        "current project artifacts",
+        "declared validators",
+        "run evidence"
+      ],
+      "prohibited_context_sources": [
+        "credentials and secret values",
+        "unapproved private or unrelated project data"
+      ],
+      "allowed_project_roots": [
+        "UNKNOWN"
+      ],
+      "allowed_write_roots": [],
+      "network_policy": {
+        "mode": "DENY",
+        "allowed_destinations": []
+      },
+      "data_classification_limit": "CONFIDENTIAL",
+      "credential_requirements": [],
+      "required_validators": [
+        "project-profile-schema",
+        "llm-assignments-validator"
+      ],
+      "completion_evidence": [
+        "machine-readable validation result",
+        "input and output hashes"
+      ],
+      "review_requirements": {
+        "reviewer_role_ids": [
+          "human-approver"
+        ],
+        "human_approval_required": true,
+        "self_approval_prohibited": true
+      },
+      "escalation_conditions": [
+        "Provider or model identity remains unresolved.",
+        "Requested authority, path, data, or capability exceeds this assignment."
+      ]
+    },
+    {
+      "assignment_id": "local-private-model-lane-assignment",
+      "role_id": "local-private-model-lane",
+      "role_name": "Local/Private Model Lane",
+      "role_type": "MODEL",
+      "purpose": "Handle approved private context locally when a verified private runtime becomes available.",
+      "assignment_status": "UNRESOLVED",
+      "authority_scope": {
+        "may_read": true,
+        "may_write": false,
+        "may_execute": false,
+        "may_validate": false,
+        "may_approve": false
+      },
+      "required_capabilities": [
+        "private-context reasoning",
+        "local execution compatibility"
+      ],
+      "prohibited_capabilities": [
+        "network disclosure",
+        "self-approval",
+        "observed-identity-assertion"
+      ],
+      "preferred_provider": "UNKNOWN",
+      "preferred_model": "UNKNOWN",
+      "resolved_identity_state": "UNRESOLVED",
+      "resolved_provider": null,
+      "resolved_model": null,
+      "acceptable_fallbacks": [],
+      "fallback_policy": {
+        "mode": "DISABLED",
+        "requires_capability_match": true,
+        "may_weaken_data_controls": false,
+        "may_expand_authority": false,
+        "approval_required": true
+      },
+      "required_tools": [],
+      "optional_tools": [],
+      "allowed_context_sources": [
+        "explicitly approved local/private context",
+        "current KAYO profile and assignments"
+      ],
+      "prohibited_context_sources": [
+        "credentials and secret values",
+        "unapproved private or unrelated project data"
+      ],
+      "allowed_project_roots": [
+        "UNKNOWN"
+      ],
+      "allowed_write_roots": [],
+      "network_policy": {
+        "mode": "DENY",
+        "allowed_destinations": []
+      },
+      "data_classification_limit": "RESTRICTED",
+      "credential_requirements": [],
+      "required_validators": [
+        "project-profile-schema",
+        "llm-assignments-validator",
+        "output-validator"
+      ],
+      "completion_evidence": [
+        "local-boundary evidence",
+        "validated output",
+        "run and provenance records"
+      ],
+      "review_requirements": {
+        "reviewer_role_ids": [
+          "critic-reviewer",
+          "deterministic-validator",
+          "human-approver"
+        ],
+        "human_approval_required": true,
+        "self_approval_prohibited": true
+      },
+      "escalation_conditions": [
+        "Provider or model identity remains unresolved.",
+        "Requested authority, path, data, or capability exceeds this assignment."
+      ]
+    },
+    {
+      "assignment_id": "human-approver-assignment",
+      "role_id": "human-approver",
+      "role_name": "Human Approver",
+      "role_type": "HUMAN",
+      "purpose": "Authorize project intent, role assignments, consequential actions, knowledge mutation, and promotion.",
+      "assignment_status": "UNRESOLVED",
+      "authority_scope": {
+        "may_read": true,
+        "may_write": false,
+        "may_execute": false,
+        "may_validate": false,
+        "may_approve": true
+      },
+      "required_capabilities": [
+        "consequential authorization",
+        "project intent ownership"
+      ],
+      "prohibited_capabilities": [
+        "unrecorded approval",
+        "observed-identity fabrication"
+      ],
+      "preferred_provider": "UNKNOWN",
+      "preferred_model": "UNKNOWN",
+      "resolved_identity_state": "UNRESOLVED",
+      "resolved_provider": null,
+      "resolved_model": null,
+      "acceptable_fallbacks": [],
+      "fallback_policy": {
+        "mode": "DISABLED",
+        "requires_capability_match": true,
+        "may_weaken_data_controls": false,
+        "may_expand_authority": false,
+        "approval_required": true
+      },
+      "required_tools": [],
+      "optional_tools": [],
+      "allowed_context_sources": [
+        "project profile",
+        "assignment manifest",
+        "review findings",
+        "validation evidence"
+      ],
+      "prohibited_context_sources": [
+        "credentials and secret values",
+        "unapproved private or unrelated project data"
+      ],
+      "allowed_project_roots": [
+        "UNKNOWN"
+      ],
+      "allowed_write_roots": [],
+      "network_policy": {
+        "mode": "APPROVAL_REQUIRED",
+        "allowed_destinations": []
+      },
+      "data_classification_limit": "RESTRICTED",
+      "credential_requirements": [],
+      "required_validators": [
+        "project-profile-schema",
+        "llm-assignments-validator"
+      ],
+      "completion_evidence": [
+        "explicit approval reference or recorded decision"
+      ],
+      "review_requirements": {
+        "reviewer_role_ids": [
+          "critic-reviewer",
+          "deterministic-validator"
+        ],
+        "human_approval_required": false,
+        "self_approval_prohibited": true
+      },
+      "escalation_conditions": [
+        "Evidence is incomplete or contradictory.",
+        "Requested action exceeds stated project intent."
+      ]
+    }
+  ],
+  "unresolved_assignments": [
+    {
+      "role_id": "strategist",
+      "reason": "No exact provider or model is verified.",
+      "required_decision": "Select a capability-compatible provider/model or explicitly retain UNKNOWN.",
+      "owner": "human-requester"
+    },
+    {
+      "role_id": "builder",
+      "reason": "No exact provider/model or approved writable project root is verified.",
+      "required_decision": "Approve the project root and a capability-compatible provider/model.",
+      "owner": "human-requester"
+    },
+    {
+      "role_id": "critic-reviewer",
+      "reason": "No exact provider or model is verified.",
+      "required_decision": "Select and approve a reviewer provider/model.",
+      "owner": "human-requester"
+    },
+    {
+      "role_id": "deterministic-validator",
+      "reason": "The KAYO-specific validator binding is not yet approved.",
+      "required_decision": "Approve the deterministic validator implementation and executable checks.",
+      "owner": "human-requester"
+    },
+    {
+      "role_id": "local-private-model-lane",
+      "reason": "No local/private provider, model, or transport is verified.",
+      "required_decision": "Verify and approve a local/private runtime and its data boundary.",
+      "owner": "human-requester"
+    },
+    {
+      "role_id": "human-approver",
+      "reason": "No approval reference exists for this proposed assignment set.",
+      "required_decision": "Review the profile and assignments and record an explicit decision.",
+      "owner": "human-requester"
+    }
+  ],
+  "provenance": {
+    "source_profile_hash_algorithm": "SHA-256",
+    "compiler_input_refs": [
+      "projects/kayo/project.yaml",
+      "PROJECT-PROFILE-FINDINGS.md"
+    ],
+    "approval_actor": null
+  }
+}
