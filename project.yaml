@@ -6,7 +6,7 @@ description: >-
   validators, workflows, governance, observability, execution systems, research
   systems, adapters, and other capabilities are extensions and do not define
   Curo core by themselves.
-version: 1.8.2
+version: 1.8.3
 status: active
 maturity: foundation
 runtime_status: implemented_and_regression_tested
@@ -98,6 +98,10 @@ usage:
     - docs/gaps-and-roadmap.md
     - PROJECT-PROFILE-REGRESSION-EVIDENCE.md
     - PROJECT-PROFILE-UNRESOLVED-DECISIONS.md
+  registries:
+    repository: registry/registry.yaml
+    scoped:
+      goal_driven_deep_research: registry/deep-research.yaml
   skills:
     model_package_design: skills/model-package-design/SKILL.md
     goal_driven_deep_research: skills/goal-driven-deep-research/SKILL.md
