@@ -1,4 +1,21 @@
-# Curo
+# CURO: Governed AI Capability Framework
+
+[![Status](https://img.shields.io/badge/Status-Qualified_Framework_Core-green?style=flat-square)](#)
+[![Tech](https://img.shields.io/badge/Tech-Python_3.12__Pydantic-blue?style=flat-square)](#)
+[![Domain](https://img.shields.io/badge/Domain-AI_Governance__Agent_Capabilities-orange?style=flat-square)](#)
+[![Standard](https://img.shields.io/badge/Standard-BUBBA_2.0_Governance-purple?style=flat-square)](#)
+[![Protocol](https://img.shields.io/badge/Protocol-Planner_V0.1_Frozen-green?style=flat-square)](#)
+
+> **Portfolio Classification:** Public AI Framework  
+> **Authoritative Root:** `C:\Users\15103\Projects\curo` | **Canonical Spec:** `E:\overview\specs\curo.json`  
+> **Development Status:** **QUALIFIED / FRAMEWORK CORE** — Planner Protocol V0.1 frozen; schema validation tests PASS; multi-provider model adapters verified.
+
+> [!NOTE]
+> **GOVERNANCE ARCHITECTURE:**  
+> CURO is architecturally subordinate to the Titan Governance Constitution (`Aimcurio/titan`). CURO provides model-agnostic execution capabilities while Titan enforces constitutional state transitions.
+
+---
+
 
 Curo is a **small, modular, model-agnostic framework** around which reusable AI capabilities can be built, composed, replaced, and evolved.
 
